@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Logo_monocromatico" data-name="Logo monocromatico" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fefefe;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_84);
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #0057f6;
+      }
+
+      .cls-7 {
+        letter-spacing: .19em;
+      }
+
+      .cls-8 {
+        fill: #f6f6f6;
+        font-family: Montserrat-ExtraBold, Montserrat;
+        font-size: 180px;
+        font-variation-settings: 'wght' 800;
+        font-weight: 700;
+      }
+
+      .cls-9 {
+        letter-spacing: .2em;
+      }
+
+      .cls-5 {
+        fill: url(#Degradado_sin_nombre_89);
+      }
+
+      .cls-6 {
+        fill: #00143f;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_84" data-name="Degradado sin nombre 84" x1="466.9" y1="485.06" x2="715.71" y2="733.87" gradientUnits="userSpaceOnUse">
+      <stop offset=".24" stop-color="#216af1"/>
+      <stop offset=".29" stop-color="#246cf1"/>
+      <stop offset=".34" stop-color="#3074f1"/>
+      <stop offset=".39" stop-color="#4481f3"/>
+      <stop offset=".43" stop-color="#6094f4"/>
+      <stop offset=".48" stop-color="#84acf7"/>
+      <stop offset=".53" stop-color="#b0c9fa"/>
+      <stop offset=".57" stop-color="#e2ecfd"/>
+      <stop offset=".59" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_89" data-name="Degradado sin nombre 89" x1="559.54" y1="393.77" x2="817.46" y2="393.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0b" stop-opacity=".96"/>
+      <stop offset=".31" stop-color="#fec21f" stop-opacity=".87"/>
+      <stop offset=".4" stop-color="#fecc40" stop-opacity=".71"/>
+      <stop offset=".46" stop-color="#fed357" stop-opacity=".6"/>
+      <stop offset=".54" stop-color="#fedc7c" stop-opacity=".49"/>
+      <stop offset=".68" stop-color="#feebb4" stop-opacity=".32"/>
+      <stop offset=".81" stop-color="#fef6dd" stop-opacity=".2"/>
+      <stop offset=".92" stop-color="#fefcf6" stop-opacity=".13"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-6" y="-16.47" width="1016.47" height="1016.47"/>
+  <g id="Base_torre" data-name="Base torre">
+    <polygon class="cls-1" points="567.46 520.05 494.09 572.02 492.56 508.1 554.77 477.33 567.46 520.05"/>
+    <path class="cls-2" d="m567.59,519.27l20.84,70.11s174.06,31.83,211.71,58.36c0,0-149.45-24.97-174.95-27.09-25.62-2.14-129.42-7.96-129.96-6.25l-67.66,1.89,140.02-97.01Z"/>
+    <path class="cls-1" d="m494.66,569.8l-2.1-61.7-83.62,47.12-11.12,35.4s-101.1,20.56-125.18,27.69c-27.09,8.02-75.64,28.4-74.72,28.86,0,0,104.21-20.27,123.35-21.98s108.25-9.28,108.25-9.28l65.13-46.11Z"/>
+  </g>
+  <g id="Base_sup" data-name="Base sup">
+    <g>
+      <polygon class="cls-1" points="492.56 498.56 415.89 531.4 430.79 467.5 492.56 450.43 492.56 498.56"/>
+      <polygon class="cls-1" points="492.56 450.43 430.79 467.5 406.73 441.4 492.56 418.66 492.56 450.43"/>
+      <polygon class="cls-1" points="492.56 450.43 553.95 466.22 575.68 442.53 492.56 418.66 492.56 450.43"/>
+    </g>
+  </g>
+  <g id="Fuente_de_foco" data-name="Fuente de foco">
+    <polygon class="cls-1" points="492.69 402.43 411.34 424.54 410.46 386.14 492.56 361 492.69 402.43"/>
+    <polygon class="cls-4" points="492.69 402.43 541.45 387.97 562.29 382.1 492.81 361 492.69 402.43"/>
+    <polyline class="cls-4" points="540.69 387.78 540.37 411.05 552.43 418.16 492.69 402.43"/>
+  </g>
+  <g id="Tecgo">
+    <g>
+      <polygon class="cls-1" points="492.56 344.96 389.11 377.36 377.74 347.61 491.42 298.92 492.56 344.96"/>
+      <polygon class="cls-1" points="492.56 344.96 594.41 376.86 607.38 347.61 491.42 298.92 492.56 344.96"/>
+    </g>
+  </g>
+  <polygon id="Luz" class="cls-5" points="559.54 396.6 805.57 462.82 817.46 324.72 559.54 396.6"/>
+  <g id="Titulo">
+    <text class="cls-8" transform="translate(158.69 811.85)"><tspan class="cls-7" x="0" y="0">V</tspan><tspan class="cls-9" x="171.18" y="0">IGIA</tspan></text>
+  </g>
+  <polygon class="cls-3" points="652.95 676.92 612.86 676.92 644.5 644.74 686.18 644.74 652.95 676.92"/>
+</svg>

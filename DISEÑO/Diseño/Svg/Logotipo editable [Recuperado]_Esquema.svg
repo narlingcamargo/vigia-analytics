@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Esquema" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1193">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Degradado_sin_nombre_55);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22 {
+        stroke-width: 0px;
+      }
+
+      .cls-2, .cls-23 {
+        fill: #fefefe;
+      }
+
+      .cls-3 {
+        fill: url(#Degradado_sin_nombre_74-2);
+      }
+
+      .cls-4 {
+        fill: #001e72;
+      }
+
+      .cls-24 {
+        letter-spacing: .18em;
+      }
+
+      .cls-25 {
+        fill: #0c45db;
+      }
+
+      .cls-25, .cls-26, .cls-27, .cls-28, .cls-29, .cls-30, .cls-23 {
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-31 {
+        letter-spacing: .02em;
+      }
+
+      .cls-32 {
+        letter-spacing: .2em;
+      }
+
+      .cls-5 {
+        fill: #0081f1;
+      }
+
+      .cls-33 {
+        letter-spacing: .03em;
+      }
+
+      .cls-34 {
+        letter-spacing: .04em;
+      }
+
+      .cls-35 {
+        letter-spacing: .06em;
+      }
+
+      .cls-6 {
+        fill: url(#Degradado_sin_nombre_45-2);
+      }
+
+      .cls-36 {
+        letter-spacing: .05em;
+      }
+
+      .cls-37 {
+        font-size: 56.48px;
+      }
+
+      .cls-37, .cls-38, .cls-39 {
+        fill: #001d74;
+      }
+
+      .cls-37, .cls-40 {
+        font-family: Montserrat-Regular, Montserrat;
+        font-variation-settings: 'wght' 400;
+      }
+
+      .cls-41 {
+        letter-spacing: .03em;
+      }
+
+      .cls-7 {
+        fill: url(#Degradado_sin_nombre_55-2);
+      }
+
+      .cls-42 {
+        letter-spacing: .05em;
+      }
+
+      .cls-43 {
+        letter-spacing: .05em;
+      }
+
+      .cls-44 {
+        letter-spacing: .02em;
+      }
+
+      .cls-8 {
+        fill: #0043cf;
+      }
+
+      .cls-45 {
+        letter-spacing: .19em;
+      }
+
+      .cls-9 {
+        fill: url(#Degradado_sin_nombre_45);
+      }
+
+      .cls-46 {
+        letter-spacing: .05em;
+      }
+
+      .cls-10 {
+        fill: url(#Degradado_sin_nombre_45-3);
+      }
+
+      .cls-11 {
+        fill: url(#Degradado_sin_nombre_84);
+      }
+
+      .cls-12 {
+        fill: #fff;
+      }
+
+      .cls-47 {
+        letter-spacing: .05em;
+      }
+
+      .cls-13 {
+        fill: #0057f6;
+      }
+
+      .cls-14 {
+        fill: #00248f;
+      }
+
+      .cls-48 {
+        letter-spacing: .05em;
+      }
+
+      .cls-49 {
+        letter-spacing: .2em;
+      }
+
+      .cls-50 {
+        letter-spacing: .02em;
+      }
+
+      .cls-51 {
+        letter-spacing: .04em;
+      }
+
+      .cls-52 {
+        letter-spacing: .04em;
+      }
+
+      .cls-15 {
+        fill: #0032aa;
+      }
+
+      .cls-53 {
+        letter-spacing: .03em;
+      }
+
+      .cls-54 {
+        letter-spacing: .02em;
+      }
+
+      .cls-16 {
+        fill: url(#Degradado_sin_nombre_84-2);
+      }
+
+      .cls-17 {
+        fill: url(#Degradado_sin_nombre_74);
+      }
+
+      .cls-55 {
+        font-family: Montserrat-Bold, Montserrat;
+        font-variation-settings: 'wght' 700;
+      }
+
+      .cls-55, .cls-38, .cls-56, .cls-39 {
+        font-weight: 700;
+      }
+
+      .cls-55, .cls-40 {
+        font-size: 25.44px;
+      }
+
+      .cls-57 {
+        letter-spacing: .04em;
+      }
+
+      .cls-18 {
+        fill: #004cda;
+      }
+
+      .cls-58 {
+        letter-spacing: .19em;
+      }
+
+      .cls-19 {
+        fill: #0177f0;
+      }
+
+      .cls-38 {
+        font-size: 54.63px;
+      }
+
+      .cls-38, .cls-56, .cls-39 {
+        font-family: Montserrat-ExtraBold, Montserrat;
+        font-variation-settings: 'wght' 800;
+      }
+
+      .cls-20 {
+        fill: #00248e;
+      }
+
+      .cls-59 {
+        letter-spacing: .05em;
+      }
+
+      .cls-26 {
+        fill: #011f87;
+      }
+
+      .cls-21 {
+        fill: #0042ce;
+      }
+
+      .cls-27 {
+        fill: #febb02;
+      }
+
+      .cls-56 {
+        fill: #f6f6f6;
+        font-size: 34.93px;
+      }
+
+      .cls-28 {
+        fill: #008af6;
+      }
+
+      .cls-60 {
+        letter-spacing: .04em;
+      }
+
+      .cls-39 {
+        font-size: 127.29px;
+      }
+
+      .cls-29 {
+        stroke-width: 3px;
+      }
+
+      .cls-29, .cls-22 {
+        fill: #00143f;
+      }
+
+      .cls-30 {
+        fill: #032db1;
+      }
+
+      .cls-61 {
+        letter-spacing: .2em;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_45" data-name="Degradado sin nombre 45" x1="310.14" y1="165.02" x2="492.53" y2="165.02" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0d"/>
+      <stop offset=".33" stop-color="#fec425"/>
+      <stop offset=".44" stop-color="#fed04d"/>
+      <stop offset=".46" stop-color="#fed357"/>
+      <stop offset=".52" stop-color="#fed560"/>
+      <stop offset=".63" stop-color="#fedc7b"/>
+      <stop offset=".77" stop-color="#fee7a6"/>
+      <stop offset=".93" stop-color="#fef7e1"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_55" data-name="Degradado sin nombre 55" x1="853.6" y1="137.9" x2="905.45" y2="137.9" gradientUnits="userSpaceOnUse">
+      <stop offset=".23" stop-color="#0049d9"/>
+      <stop offset=".45" stop-color="#005de1"/>
+      <stop offset=".92" stop-color="#0092f7"/>
+      <stop offset="1" stop-color="#009cfb"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_55-2" data-name="Degradado sin nombre 55" x1="343.66" y1="740.43" x2="365.91" y2="740.43" xlink:href="#Degradado_sin_nombre_55"/>
+    <linearGradient id="Degradado_sin_nombre_45-2" data-name="Degradado sin nombre 45" x1="330.33" y1="658.01" x2="408.61" y2="658.01" xlink:href="#Degradado_sin_nombre_45"/>
+    <linearGradient id="Degradado_sin_nombre_84" data-name="Degradado sin nombre 84" x1="556.42" y1="701.96" x2="604.71" y2="750.25" gradientUnits="userSpaceOnUse">
+      <stop offset=".24" stop-color="#216af1"/>
+      <stop offset=".29" stop-color="#246cf1"/>
+      <stop offset=".34" stop-color="#3074f1"/>
+      <stop offset=".39" stop-color="#4481f3"/>
+      <stop offset=".43" stop-color="#6094f4"/>
+      <stop offset=".48" stop-color="#84acf7"/>
+      <stop offset=".53" stop-color="#b0c9fa"/>
+      <stop offset=".57" stop-color="#e2ecfd"/>
+      <stop offset=".59" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_74" data-name="Degradado sin nombre 74" x1="574.4" y1="684.24" x2="624.46" y2="684.24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0d"/>
+      <stop offset=".33" stop-color="#fec425"/>
+      <stop offset=".44" stop-color="#fed04d"/>
+      <stop offset=".46" stop-color="#fed357"/>
+      <stop offset=".51" stop-color="#fed45e" stop-opacity=".96"/>
+      <stop offset=".59" stop-color="#feda71" stop-opacity=".86"/>
+      <stop offset=".7" stop-color="#fee291" stop-opacity=".69"/>
+      <stop offset=".83" stop-color="#feedbd" stop-opacity=".45"/>
+      <stop offset=".98" stop-color="#fefcf5" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_84-2" data-name="Degradado sin nombre 84" x1="792.17" y1="720.11" x2="849.78" y2="777.72" xlink:href="#Degradado_sin_nombre_84"/>
+    <linearGradient id="Degradado_sin_nombre_74-2" data-name="Degradado sin nombre 74" x1="813.62" y1="698.98" x2="873.33" y2="698.98" xlink:href="#Degradado_sin_nombre_74"/>
+    <linearGradient id="Degradado_sin_nombre_45-3" data-name="Degradado sin nombre 45" x1="542.28" y1="891.56" x2="621.28" y2="891.56" xlink:href="#Degradado_sin_nombre_45"/>
+  </defs>
+  <g>
+    <g id="Base_torre" data-name="Base torre">
+      <polygon class="cls-21" points="315.74 254.32 263.86 291.07 262.78 245.86 306.76 224.11 315.74 254.32"/>
+      <path class="cls-19" d="m315.83,253.77l14.74,49.58s123.09,22.51,149.71,41.27c0,0-105.68-17.66-123.71-19.16-18.12-1.51-91.52-5.63-91.9-4.42l-47.85,1.34,99.02-68.6Z"/>
+      <path class="cls-20" d="m264.26,289.49l-1.48-43.63-59.13,33.32-7.86,25.03s-71.49,14.54-88.52,19.58c-19.16,5.67-53.49,20.08-52.84,20.41,0,0,73.69-14.34,87.23-15.54,13.53-1.21,76.55-6.57,76.55-6.57l46.06-32.61Z"/>
+    </g>
+    <g id="Base_sup" data-name="Base sup">
+      <polygon class="cls-15" points="262.78 239.12 208.56 262.34 219.1 217.16 262.78 205.09 262.78 239.12"/>
+      <polygon class="cls-4" points="262.78 205.09 219.1 217.16 202.08 198.7 262.78 182.62 262.78 205.09"/>
+      <polygon class="cls-18" points="262.78 205.09 306.19 216.25 321.55 199.5 262.78 182.62 262.78 205.09"/>
+    </g>
+    <g id="Fuente_de_foco" data-name="Fuente de foco">
+      <polygon class="cls-4" points="262.86 171.14 205.34 186.77 204.71 159.62 262.78 141.84 262.86 171.14"/>
+      <polygon class="cls-5" points="262.86 171.14 297.34 160.91 312.08 156.76 262.95 141.84 262.86 171.14"/>
+      <polyline class="cls-5" points="296.81 160.78 296.58 177.24 305.12 182.26 262.86 171.14"/>
+    </g>
+    <g id="Tecgo">
+      <polygon class="cls-14" points="262.78 130.5 189.62 153.41 181.58 132.37 261.97 97.94 262.78 130.5"/>
+      <polygon class="cls-8" points="262.78 130.5 334.8 153.05 343.97 132.37 261.97 97.94 262.78 130.5"/>
+    </g>
+    <polygon id="Luz" class="cls-9" points="310.14 167.02 484.12 213.85 492.53 116.19 310.14 167.02"/>
+    <g id="Titulo">
+      <text class="cls-39" transform="translate(539.08 241.49)"><tspan class="cls-24" x="0" y="0">V</tspan><tspan class="cls-61" x="121.05" y="0">IGIA</tspan></text>
+      <polygon class="cls-1" points="881.95 149.27 853.6 149.27 875.97 126.52 905.45 126.52 881.95 149.27"/>
+    </g>
+    <g id="Titulo-2" data-name="Titulo">
+      <text class="cls-37" transform="translate(549.36 318.46)"><tspan class="cls-34" x="0" y="0">D</tspan><tspan class="cls-44" x="48.91" y="0">AT</tspan><tspan class="cls-46" x="123.52" y="0">A INSIGH</tspan><tspan class="cls-53" x="405.73" y="0">T</tspan><tspan class="cls-59" x="440.12" y="0">S</tspan></text>
+    </g>
+  </g>
+  <rect class="cls-25" x="389.22" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <rect class="cls-26" x="118.42" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <rect class="cls-30" x="258.71" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <rect class="cls-28" x="526.4" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <rect class="cls-27" x="820.49" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <line class="cls-29" y1="411.29" x2="1095.86" y2="411.29"/>
+  <rect class="cls-23" x="665.75" y="442.75" width="115.97" height="115.97" rx="57.99" ry="57.99"/>
+  <g>
+    <g id="Titulo-3" data-name="Titulo">
+      <text class="cls-38" transform="translate(208.68 784.89)"><tspan class="cls-45" x="0" y="0">V</tspan><tspan class="cls-49" x="51.95" y="0">IGIA</tspan></text>
+      <polygon class="cls-7" points="355.83 745.32 343.66 745.32 353.26 735.55 365.91 735.55 355.83 745.32"/>
+    </g>
+    <g id="Base_torre-2" data-name="Base torre">
+      <polygon class="cls-21" points="332.74 696.33 310.47 712.11 310 692.7 328.88 683.37 332.74 696.33"/>
+      <path class="cls-19" d="m332.78,696.1l6.33,21.28s52.83,9.66,64.25,17.71c0,0-45.36-7.58-53.1-8.22-7.78-.65-39.28-2.42-39.44-1.9l-20.53.58,42.5-29.44Z"/>
+      <path class="cls-20" d="m310.64,711.43l-.64-18.73-25.38,14.3-3.37,10.74s-30.68,6.24-37.99,8.41c-8.22,2.43-22.95,8.62-22.68,8.76,0,0,31.63-6.15,37.44-6.67,5.81-.52,32.85-2.82,32.85-2.82l19.77-13.99Z"/>
+    </g>
+    <g id="Base_sup-2" data-name="Base sup">
+      <polygon class="cls-15" points="310 689.81 286.73 699.78 291.26 680.39 310 675.2 310 689.81"/>
+      <polygon class="cls-4" points="310 675.2 291.26 680.39 283.95 672.46 310 665.56 310 675.2"/>
+      <polygon class="cls-18" points="310 675.2 328.64 680 335.23 672.81 310 665.56 310 675.2"/>
+    </g>
+    <g id="Fuente_de_foco-2" data-name="Fuente de foco">
+      <polygon class="cls-4" points="310.04 660.64 285.35 667.35 285.09 655.69 310 648.06 310.04 660.64"/>
+      <polygon class="cls-5" points="310.04 660.64 324.84 656.25 331.17 654.46 310.08 648.06 310.04 660.64"/>
+      <polyline class="cls-5" points="324.61 656.19 324.51 663.25 328.18 665.41 310.04 660.64"/>
+    </g>
+    <g id="Tecgo-2" data-name="Tecgo">
+      <polygon class="cls-14" points="310 643.19 278.61 653.03 275.16 644 309.66 629.22 310 643.19"/>
+      <polygon class="cls-8" points="310 643.19 340.91 652.87 344.85 644 309.66 629.22 310 643.19"/>
+    </g>
+    <polygon id="Luz-2" data-name="Luz" class="cls-6" points="330.33 658.87 405 678.97 408.61 637.05 330.33 658.87"/>
+  </g>
+  <g>
+    <rect class="cls-22" x="465.8" y="619.37" width="197.28" height="182.53" rx="50.2" ry="50.2"/>
+    <g id="Base_torre-3" data-name="Base torre">
+      <polygon class="cls-2" points="575.94 708.75 561.7 718.84 561.4 706.43 573.47 700.46 575.94 708.75"/>
+      <path class="cls-11" d="m575.96,708.6l4.05,13.61s33.78,6.18,41.09,11.33c0,0-29.01-4.85-33.95-5.26-4.97-.41-25.12-1.55-25.22-1.21l-13.13.37,27.18-18.83Z"/>
+      <path class="cls-2" d="m561.81,718.41l-.41-11.97-16.23,9.14-2.16,6.87s-19.62,3.99-24.29,5.37c-5.26,1.56-14.68,5.51-14.5,5.6,0,0,20.23-3.93,23.94-4.27s21.01-1.8,21.01-1.8l12.64-8.95Z"/>
+    </g>
+    <g id="Base_sup-3" data-name="Base sup">
+      <g>
+        <polygon class="cls-2" points="561.4 704.58 546.52 710.96 549.41 698.55 561.4 695.24 561.4 704.58"/>
+        <polygon class="cls-2" points="561.4 695.24 549.41 698.55 544.74 693.49 561.4 689.08 561.4 695.24"/>
+        <polygon class="cls-2" points="561.4 695.24 573.31 698.31 577.53 693.71 561.4 689.08 561.4 695.24"/>
+      </g>
+    </g>
+    <g id="Fuente_de_foco-3" data-name="Fuente de foco">
+      <polygon class="cls-2" points="561.42 685.93 545.64 690.22 545.46 682.76 561.4 677.88 561.42 685.93"/>
+      <polygon class="cls-13" points="561.42 685.93 570.89 683.12 574.93 681.98 561.45 677.88 561.42 685.93"/>
+      <polyline class="cls-13" points="570.74 683.08 570.68 687.6 573.02 688.98 561.42 685.93"/>
+    </g>
+    <g id="Tecgo-3" data-name="Tecgo">
+      <g>
+        <polygon class="cls-2" points="561.4 674.77 541.32 681.06 539.11 675.29 561.18 665.84 561.4 674.77"/>
+        <polygon class="cls-2" points="561.4 674.77 581.17 680.96 583.68 675.29 561.18 665.84 561.4 674.77"/>
+      </g>
+    </g>
+    <polygon id="Luz-3" data-name="Luz" class="cls-17" points="574.4 684.79 622.15 697.65 624.46 670.84 574.4 684.79"/>
+    <g id="Titulo-4" data-name="Titulo">
+      <text class="cls-56" transform="translate(496.6 765.39)"><tspan class="cls-58" x="0" y="0">V</tspan><tspan class="cls-32" x="33.22" y="0">IGIA</tspan></text>
+    </g>
+    <polygon class="cls-12" points="592.53 739.2 584.75 739.2 590.89 732.95 598.98 732.95 592.53 739.2"/>
+  </g>
+  <g id="Logo_app" data-name="Logo app">
+    <rect class="cls-22" x="712.68" y="621.35" width="174.51" height="174.51"/>
+    <g>
+      <g id="Base_torre-4" data-name="Base torre">
+        <polygon class="cls-2" points="815.45 728.22 798.46 740.25 798.11 725.45 812.51 718.33 815.45 728.22"/>
+        <path class="cls-16" d="m815.48,728.04l4.83,16.23s40.3,7.37,49.02,13.51c0,0-34.6-5.78-40.51-6.27-5.93-.49-29.96-1.84-30.09-1.45l-15.67.44,32.42-22.46Z"/>
+        <path class="cls-2" d="m798.59,739.73l-.49-14.29-19.36,10.91-2.57,8.2s-23.41,4.76-28.98,6.41c-6.27,1.86-17.51,6.57-17.3,6.68,0,0,24.13-4.69,28.56-5.09,4.43-.39,25.06-2.15,25.06-2.15l15.08-10.68Z"/>
+      </g>
+      <g id="Base_sup-4" data-name="Base sup">
+        <g>
+          <polygon class="cls-2" points="798.11 723.24 780.36 730.84 783.81 716.05 798.11 712.1 798.11 723.24"/>
+          <polygon class="cls-2" points="798.11 712.1 783.81 716.05 778.24 710.01 798.11 704.74 798.11 712.1"/>
+          <polygon class="cls-2" points="798.11 712.1 812.32 715.75 817.35 710.27 798.11 704.74 798.11 712.1"/>
+        </g>
+      </g>
+      <g id="Fuente_de_foco-4" data-name="Fuente de foco">
+        <polygon class="cls-2" points="798.14 700.98 779.3 706.1 779.1 697.21 798.11 691.39 798.14 700.98"/>
+        <polygon class="cls-13" points="798.14 700.98 809.43 697.63 814.25 696.27 798.17 691.39 798.14 700.98"/>
+        <polyline class="cls-13" points="809.25 697.59 809.18 702.98 811.97 704.62 798.14 700.98"/>
+      </g>
+      <g id="Tecgo-4" data-name="Tecgo">
+        <g>
+          <polygon class="cls-2" points="798.11 687.68 774.16 695.18 771.52 688.29 797.85 677.02 798.11 687.68"/>
+          <polygon class="cls-2" points="798.11 687.68 821.69 695.06 824.69 688.29 797.85 677.02 798.11 687.68"/>
+        </g>
+      </g>
+      <polygon id="Luz-4" data-name="Luz" class="cls-3" points="813.62 699.63 870.58 714.97 873.33 682.99 813.62 699.63"/>
+    </g>
+  </g>
+  <g>
+    <g id="Base_torre-5" data-name="Base torre">
+      <polygon class="cls-21" points="544.71 930.24 522.23 946.16 521.76 926.58 540.82 917.16 544.71 930.24"/>
+      <path class="cls-19" d="m544.75,930l6.38,21.47s53.31,9.75,64.84,17.87c0,0-45.77-7.65-53.58-8.3-7.85-.65-39.64-2.44-39.81-1.92l-20.72.58,42.89-29.71Z"/>
+      <path class="cls-20" d="m522.41,945.48l-.64-18.9-25.61,14.43-3.4,10.84s-30.97,6.3-38.34,8.48c-8.3,2.46-23.17,8.7-22.88,8.84,0,0,31.92-6.21,37.78-6.73,5.86-.52,33.16-2.84,33.16-2.84l19.95-14.12Z"/>
+    </g>
+    <g id="Base_sup-5" data-name="Base sup">
+      <polygon class="cls-15" points="521.76 923.66 498.28 933.72 502.85 914.15 521.76 908.92 521.76 923.66"/>
+      <polygon class="cls-4" points="521.76 908.92 502.85 914.15 495.48 906.15 521.76 899.19 521.76 908.92"/>
+      <polygon class="cls-18" points="521.76 908.92 540.57 913.75 547.22 906.5 521.76 899.19 521.76 908.92"/>
+    </g>
+    <g id="Fuente_de_foco-5" data-name="Fuente de foco">
+      <polygon class="cls-4" points="521.8 894.22 496.89 900.99 496.62 889.23 521.76 881.53 521.8 894.22"/>
+      <polygon class="cls-5" points="521.8 894.22 536.74 889.79 543.12 887.99 521.84 881.53 521.8 894.22"/>
+      <polyline class="cls-5" points="536.5 889.73 536.41 896.86 540.1 899.03 521.8 894.22"/>
+    </g>
+    <g id="Tecgo-5" data-name="Tecgo">
+      <polygon class="cls-14" points="521.76 876.61 490.08 886.54 486.6 877.43 521.42 862.51 521.76 876.61"/>
+      <polygon class="cls-8" points="521.76 876.61 552.96 886.38 556.93 877.43 521.42 862.51 521.76 876.61"/>
+    </g>
+    <polygon id="Luz-5" data-name="Luz" class="cls-10" points="542.28 892.43 617.63 912.71 621.28 870.41 542.28 892.43"/>
+  </g>
+  <line class="cls-29" x1="-3.19" y1="600.55" x2="1092.67" y2="600.55"/>
+  <line class="cls-29" x1=".85" y1="989.13" x2="1096.72" y2="989.13"/>
+  <line class="cls-29" x1="2.33" y1="1182.4" x2="1098.19" y2="1182.4"/>
+  <text class="cls-40" transform="translate(261.16 1036.04)"><tspan class="cls-48" x="0" y="0">Aa Bb </tspan><tspan class="cls-33" x="90.65" y="0">C</tspan><tspan class="cls-48" x="109.32" y="0">c Dd </tspan><tspan class="cls-51" x="181.6" y="0">E</tspan><tspan class="cls-48" x="199.63" y="0">e Ff Gg Hh Ii </tspan><tspan class="cls-57" x="380.36" y="0">J</tspan><tspan class="cls-47" x="394.25" y="0">j Kk Ll Mm</tspan><tspan class="cls-48" x="0" y="41.98" xml:space="preserve"> Nn Ññ Oo </tspan><tspan class="cls-54" x="152.44" y="41.98">P</tspan><tspan class="cls-36" x="171.21" y="41.98">p Qq Rr Ss Tt Uu </tspan><tspan class="cls-41" x="407.51" y="41.98">V</tspan><tspan class="cls-36" x="426.15" y="41.98">v </tspan><tspan class="cls-60" x="449.15" y="41.98">W</tspan><tspan class="cls-36" x="478.31" y="41.98">w </tspan><tspan class="cls-54" x="509.88" y="41.98">X</tspan><tspan class="cls-47" x="527.08" y="41.98">x Yy Zz</tspan></text>
+  <text class="cls-55" transform="translate(265.61 1124.41)"><tspan class="cls-36" x="0" y="0">Aa Bb </tspan><tspan class="cls-33" x="94.26" y="0">C</tspan><tspan class="cls-48" x="113.29" y="0">c Dd </tspan><tspan class="cls-52" x="187.73" y="0">E</tspan><tspan class="cls-48" x="205.81" y="0">e Ff Gg Hh Ii </tspan><tspan class="cls-42" x="393.29" y="0">J</tspan><tspan class="cls-47" x="408.19" y="0">j Kk Ll Mm</tspan><tspan class="cls-48" x="0" y="41.98" xml:space="preserve"> Nn Ññ Oo </tspan><tspan class="cls-54" x="155.87" y="41.98">P</tspan><tspan class="cls-48" x="174.98" y="41.98">p Qq Rr Ss Tt Uu </tspan><tspan class="cls-60" x="420.12" y="41.98">V</tspan><tspan class="cls-47" x="439.99" y="41.98">v </tspan><tspan class="cls-60" x="464.95" y="41.98">W</tspan><tspan class="cls-47" x="495.43" y="41.98">w </tspan><tspan class="cls-54" x="528.99" y="41.98">X</tspan><tspan class="cls-36" x="547.66" y="41.98">x Yy Zz</tspan></text>
+  <text class="cls-40" transform="translate(63.17 1036.04)"><tspan class="cls-48" x="0" y="0">Montse</tspan><tspan class="cls-52" x="103.19" y="0">r</tspan><tspan class="cls-31" x="114.41" y="0">r</tspan><tspan class="cls-47" x="124.99" y="0">at</tspan></text>
+  <text class="cls-55" transform="translate(60.55 1116.27)"><tspan class="cls-35" x="0" y="0">Montse</tspan><tspan class="cls-43" x="107.82" y="0">r</tspan><tspan class="cls-50" x="119.98" y="0">r</tspan><tspan class="cls-35" x="131.5" y="0">at</tspan><tspan class="cls-35"><tspan x="0" y="33.55">bold</tspan></tspan></text>
+</svg>

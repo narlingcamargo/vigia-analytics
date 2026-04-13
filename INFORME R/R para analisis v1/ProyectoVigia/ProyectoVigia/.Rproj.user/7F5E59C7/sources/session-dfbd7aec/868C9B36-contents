@@ -1,0 +1,1161 @@
+---
+title: "Análisis de inseguridad en Colombia con los patrones de extorsión, secuestro y terrorismo en Colombia 2020 - 2025"
+#author: "TAD 11 - Vigia"
+date: ""
+output: 
+  html_document:
+    toc: false
+    toc_depth: 3
+    number_sections: false
+    toc_float: 
+        collapsed: true
+        smooth_scroll: false 
+    theme: lumen
+    highlight: default
+    df_print: default
+    code_folding: hide
+    css: "styles.css"
+    lang: es-ES
+---
+
+```{=html}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+  font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #dde8f5 100%);
+  color: #2c3e50;
+  overflow-x: hidden;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100%;
+  background: linear-gradient(180deg, #0F5B9D 0%, #00216E 100%);
+  padding: 30px 20px;
+  border-right: none;
+  box-shadow: 4px 0 25px rgba(0, 33, 110, 0.3);
+  overflow-y: auto;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar > b {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.sidebar a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  display: block;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+}
+
+.sidebar a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: #F5A623;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.sidebar a:hover {
+  background: rgba(245, 166, 35, 0.2);
+  color: white;
+  transform: translateX(5px);
+}
+
+.submenu-link:hover {
+  transform: translateX(0) !important;
+  background: rgba(245, 166, 35, 0.2) !important;
+}
+
+.sidebar a:hover::before {
+  transform: scaleY(1);
+}
+
+.submenu-toggle {
+  display: none;
+}
+
+.submenu-toggle:checked + .submenu-arrow + .submenu {
+  display: block !important;
+}
+
+#toggleSubmenu:checked + .submenu-arrow + #submenu-items {
+  display: block !important;
+}
+
+.submenu-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 5px 0;
+}
+
+.submenu-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.submenu-container:hover .submenu {
+  display: none !important;
+}
+
+.submenu-link {
+  flex: 1;
+  padding: 12px 15px !important;
+  margin: 0 !important;
+  border-radius: 8px 0 0 8px !important;
+  pointer-events: auto;
+  min-width: 0;
+}
+
+.submenu-link:hover::before {
+  transform: scaleY(0);
+}
+
+.submenu-link:hover ~ .submenu {
+  display: none !important;
+}
+
+.submenu-arrow {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 46px;
+  color: white;
+  font-weight: 600;
+  background: rgba(245, 166, 35, 0.2);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  user-select: none;
+}
+
+.submenu-arrow:hover {
+  background: rgba(245, 166, 35, 0.35);
+}
+
+.submenu-toggle:checked + .submenu-arrow {
+  transform: rotate(180deg);
+  background: rgba(245, 166, 35, 0.35);
+}
+
+.submenu-toggle:checked ~ #submenu-items {
+  display: block !important;
+}
+
+#toggleSubmenu:checked + .submenu-arrow {
+  transform: rotate(180deg);
+  background: rgba(245, 166, 35, 0.35);
+}
+
+.submenu {
+  display: none;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-left: 2px solid rgba(245, 166, 35, 0.5);
+  margin-left: 0px;
+  background: rgba(0, 15, 50, 0.85);
+  width: 100%;
+  flex-basis: 100%;
+  border-radius: 8px;
+  position: relative;
+  z-index: 10000;
+}
+
+#toggleSubmenu:checked ~ #submenu-items {
+  display: block !important;
+  animation: slideDown 0.3s ease;
+}
+
+.submenu a {
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 400;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 5px 0;
+  position: relative;
+  z-index: 10001;
+}
+
+.submenu a {
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.submenu a:hover {
+  background: rgba(245, 166, 35, 0.2);
+  color: white;
+  transform: translateX(3px);
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.content {
+  margin-left: 280px;
+  padding: 50px;
+  max-width: 1200px;
+  min-height: 100vh;
+}
+
+.submenu-toggle:checked + .submenu-title {
+  background: rgba(245, 166, 35, 0.2);
+}
+
+/* ── Títulos h1 y h2 con el mismo estilo ── */
+h1, h2 {
+  color: #0F5B9D;
+  font-weight: 700;
+  font-size: 28px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #00216E;
+  position: relative;
+  clear: both;
+}
+
+h1::before, h2::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #F5A623, #FFCC00);
+  border-radius: 2px;
+}
+
+/* Ocultar el título automático del documento */
+.title, h1.title {
+  display: none !important;
+}
+
+h3 {
+  color: #0F5B9D;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+h4 {
+  color: #00216E;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 12px;
+}
+
+p {
+  text-align: justify;
+  line-height: 1.9;
+  color: #34495e;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+pre {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 33, 110, 0.08);
+  margin: 25px 0;
+}
+
+.html-widget {
+  margin: 40px auto;
+  box-shadow: 0 8px 30px rgba(0, 33, 110, 0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  padding: 20px;
+}
+
+table {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 15px !important;
+  overflow: hidden;
+  margin: 40px auto !important;
+  background: white !important;
+}
+
+center {
+  font-weight: 700;
+  color: white !important;
+  margin: 30px 0 !important;
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+  background: linear-gradient(135deg, #0F5B9D 0%, #00216E 100%) !important;
+  padding: 20px 30px !important;
+  border-radius: 12px !important;
+  border-left: 6px solid #F5A623 !important;
+  box-shadow: 0 6px 20px rgba(0, 33, 110, 0.35) !important;
+  display: block !important;
+}
+
+center strong,
+center b {
+  color: #FFCC00 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  text-align: center;
+  margin: 40px 0;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 33, 110, 0.15);
+  border: 1px solid rgba(0, 33, 110, 0.1);
+}
+
+.card-section {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  margin: 100px 0;
+  border-left: 6px solid #F5A623;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  clear: both;
+  position: relative;
+  z-index: 3;
+}
+
+.card-section h1,
+.card-section h2 {
+  margin-top: 0;
+  padding-top: 10px;
+  scroll-margin-top: 120px;
+}
+
+.card-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 33, 110, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 22px;
+  }
+}
+
+::selection {
+  background: #0F5B9D;
+  color: white;
+}
+
+a {
+  color: #0F5B9D;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #F5A623;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #F5A623, transparent);
+  margin: 50px 0;
+}
+
+a[href="#arriba"],
+a[href="#abajo"] {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #0F5B9D, #00216E);
+  color: white !important;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 33, 110, 0.3);
+  margin: 20px 0;
+}
+
+a[href="#arriba"]:hover,
+a[href="#abajo"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+}
+
+.analisis-section {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  clear: both;
+  padding-top: 50px;
+  position: relative;
+  z-index: 3;
+}
+
+.plot-container {
+  width: 100%;
+  clear: both;
+  margin: 100px 0;
+  padding: 40px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 33, 110, 0.1);
+  position: relative;
+  z-index: 3;
+}
+
+.plot-container h1,
+.plot-container h2 {
+  margin-top: 0;
+  padding-top: 10px;
+  scroll-margin-top: 120px;
+}
+
+a[name] {
+  display: block;
+  position: relative;
+  top: -120px;
+  visibility: hidden;
+}
+
+.conclusion-header {
+  background: linear-gradient(135deg, #0F5B9D, #00216E);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin: 30px 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(0, 33, 110, 0.3);
+}
+
+.conclusiones-list {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  margin: 20px 0;
+}
+
+.conclusiones-list ol {
+  counter-reset: item;
+  list-style: none;
+  padding-left: 0;
+}
+
+.conclusiones-list li {
+  counter-increment: item;
+  margin-bottom: 25px;
+  position: relative;
+  padding-left: 50px;
+  line-height: 1.8;
+}
+
+.conclusiones-list li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, #0F5B9D, #00216E);
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ── Cajas de texto informativas unificadas ── */
+.info-box {
+  background-color: white;
+  border-left: 5px solid #0F5B9D;
+  padding: 20px 25px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 33, 110, 0.08);
+}
+
+.info-box p {
+  margin-bottom: 10px;
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<div class="sidebar" id="site-sidebar">
+  <b>Menú Principal</b>
+
+  <a href="#Introduccion">Introducción</a>
+  <a href="#Descripcion">Descripción general del problema</a>
+  <a href="#Objetivos">Objetivos del proyecto</a>
+
+  <a href="#Exploracion">Exploración de los datos</a>
+  <a href="#VPR">Vista preliminar de los registros</a>
+  <a href="#RE">Resumen estadístico de las variables numéricas</a>
+
+  <div class="submenu-container">
+    <a href="#CyA" class="submenu-link">Consultas y Análisis</a>
+    <input type="checkbox" id="toggleSubmenu" class="submenu-toggle">
+    <label for="toggleSubmenu" class="submenu-arrow">▾</label>
+    <div class="submenu">
+      <a href="#Consulta1">Consulta 1</a>
+      <a href="#Consulta2">Consulta 2</a>
+    </div>
+  </div>
+
+  <a href="#correlacion">Analisis de correlacion</a>
+  <a href="#conclusion">Conclusiones generales</a>
+  <a href="#librerias">Librerías Usadas</a>
+</div>
+
+<script>
+(function() {
+  const checkbox = document.getElementById("toggleSubmenu");
+  const sidebar = document.getElementById("site-sidebar");
+  const submenuLink = document.querySelector(".submenu-link");
+
+  if (submenuLink) {
+    submenuLink.addEventListener("mouseenter", function(e) {
+      e.stopPropagation();
+    });
+    
+    submenuLink.addEventListener("mouseleave", function(e) {
+      e.stopPropagation();
+    });
+  }
+
+  document.addEventListener("click", function(e) {
+    if (!checkbox) return;
+    if (sidebar.contains(e.target)) return;
+    if (checkbox.checked) checkbox.checked = false;
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" || e.key === "Esc") {
+      if (checkbox && checkbox.checked) checkbox.checked = false;
+    }
+  });
+
+  const submenuLinks = sidebar.querySelectorAll(".submenu a");
+  submenuLinks.forEach(function(link) {
+    link.addEventListener("click", function() {
+      if (checkbox) checkbox.checked = false;
+    });
+  });
+})();
+</script>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+  fig.align = 'left',
+	fig.height = 5,
+	fig.width = 7,
+	rows.print = 70
+)
+
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(tidyverse)
+
+resultados <- read_excel("BD_FINAL.xlsx")
+
+# ── Paleta VIGÍA ────────────────────────────────────────────────────────────
+vigia_azul_marino    <- "#00216E"
+vigia_azul_rey       <- "#0F5B9D"
+vigia_azul_claro     <- "#4A90D9"
+vigia_azul_palido    <- "#A8CAEE"
+vigia_amarillo       <- "#F5A623"
+vigia_amarillo_claro <- "#FFCC00"
+vigia_gris           <- "#E8E8E8"
+vigia_gris_oscuro    <- "#5A5A5A"
+
+paleta_hechos <- c(
+  "EXTORSION"  = vigia_azul_marino,
+  "SECUESTRO"  = vigia_amarillo,
+  "TERRORISMO" = vigia_azul_claro
+)
+
+# ── Tema ggplot2 VIGÍA ───────────────────────────────────────────────────────
+theme_vigia <- function(base_size = 11) {
+  theme_minimal(base_size = base_size) %+replace%
+    theme(
+      plot.title      = element_text(color = vigia_azul_marino, face = "bold",
+                                     size  = base_size + 3, hjust = 0,
+                                     margin = margin(b = 6)),
+      plot.subtitle   = element_text(color = vigia_azul_rey, size = base_size,
+                                     hjust = 0, margin = margin(b = 10)),
+      plot.caption    = element_text(color = vigia_gris_oscuro, size = base_size - 2,
+                                     hjust = 1),
+      axis.title      = element_text(color = vigia_azul_marino, face = "bold",
+                                     size  = base_size - 1),
+      axis.text       = element_text(color = vigia_gris_oscuro, size = base_size - 1),
+      axis.line       = element_line(color = vigia_azul_palido, linewidth = 0.4),
+      axis.ticks      = element_line(color = vigia_azul_palido),
+      legend.title    = element_text(color = vigia_azul_marino, face = "bold",
+                                     size  = base_size - 1),
+      legend.text     = element_text(color = vigia_gris_oscuro, size = base_size - 1),
+      legend.position = "bottom",
+      legend.key.size = unit(0.5, "cm"),
+      panel.grid.major   = element_line(color = vigia_gris, linewidth = 0.3),
+      panel.grid.minor   = element_blank(),
+      panel.grid.major.y = element_line(color = vigia_gris, linewidth = 0.3),
+      panel.background   = element_rect(fill = "white", color = NA),
+      plot.background    = element_rect(fill = "white", color = NA),
+      strip.background   = element_rect(fill = vigia_azul_marino, color = NA),
+      strip.text         = element_text(color = "white", face = "bold",
+                                        size  = base_size - 1),
+      plot.margin = margin(12, 16, 12, 12)
+    )
+}
+
+theme_set(theme_vigia())
+```
+
+::: {style="text-align: center; width: 100%;"}
+<h1 style="color: #00216E; font-weight: bold;">
+
+Análisis de inseguridad en Colombia con los patrones de extorsión, secuestro y terrorismo en Colombia 2020 - 2025 <br> TAD 11 - Vigia
+
+</h1>
+
+<img src="img/LogoSena.png" style="width: 150px; display: block; margin: 0 auto;"/>
+:::
+
+<a name="Introduccion"></a>
+
+# Introducción
+
+<p>El presente informe técnico tiene como objetivo analizar la problemática social de extorsión, secuestro y terrorismo en Colombia durante el periodo comprendido entre 2020 y 2025. A través de un enfoque descriptivo y el uso de herramientas de ciencia de datos en **R** y **Python**, se busca identificar patrones significativos y tendencias que faciliten la toma de decisiones informadas.</p>
+
+<p>Este estudio cobra relevancia en el contexto actual de nuestro país, donde la comprensión multidimensional del delito permite a las autoridades y organismos competentes diseñar estrategias de prevención basadas en evidencia cuantitativa, optimizando la respuesta institucional ante estos flagelos.</p>
+
+<a name="Descripcion"></a>
+
+# Descripción general del problema
+
+<p>La seguridad ciudadana en Colombia enfrenta un escenario complejo y dinámico. Desde muchos años atras, el país ha experimentado transformaciones significativas en las dinámicas de violencia, donde delitos de alto impacto como la extorsión, el secuestro y el terrorismo han dejado de ser fenómenos aislados para convertirse en problemas estructurales que afectan tanto el desarrollo económico como el tejido social.</p>
+
+<p>Sin un análisis profundo, estos delitos aparecen como cifras frías en un boletín, cuando en realidad esconden patrones de comportamiento (como la mutación de la extorsión física a la digital o el desplazamiento de focos terroristas hacia zonas de frontera). Cobra mayor relevancia cuando los registros de los datos seleccionados pasan de ser cifras estáticas a <strong>insumos estratégicos que revelan la evolución táctica del crimen organizado.</strong></p>
+
+<p>A través del procesamiento avanzado en <strong>R</strong>, es posible identificar no solo la frecuencia de estos eventos, sino también su estacionalidad y los factores territoriales que los potencian. Esto permite migrar de una respuesta institucional reactiva hacia una visión basada en evidencia, donde la analítica de datos se convierte en la herramienta fundamental para anticipar riesgos y optimizar la política de seguridad nacional.</p>
+
+<a name="Objetivos"></a>
+
+# Objetivos del proyecto
+
+**OBJETIVO GENERAL**
+
+Analizar y evaluar los factores asociados a la extorsión, el secuestro y el terrorismo en Colombia durante el periodo 2020–2025, identificando sus patrones, tendencias y distribución territorial en el marco de la seguridad nacional.
+
+**OBJETIVOS ESPECIFICOS**
+
+1.  <p>Identificar y caracterizar los principales factores sociales, económicos y territoriales asociados a la extorsión, el secuestro y el terrorismo en Colombia.</p>
+2.  <p>Analizar la evolución temporal y el comportamiento de estos delitos durante el periodo 2020–2025, considerando variaciones regionales y contextuales.</p>
+3.  <p>Evaluar el impacto de la extorsión, el secuestro y el terrorismo en la seguridad ciudadana y el orden público en el territorio colombiano.</p>
+4.  <p>Examinar e interpretar los datos con el fin de determinar patrones, tendencias y posibles relaciones entre variables delictivas.</p>
+5.  <p>Formular estrategias de prevención e intervención sustentadas en los hallazgos del análisis para fortalecer la seguridad en el territorio colombiano.</p>
+
+<a name="Exploracion"></a>
+
+# Exploración de los datos
+
+1.  Estrategia de Integración: Para el desarrollo de este análisis, se implementó una estrategia de consolidación de datos provenientes de fuentes de información oficial sobre seguridad en el sitio web de la Policia Nacional de Colombia. El proceso consistió en la unificación de estructuras tabulares mediante la identificación de variables comunes (llaves primarias y secundarias), permitiendo una visión holística de los fenómenos delictivos. Se priorizó la estandarización de formatos de fecha, códigos geográficos (DANE), medio de arma utilizado y tipologías de hechos para garantizar la integridad referencial del conjunto de datos final.
+
+2.  Delimitación de Registros: Con el objetivo de focalizar el estudio en las problemáticas de mayor impacto social, se aplicó un protocolo de filtrado riguroso. La base de datos original fue depurada para incluir exclusivamente registros vinculados a delitos de alto impacto como: Extorsión, Secuestro y Terrorismo.
+
+3.  Procesamiento y transformación de datos: Para garantizar la calidad, consistencia y viabilidad de los análisis estadísticos, se implementó un flujo de trabajo especializado. Inicialmente, se realizó una fase de estandarización y limpieza profunda utilizando el lenguaje Python, aprovechando sus librerías de manipulación de datos para procesar el conjunto integrado.
+
+4.  Caracterización de la Base de datos
+
+```{r caracteristicasDatos}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+total_registros  <- nrow(resultados)
+casos_extorsion  <- sum(resultados$HECHO == "EXTORSION",  na.rm = TRUE)
+casos_secuestro  <- sum(resultados$HECHO == "SECUESTRO",  na.rm = TRUE)
+casos_terrorismo <- sum(resultados$HECHO == "TERRORISMO", na.rm = TRUE)
+
+resumen_df <- data.frame(
+  Indicador = c(
+    "Total de registros",
+    "Casos de extorsión",
+    "Casos de secuestro",
+    "Casos de terrorismo",
+    "Columnas analizadas"
+  ),
+  Valor = c(
+    format(total_registros,  big.mark = ","),
+    format(casos_extorsion,  big.mark = ","),
+    format(casos_secuestro,  big.mark = ","),
+    format(casos_terrorismo, big.mark = ","),
+    ncol(resultados)
+  )
+)
+
+kbl(resumen_df,
+    col.names = c("Indicador", "Cantidad"),
+    align = "lc") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width  = FALSE,
+    position    = "center"
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino) %>%
+  row_spec(seq(1, nrow(resumen_df), 2), background = "#EAF1F9") %>%
+  column_spec(1, color = vigia_azul_marino, bold = FALSE) %>%
+  column_spec(2, color = vigia_azul_rey)
+```
+
+La base de datos integrada contiene **`r format(nrow(resultados), big.mark=",")`** registros que documentan casos de violencia ocurridos en Colombia. Esta consolidación permite un análisis transversal que identifica patrones comunes y particularidades de cada tipo de delito.
+
+<a name="VPR"></a>
+
+## Vista preliminar de los registros
+
+El siguiente cuadro muestra una vista preliminar de las primeras filas del conjunto de datos, lo que permite confirmar su estructura y formato.
+
+```{r tabla_primeras_filas, echo=FALSE, results='asis'}
+library(kableExtra)
+
+cat('<h4 style="color:#00216E; font-weight:bold;">Tabla 1: Primeros 5 Registros de Hechos Delictivos</h4>')
+
+resultados %>%
+  head(5) %>%
+  kbl(align = "c") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE,
+    font_size  = 12
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino)
+```
+
+<a name="RE"></a>
+
+## Resumen estadístico de las variables numéricas
+
+<p><strong>Año:</strong> Los registros se distribuyen entre 2020 y 2025, lo que permite realizar comparaciones temporales y detectar posibles sesgos en la ocurrencia de hechos.</p>
+
+<p><strong>Cantidad:</strong> La mayoría de los registros presentan valor 1, reflejando casos individuales. Sin embargo, el valor máximo indica la existencia de eventos agregados con una concentración significativa, que ameritan un análisis más detallado.</p>
+
+```{r ResumenEstadisticoVariables, echo=FALSE, results='asis'}
+resultados %>%
+  select(AÑO, CANTIDAD) %>%
+  summarise(
+    Min_Año          = min(AÑO,      na.rm = TRUE),
+    Max_Año          = max(AÑO,      na.rm = TRUE),
+    Min_Cantidad     = min(CANTIDAD, na.rm = TRUE),
+    Max_Cantidad     = max(CANTIDAD, na.rm = TRUE),
+    Media_Cantidad   = mean(CANTIDAD, na.rm = TRUE),
+    Mediana_Cantidad = median(CANTIDAD, na.rm = TRUE)
+  ) %>%
+  kbl(caption = "", align = "l") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size  = 12,
+    position   = "left"
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino)
+```
+
+<a name="CyA"></a>
+
+## Consultas
+
+### Consulta 1
+
+
+```{r casosxdepartamento, fig.width=10, fig.height=8, out.width="100%", message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(geodata)
+library(stringi)
+library(plotly)
+library(scales)
+
+# 1. PREPARAR DATOS (Usando tu objeto 'resultados')
+casos_departamento <- resultados %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  mutate(DEPARTAMENTO = trimws(toupper(stri_trans_general(DEPARTAMENTO, "Latin-ASCII")))) %>%
+  filter(!DEPARTAMENTO %in% c("BOGOTA D.C.", "BOGOTA", "SANTAFE DE BOGOTA")) %>%
+  mutate(DEPARTAMENTO = case_when(
+    grepl("SAN ANDRES", DEPARTAMENTO) ~ "SAN ANDRES Y PROVIDENCIA",
+    DEPARTAMENTO == "VALLE" ~ "VALLE DEL CAUCA",
+    DEPARTAMENTO == "GUAJIRA" ~ "LA GUAJIRA",
+    DEPARTAMENTO == "NORTE SANTANDER" ~ "NORTE DE SANTANDER",
+    TRUE ~ DEPARTAMENTO
+  ))
+
+# 2. MAPA GADM
+colombia_sf <- st_as_sf(geodata::gadm(country = "COL", level = 1, path = tempdir())) %>%
+  mutate(NAME_1_CLEAN = toupper(stri_trans_general(NAME_1, "Latin-ASCII"))) %>%
+  mutate(NAME_1_CLEAN = case_when(
+    NAME_1_CLEAN == "ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA" ~ "SAN ANDRES Y PROVIDENCIA",
+    TRUE ~ NAME_1_CLEAN
+  )) %>%
+  st_cast("MULTIPOLYGON")
+
+# 3. UNIR DATOS
+mapa_casos <- colombia_sf %>%
+  left_join(casos_departamento, by = c("NAME_1_CLEAN" = "DEPARTAMENTO"))
+
+# 4. EFECTO LUPA: AGRANDAR Y MOVER SAN ANDRÉS
+islas <- mapa_casos %>% filter(NAME_1_CLEAN == "SAN ANDRES Y PROVIDENCIA")
+geo_islas <- st_geometry(islas)
+centroide_islas <- st_centroid(st_union(geo_islas))
+
+# Agrandamos 5 veces y lo movemos a la esquina superior izquierda (Mar Caribe)
+geo_islas_zoom <- (geo_islas - centroide_islas) * 5 + st_sfc(st_point(c(-78, 14.5)))
+
+st_geometry(islas) <- geo_islas_zoom
+st_crs(islas) <- st_crs(mapa_casos)
+
+# 5. UNIR TODO Y CREAR RECUADRO (CUADRO DE ENFOQUE)
+mapa_final <- mapa_casos %>%
+  filter(NAME_1_CLEAN != "SAN ANDRES Y PROVIDENCIA") %>%
+  rbind(islas)
+
+# Coordenadas para el cuadro decorativo alrededor de las islas agrandadas
+cuadro_islas <- st_sfc(st_polygon(list(matrix(c(-79.5,13, -76.5,13, -76.5,16, -79.5,16, -79.5,13), ncol=2, byrow=TRUE))), crs = st_crs(mapa_casos))
+
+# 6. GRAFICAR
+p <- ggplot(mapa_final) +
+  # Capa principal de departamentos
+  geom_sf(aes(fill = total_casos, 
+              text = paste0("<b>Departamento:</b> ", NAME_1, 
+                            "<br><b>Casos:</b> ", format(total_casos, big.mark = ","))), 
+          color = "white", linewidth = 0.2) +
+  # Dibujar el cuadro destacando a San Andrés
+  geom_sf(data = cuadro_islas, fill = NA, color = "black", linetype = "dashed", linewidth = 0.5) +
+  # Ajuste de vista para que Colombia se vea grande
+  coord_sf(xlim = c(-79.8, -66.5), ylim = c(-4.3, 16.5), expand = FALSE) +
+  scale_fill_gradientn(
+    colors = c("#D1E8FF", "#FFCC00", "#FF6600", "#CC0000"),
+    values = scales::rescale(c(0, 100, 500, max(mapa_final$total_casos, na.rm = TRUE))), 
+    na.value = "#eeeeee",
+    name = "Nivel de Alerta",
+    labels = scales::comma
+  ) +
+  labs(title = "Casos por Departamento en Colombia") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    legend.title = element_text(hjust = 0.5, face = "bold"), # Título de alerta centrado
+    plot.margin = margin(10, 10, 10, 10)
+  )
+
+# 7. INTERACTIVO
+ggplotly(p, tooltip = "text") %>%
+  layout(
+    title = list(text = "Casos por Departamento en Colombia", x = 0.5), # Centrar título en Plotly
+    margin = list(t = 60, b = 10, l = 10, r = 10),
+    legend = list(title = list(text = "<b>Nivel de Alerta</b>", side = "top"))
+  ) %>%
+  config(displayModeBar = TRUE, language = "es")
+```
+
+```{r TOP10DEP, echo=TRUE}
+library(dplyr)
+
+top_municipios <- resultados %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total_registros = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_registros)) %>%
+  slice(1:10)
+
+top_municipios %>%
+  kbl(col.names = c("Municipio", "Total registros"), align = "lc") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position   = "left",
+    font_size  = 12
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino) %>%
+  row_spec(1, bold = TRUE, color = vigia_azul_marino)
+```
+
+```{r FRONTERA, echo=TRUE}
+library(dplyr)
+
+departamentos_frontera <- c(
+  "LA GUAJIRA", "CESAR", "NORTE DE SANTANDER", "ARAUCA",
+  "VICHADA", "GUAINIA", "VAUPES", "AMAZONAS",
+  "PUTUMAYO", "NARIÑO", "CHOCO"
+)
+
+casos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_casos))
+
+casos_frontera %>%
+  kbl(col.names = c("Departamento", "Total casos"), align = "lc") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position   = "left",
+    font_size  = 12
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino)
+```
+
+```{r xd, echo=TRUE}
+top_hechos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(HECHO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total)) %>%
+  slice(1:3)
+
+top_hechos_frontera
+```
+
+```{r xdd, echo=TRUE}
+casos_frontera_hechos <- resultados %>%
+  filter(
+    DEPARTAMENTO %in% departamentos_frontera,
+    HECHO        %in% top_hechos_frontera$HECHO
+  ) %>%
+  group_by(DEPARTAMENTO, HECHO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE), .groups = "drop")
+```
+
+```{r GRAFICOFRON, echo=TRUE}
+library(ggplot2)
+
+ggplot(casos_frontera_hechos,
+       aes(x    = reorder(DEPARTAMENTO, total_casos),
+           y    = total_casos,
+           fill = HECHO)) +
+  geom_col(position = position_dodge(width = 0.85), width = 0.75) +
+  geom_text(
+    aes(label = scales::comma(total_casos)),
+    position = position_dodge(width = 0.85),
+    hjust    = -0.15,
+    size     = 2.8,
+    color    = vigia_azul_marino
+  ) +
+  scale_fill_manual(values = paleta_hechos) +
+  scale_y_continuous(
+    labels = scales::comma,
+    expand = expansion(mult = c(0, 0.15))
+  ) +
+  coord_flip() +
+  labs(
+    title    = "Casos en departamentos fronterizos por tipo de hecho",
+    subtitle = "Top 3 hechos más frecuentes",
+    x        = "Departamento",
+    y        = "Total de casos",
+    fill     = "Tipo de hecho",
+    caption  = "TAD 11 - Vigía | Fuente: Policía Nacional de Colombia"
+  )
+```
+
+```{r linea, echo=TRUE}
+linea_extorsion <- resultados %>%
+  filter(AÑO >= 2020 & AÑO <= 2025) %>%
+  filter(HECHO == "EXTORSION") %>%
+  group_by(AÑO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  ungroup()
+
+ggplot(linea_extorsion, aes(x = AÑO, y = total_casos, group = 1)) +
+  geom_line(color = "#e74c3c", size = 1.1) +
+  geom_point(color = "#e74c3c", size = 2) +
+  geom_text(aes(label = total_casos), vjust = -0.8, size = 3) +
+  labs(
+    title = "Línea de tiempo de casos de extorsión en Colombia (2020-2025)",
+    x = "Año",
+    y = "Número de casos"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+# Top 3 municipios con más extorsión
+top3_municipios <- resultados %>%
+  filter(AÑO >= 2020 & AÑO <= 2025,
+         HECHO == "EXTORSION") %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 3)
+
+# Línea de tiempo de esos municipios
+linea_top3 <- resultados %>%
+  filter(AÑO >= 2020 & AÑO <= 2025,
+         HECHO == "EXTORSION",
+         MUNICIPIO %in% top3_municipios$MUNICIPIO) %>%
+  group_by(AÑO, MUNICIPIO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  ungroup()
+
+ggplot(linea_top3, aes(x = AÑO, y = total_casos, color = MUNICIPIO, group = MUNICIPIO)) +
+  geom_line(size = 1.3) +
+  geom_point(size = 2) +
+  geom_text(aes(label = total_casos), vjust = -0.7, size = 3,color = "black") +
+  labs(
+    title = "Línea de tiempo de extorsión en los 3 municipios con más casos (2020-2025)",
+    x = "Año",
+    y = "Número de casos",
+    color = "Municipio"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+datos_mapa <- resultados %>%
+  filter(HECHO == "EXTORSION",
+         AÑO >= 2020 & AÑO <= 2025) %>%
+  mutate(
+    LONGITUD = as.numeric(LONGITUD),
+    LATITUD = as.numeric(LATITUD)
+  )
+```
+
+```{r mapa}
+library(sf)
+library(dplyr)
+library(ggplot2)
+#library(rnaturalearth)
+
+# mapa de departamentos (usando lo que ya descargaste arriba)
+colombia <- colombia_sf
+
+# sumar casos por departamento
+casos_depto <- resultados %>%
+  filter(HECHO == "EXTORSION",
+         AÑO >= 2020 & AÑO <= 2025) %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE))
+
+# unir datos
+mapa_datos <- colombia %>%
+ left_join(casos_depto, by = c("NAME_1" = "DEPARTAMENTO"))
+# mapa
+ggplot(mapa_datos) +
+  geom_sf(aes(fill = total_casos), color = "white", size = 0.3) +
+  
+  scale_fill_gradient(
+    low = "#ffd27f",
+    high = "#d40000",
+    na.value = "#b7c9d9",
+    name = "Nivel de Alerta"
+  ) +
+  
+  theme_minimal() +
+  
+  labs(
+    title = "Mapa de intensidad de casos de extorsión en Colombia",
+    subtitle = "Periodo 2020 - 2025"
+  )
+```
+
+<a name="correlacion"></a>
+
+## Analisis de correlacion
+
+<a name="conclusion"></a>
+
+## Conclusiones generales

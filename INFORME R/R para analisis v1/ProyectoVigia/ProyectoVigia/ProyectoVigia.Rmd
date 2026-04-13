@@ -1,0 +1,1509 @@
+---
+title: "Análisis de inseguridad en Colombia con los patrones de extorsión, secuestro y terrorismo en Colombia 2020 - 2025"
+date: ""
+output: 
+  html_document:
+    toc: false
+    toc_depth: 3
+    number_sections: false
+    toc_float: 
+        collapsed: true
+        smooth_scroll: false 
+    theme: lumen
+    highlight: default
+    df_print: default
+    code_folding: hide
+    css: "styles.css"
+    lang: es-ES
+---
+
+```{=html}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* ═══════════════════════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════════════════════ */
+:root {
+  --azul-marino:    #00216E;
+  --azul-rey:       #0F5B9D;
+  --azul-claro:     #4A90D9;
+  --azul-palido:    #A8CAEE;
+  --amarillo:       #F5A623;
+  --amarillo-claro: #FFCC00;
+  --gris:           #E8E8E8;
+  --gris-oscuro:    #5A5A5A;
+  --bg:             #E8F0FA;
+  --surface:        #FFFFFF;
+  --glass:          rgba(255,255,255,0.7);
+  --glass-border:   rgba(255,255,255,0.5);
+  --sidebar-w:      272px;
+  --radius:         16px;
+  --radius-sm:      10px;
+  --shadow-sm:      0 2px 12px rgba(0,33,110,.06);
+  --shadow-md:      0 8px 28px rgba(0,33,110,.11);
+  --shadow-lg:      0 16px 48px rgba(0,33,110,.16);
+  --shadow-glow:    0 0 40px rgba(15,91,157,.2);
+  --transition:     0.35s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: #1A2B45;
+  overflow-x: hidden;
+}
+
+/* ── Background texture ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(15,91,157,.07) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(245,166,35,.05) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230F5B9D' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #dde8f5; }
+::-webkit-scrollbar-thumb  { background: linear-gradient(180deg, var(--azul-claro), var(--azul-marino)); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--azul-marino); }
+::selection { background: var(--azul-rey); color: #fff; }
+
+/* ═══════════════════════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════════════════════ */
+#progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--amarillo) 0%, var(--azul-claro) 50%, var(--azul-marino) 100%);
+  transform-origin: left; transform: scaleX(0);
+  z-index: 99999; transition: transform .08s linear;
+  box-shadow: 0 0 12px rgba(245,166,35,.6);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HORIZONTAL SCROLL BAR
+═══════════════════════════════════════════════════════════ */
+#h-scroll-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 12px;
+  background: rgba(0,33,110,.06); z-index: 99998; cursor: pointer; overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+#h-scroll-thumb {
+  position: absolute; top: 2px; left: 0; height: 8px;
+  background: linear-gradient(90deg, var(--azul-marino), var(--azul-rey), var(--azul-claro));
+  border-radius: 4px; box-shadow: 0 0 10px rgba(79,144,217,.5);
+  transition: left .04s linear, width .2s;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOGGLE BUTTON
+═══════════════════════════════════════════════════════════ */
+#sidebar-toggle {
+  position: fixed; top: 20px; left: 20px; z-index: 10001;
+  background: linear-gradient(135deg, var(--azul-rey), var(--azul-marino));
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px; width: 44px; height: 44px;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  box-shadow: 0 4px 16px rgba(0,33,110,.35), inset 0 1px 0 rgba(255,255,255,.1);
+  transition: var(--transition);
+}
+#sidebar-toggle:hover {
+  background: linear-gradient(135deg, var(--amarillo), #e8920f);
+  box-shadow: 0 6px 24px rgba(245,166,35,.5), 0 0 0 4px rgba(245,166,35,.15);
+  transform: scale(1.08) rotate(3deg);
+}
+#sidebar-toggle span {
+  display: block; width: 18px; height: 2px;
+  background: #fff; border-radius: 2px; transition: var(--transition);
+}
+#sidebar-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#sidebar-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#sidebar-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+#sidebar-toggle.closed span:nth-child(1) { transform: none; }
+#sidebar-toggle.closed span:nth-child(2) { opacity: 1; transform: scaleX(1); }
+#sidebar-toggle.closed span:nth-child(3) { transform: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR — glassmorphism dark
+═══════════════════════════════════════════════════════════ */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w); height: 100%;
+  background: linear-gradient(170deg,
+    rgba(13,74,135,.97) 0%,
+    rgba(0,33,110,.98) 55%,
+    rgba(0,21,80,.99) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 80px 18px 90px;
+  box-shadow: 6px 0 40px rgba(0,33,110,.4), inset -1px 0 0 rgba(255,255,255,.06);
+  overflow-y: auto; z-index: 9999;
+  transition: transform var(--transition);
+}
+.sidebar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 200px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sidebar::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(245,166,35,.4) 30%, rgba(245,166,35,.4) 70%, transparent 100%);
+}
+.sidebar.hidden { transform: translateX(-100%); }
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); }
+
+/* Sidebar brand */
+.sidebar-brand {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px; padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  position: relative;
+}
+.sidebar-brand-dot {
+  width: 10px; height: 10px;
+  background: var(--amarillo); border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(245,166,35,.2), 0 0 12px rgba(245,166,35,.5);
+  flex-shrink: 0;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(245,166,35,.2), 0 0 12px rgba(245,166,35,.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(245,166,35,.15), 0 0 20px rgba(245,166,35,.7); }
+}
+.sidebar-brand-text {
+  color: rgba(255,255,255,.5); font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  font-family: 'Sora', sans-serif;
+}
+
+/* nav labels */
+.sidebar > b, .nav-label {
+  color: rgba(255,255,255,.3); font-size: 9px; font-weight: 700;
+  display: block; margin: 20px 0 8px; padding: 0 8px;
+  letter-spacing: 3px; text-transform: uppercase;
+  font-family: 'Sora', sans-serif;
+}
+
+/* nav links */
+.sidebar a {
+  color: rgba(255,255,255,.75);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; font-size: 13px; font-weight: 400;
+  border-radius: 10px; margin: 2px 0;
+  transition: var(--transition); position: relative; overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid transparent;
+}
+.sidebar a .nav-icon { width: 17px; height: 17px; opacity: .55; flex-shrink: 0; transition: var(--transition); }
+.sidebar a::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  height: 55%; width: 3px;
+  background: linear-gradient(180deg, var(--amarillo), var(--amarillo-claro));
+  border-radius: 0 3px 3px 0; transition: var(--transition);
+}
+.sidebar a:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.07);
+  color: #fff; transform: translateX(5px);
+}
+.sidebar a:hover::before { transform: translateY(-50%) scaleY(1); }
+.sidebar a:hover .nav-icon { opacity: 1; }
+
+/* submenu */
+.submenu-toggle { display: none; }
+.submenu-container { display: flex; flex-wrap: wrap; align-items: center; margin: 2px 0; }
+.submenu-link { flex: 1; padding: 10px 14px !important; margin: 0 !important; border-radius: 10px 0 0 10px !important; }
+.submenu-arrow {
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 40px; color: rgba(255,255,255,.6); font-size: 13px;
+  background: rgba(255,255,255,.05); border-radius: 0 10px 10px 0;
+  transition: var(--transition); user-select: none;
+}
+.submenu-arrow:hover { background: rgba(245,166,35,.2); color: var(--amarillo-claro); }
+.submenu-toggle:checked + .submenu-arrow { transform: rotate(180deg); background: rgba(245,166,35,.2); color: var(--amarillo-claro); }
+.submenu {
+  display: none; padding: 4px 0 4px 20px; margin: 3px 0;
+  border-left: 2px solid rgba(245,166,35,.3); width: 100%; flex-basis: 100%;
+  background: rgba(0,8,32,.4); border-radius: 0 0 10px 10px;
+}
+.submenu-toggle:checked ~ .submenu,
+#toggleSubmenu:checked ~ #submenu-items { display: block !important; }
+#toggleSubmenu:checked ~ #submenu-items { animation: slideDown 0.22s ease; }
+.submenu a { padding: 7px 10px; font-size: 12.5px; color: rgba(255,255,255,.65); border-radius: 6px; margin: 1px 0; transform: none !important; border: none !important; }
+.submenu a:hover { background: rgba(245,166,35,.1); color: #fff; transform: translateX(3px) !important; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════════════════════════ */
+.main-content {
+  margin-left: calc(var(--sidebar-w) + 14px);
+  transition: margin-left var(--transition);
+  padding: 0 32px 80px;
+  position: relative; z-index: 1;
+}
+.main-content.expanded { margin-left: 24px; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — cinematic
+═══════════════════════════════════════════════════════════ */
+.vigia-hero {
+  background: linear-gradient(140deg, #001040 0%, #002070 35%, #0a3f80 65%, #0f5b9d 100%);
+  padding: 58px 70px 50px;
+  border-radius: 0 0 32px 32px;
+  margin-bottom: 52px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 16px 60px rgba(0,33,110,.4), 0 0 0 1px rgba(255,255,255,.04);
+}
+
+/* grid overlay */
+.vigia-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* golden beam */
+.vigia-hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 200px; height: 4px;
+  background: linear-gradient(90deg, var(--amarillo), var(--amarillo-claro) 60%, transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(245,166,35,.6);
+}
+
+/* floating orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1px);
+}
+.hero-orb-1 {
+  width: 320px; height: 320px;
+  right: -80px; top: -80px;
+  background: radial-gradient(circle, rgba(15,91,157,.35) 0%, transparent 70%);
+  animation: orb-drift 10s ease-in-out infinite alternate;
+}
+.hero-orb-2 {
+  width: 200px; height: 200px;
+  right: 160px; bottom: -60px;
+  background: radial-gradient(circle, rgba(245,166,35,.2) 0%, transparent 70%);
+  animation: orb-drift 14s ease-in-out infinite alternate-reverse;
+}
+.hero-orb-3 {
+  width: 150px; height: 150px;
+  left: 30%; top: -40px;
+  background: radial-gradient(circle, rgba(74,144,217,.15) 0%, transparent 70%);
+  animation: orb-drift 8s ease-in-out infinite alternate;
+}
+@keyframes orb-drift {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(20px) scale(1.1); }
+}
+
+/* geometric ring */
+.hero-ring {
+  position: absolute; right: -40px; top: -40px;
+  width: 260px; height: 260px;
+  border: 1px solid rgba(255,255,255,.07); border-radius: 50%;
+  z-index: 1;
+}
+.hero-ring::before {
+  content: ''; position: absolute; inset: 22px;
+  border: 1px solid rgba(245,166,35,.1); border-radius: 50%;
+}
+.hero-ring::after {
+  content: ''; position: absolute; inset: 50px;
+  border: 1px solid rgba(74,144,217,.12); border-radius: 50%;
+}
+
+.vigia-hero > img { display: none; }
+
+/* hero badge */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,166,35,.15);
+  border: 1px solid rgba(245,166,35,.35);
+  color: var(--amarillo-claro); font-size: 10.5px; font-weight: 700;
+  padding: 5px 16px; border-radius: 24px;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px; font-family: 'Sora', sans-serif;
+  position: relative; z-index: 2;
+  box-shadow: 0 0 20px rgba(245,166,35,.15);
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; background: var(--amarillo);
+  border-radius: 50%; box-shadow: 0 0 6px var(--amarillo);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.6); opacity: .6; }
+}
+
+.vigia-hero h1 {
+  color: #fff !important;
+  font-family: 'Sora', sans-serif !important;
+  font-size: 26px !important; font-weight: 800 !important;
+  line-height: 1.45 !important;
+  margin: 0 0 16px 0 !important; padding: 0 !important;
+  border: none !important;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+  position: relative; z-index: 2;
+  letter-spacing: -.5px;
+}
+.vigia-hero h1::before { display: none !important; }
+
+.hero-sub {
+  color: rgba(255,255,255,.55); font-size: 13px; font-weight: 300;
+  letter-spacing: 1px; position: relative; z-index: 2;
+  font-family: 'Sora', sans-serif;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.hero-sub-sep { color: rgba(245,166,35,.5); }
+
+/* logos */
+.hero-logos {
+  position: absolute; right: 60px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 18px; z-index: 3;
+}
+.hero-logo-wrap {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 10px;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+}
+.hero-logo-wrap:hover {
+  background: rgba(255,255,255,.1);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 28px rgba(0,0,0,.3);
+}
+.hero-logos img {
+  width: 68px; opacity: .95;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.2));
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION REVEAL ANIMATION
+═══════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADINGS
+═══════════════════════════════════════════════════════════ */
+.title, h1.title { display: none !important; }
+
+h1, h2 {
+  font-family: 'Sora', sans-serif;
+  color: var(--azul-marino);
+  font-weight: 700; font-size: 22px;
+  margin-top: 60px; margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,33,110,.1);
+  position: relative; clear: both; letter-spacing: -.3px;
+}
+h1::before, h2::before {
+  content: '';
+  position: absolute; bottom: -1px; left: 0;
+  width: 50px; height: 3px;
+  background: linear-gradient(90deg, var(--amarillo), var(--amarillo-claro));
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(245,166,35,.4);
+}
+
+/* section number ghost */
+h2::after {
+  content: attr(data-num);
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  font-size: 52px; font-weight: 900;
+  color: rgba(0,33,110,.04);
+  font-family: 'Sora', sans-serif;
+  line-height: 1; pointer-events: none;
+  letter-spacing: -2px;
+}
+
+h3 {
+  font-family: 'Sora', sans-serif;
+  color: var(--azul-rey); font-weight: 600; font-size: 17px;
+  margin-top: 36px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+h3::before {
+  content: '';
+  width: 4px; height: 20px;
+  background: linear-gradient(180deg, var(--amarillo) 0%, var(--azul-claro) 100%);
+  border-radius: 3px; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(245,166,35,.3);
+}
+
+h4 {
+  font-family: 'Sora', sans-serif;
+  color: var(--azul-marino); font-weight: 600; font-size: 15px;
+  margin-top: 24px; margin-bottom: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BODY TEXT
+═══════════════════════════════════════════════════════════ */
+p {
+  text-align: justify; line-height: 1.95;
+  color: #253448; font-size: 15px; margin-bottom: 18px;
+  font-weight: 300;
+}
+strong, b { font-weight: 600; color: var(--azul-marino); }
+
+/* ═══════════════════════════════════════════════════════════
+   CARDS — glassmorphism
+═══════════════════════════════════════════════════════════ */
+.card-section {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 36px 38px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.8);
+  margin: 54px 0;
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--amarillo);
+  transition: var(--transition);
+  clear: both; position: relative; z-index: 3;
+}
+.card-section:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(245,166,35,.15);
+}
+
+/* ── Plot wrapper (glassmorphism) ── */
+.plot-container {
+  width: 100%; clear: both; margin: 50px 0; padding: 32px 34px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.8);
+  border: 1px solid var(--glass-border);
+  position: relative; z-index: 3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STAT CARDS — new component
+═══════════════════════════════════════════════════════════ */
+.stat-card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: 6px;
+  transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-marino), var(--azul-claro));
+  border-radius: 16px 16px 0 0;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.stat-card-value {
+  font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 800;
+  color: var(--azul-marino); line-height: 1; letter-spacing: -1px;
+}
+.stat-card-label {
+  font-size: 12px; font-weight: 500; color: var(--gris-oscuro);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  font-family: 'Sora', sans-serif;
+}
+.stat-cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px; margin: 28px 0 36px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TABLES
+═══════════════════════════════════════════════════════════ */
+table {
+  box-shadow: var(--shadow-md) !important;
+  border-radius: var(--radius) !important;
+  overflow: hidden; margin: 28px auto !important;
+  background: rgba(255,255,255,.85) !important;
+  border: 1px solid rgba(255,255,255,.6) !important;
+  backdrop-filter: blur(8px);
+  font-family: 'DM Sans', sans-serif !important; font-size: 14px !important;
+}
+table thead th {
+  background: linear-gradient(135deg, var(--azul-marino), #001a55) !important;
+  color: #fff !important; font-family: 'Sora', sans-serif !important;
+  font-weight: 600 !important; letter-spacing: .5px !important;
+  padding: 14px 18px !important; border: none !important;
+}
+table tbody td { padding: 12px 18px !important; border-bottom: 1px solid rgba(0,33,110,.05) !important; color: #253448 !important; }
+table tbody tr:hover td { background: rgba(15,91,157,.05) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   CODE / PRE
+═══════════════════════════════════════════════════════════ */
+pre {
+  background: rgba(243,247,253,.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,33,110,.08);
+  border-left: 3px solid var(--azul-claro);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px; font-size: 13px;
+  box-shadow: var(--shadow-sm); margin: 20px 0; overflow-x: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HIGHLIGHT BOXES
+═══════════════════════════════════════════════════════════ */
+center {
+  font-weight: 600; color: #fff !important;
+  margin: 32px 0 !important; font-size: 15px !important;
+  line-height: 1.85 !important;
+  background: linear-gradient(135deg, var(--azul-rey) 0%, #001a55 100%) !important;
+  padding: 22px 32px !important; border-radius: var(--radius) !important;
+  border: none !important; border-left: 5px solid var(--amarillo) !important;
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(255,255,255,.04) !important;
+  display: block !important; position: relative; overflow: hidden;
+}
+center::before {
+  content: '';
+  position: absolute; top: -50%; right: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 80% 20%, rgba(245,166,35,.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+center strong, center b { color: var(--amarillo-claro) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   DIVIDERS
+═══════════════════════════════════════════════════════════ */
+hr {
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,33,110,.1), var(--amarillo) 50%, rgba(0,33,110,.1), transparent);
+  margin: 54px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PLOTLY WIDGETS
+═══════════════════════════════════════════════════════════ */
+.html-widget {
+  margin: 32px auto;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius); overflow: hidden;
+  background: rgba(255,255,255,.85);
+  border: 1px solid var(--glass-border);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LINKS
+═══════════════════════════════════════════════════════════ */
+a { color: var(--azul-rey); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--amarillo); }
+a[href="#arriba"], a[href="#abajo"] {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--azul-rey), var(--azul-marino));
+  color: #fff !important; border-radius: 28px;
+  font-weight: 600; font-size: 11.5px;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  transition: var(--transition); box-shadow: var(--shadow-sm);
+  margin: 16px 4px; font-family: 'Sora', sans-serif;
+  border: 1px solid rgba(255,255,255,.1);
+}
+a[href="#arriba"]:hover, a[href="#abajo"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(245,166,35,.4);
+  background: linear-gradient(135deg, var(--amarillo), #d68a10);
+}
+a[name] { display: block; position: relative; top: -100px; visibility: hidden; }
+
+/* ═══════════════════════════════════════════════════════════
+   INFO BOX
+═══════════════════════════════════════════════════════════ */
+.info-box {
+  background: linear-gradient(135deg, rgba(246,249,255,.95), rgba(255,255,255,.9));
+  border-left: 4px solid var(--azul-claro);
+  padding: 18px 22px; border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 18px; box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(74,144,217,.12);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONCLUSIONS
+═══════════════════════════════════════════════════════════ */
+.conclusion-header {
+  background: linear-gradient(135deg, var(--azul-rey), var(--azul-marino));
+  color: #fff; padding: 20px 28px; border-radius: var(--radius);
+  margin: 24px 0 16px; font-size: 15px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  font-family: 'Sora', sans-serif; box-shadow: var(--shadow-md);
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.conclusion-header::after {
+  content: '';
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border: 2px solid rgba(255,255,255,.12); border-radius: 50%;
+}
+
+.conclusiones-list {
+  background: var(--glass); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px 38px; border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); margin: 16px 0;
+  border: 1px solid var(--glass-border);
+}
+.conclusiones-list ol { counter-reset: item; list-style: none; padding-left: 0; }
+.conclusiones-list li {
+  counter-increment: item; margin-bottom: 24px;
+  position: relative; padding-left: 52px; line-height: 1.85;
+  font-size: 15px; color: #253448; font-weight: 300;
+}
+.conclusiones-list li::before {
+  content: counter(item);
+  position: absolute; left: 0; top: 0;
+  background: linear-gradient(135deg, var(--azul-rey), var(--azul-marino));
+  color: #fff; width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px;
+  font-family: 'Sora', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,33,110,.3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIBRARIES LIST
+═══════════════════════════════════════════════════════════ */
+ul li {
+  margin-bottom: 8px; line-height: 1.75;
+  font-size: 14.5px; color: #253448; font-weight: 300;
+  padding: 2px 0;
+}
+ul li strong { font-weight: 700; color: var(--azul-marino); }
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION TAG LABELS
+═══════════════════════════════════════════════════════════ */
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--azul-claro); margin-bottom: 8px;
+  padding: 4px 12px; background: rgba(74,144,217,.08);
+  border: 1px solid rgba(74,144,217,.2); border-radius: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANALISIS SECTION
+═══════════════════════════════════════════════════════════ */
+.analisis-section {
+  margin-top: 80px; margin-bottom: 80px;
+  clear: both; padding-top: 40px; position: relative; z-index: 3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { width: 250px; }
+  .main-content { margin-left: 0; padding: 0 16px 80px; }
+  h1, h2 { font-size: 19px; }
+  .vigia-hero { padding: 36px 24px 30px; }
+  .hero-logos { display: none; }
+  .stat-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- HORIZONTAL SCROLL BAR -->
+<div id="h-scroll-bar"><div id="h-scroll-thumb"></div></div>
+
+<!-- TOGGLE -->
+<button id="sidebar-toggle" class="closed" onclick="toggleSidebar()" title="Menú">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- SIDEBAR -->
+<div class="sidebar hidden" id="site-sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-dot"></div>
+    <span class="sidebar-brand-text">Vigía · 2020–2025</span>
+  </div>
+
+  <b>Contenido</b>
+
+  <a href="#Introduccion">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Introducción
+  </a>
+  <a href="#Descripcion">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Descripción
+  </a>
+  <a href="#Objetivos">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    Objetivos
+  </a>
+  <a href="#Exploracion">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Exploración
+  </a>
+  <a href="#VPR">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Vista preliminar
+  </a>
+
+  <b>Visualizaciones</b>
+
+  <div class="submenu-container">
+    <a href="#CyA" class="submenu-link">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Consultas
+    </a>
+    <input type="checkbox" id="toggleSubmenu" class="submenu-toggle">
+    <label for="toggleSubmenu" class="submenu-arrow">▾</label>
+    <div class="submenu" id="submenu-items">
+      <a href="#C1">🗺&nbsp; Mapa departamentos</a>
+      <a href="#C2">📊&nbsp; Top extorsión</a>
+      <a href="#C3">🚧&nbsp; Zonas fronterizas</a>
+      <a href="#C4">📈&nbsp; Líneas de tiempo</a>
+      <a href="#C5">🌡&nbsp; Heatmap estacional</a>
+      <a href="#C6">⚡&nbsp; Intensidad delictiva</a>
+    </div>
+  </div>
+
+  <a href="#correlacion">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l8-8 8 8v10"/></svg>
+    Correlación
+  </a>
+
+  <b>Cierre</b>
+
+  <a href="#conclusion">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    Conclusiones
+  </a>
+  <a href="#librerias">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Librerías
+  </a>
+</div>
+
+<script>
+(function() {
+  /* ── Sidebar ── */
+  window.toggleSidebar = function() {
+    var s = document.getElementById("site-sidebar");
+    var b = document.getElementById("sidebar-toggle");
+    var c = document.querySelector(".main-content");
+    s.classList.toggle("hidden");
+    b.classList.toggle("closed");
+    if (c) c.classList.toggle("expanded");
+    var l = document.querySelector(".container-fluid.main-container");
+    if (l) l.classList.toggle("expanded");
+  };
+
+  /* ── Submenu ── */
+  var cb  = document.getElementById("toggleSubmenu");
+  var sb  = document.getElementById("site-sidebar");
+  var sl  = document.querySelector(".submenu-link");
+  if (sl) { sl.addEventListener("mouseenter",function(e){e.stopPropagation();}); }
+  document.addEventListener("click",function(e){ if(!cb)return; if(sb&&sb.contains(e.target))return; if(cb.checked)cb.checked=false; });
+  document.addEventListener("keydown",function(e){ if((e.key==="Escape"||e.key==="Esc")&&cb&&cb.checked)cb.checked=false; });
+  if(sb){sb.querySelectorAll(".submenu a").forEach(function(l){l.addEventListener("click",function(){if(cb)cb.checked=false;});});}
+
+  /* ── Wrap in .main-content ── */
+  document.addEventListener("DOMContentLoaded", function() {
+    var body = document.body;
+    var exclude = ["site-sidebar","sidebar-toggle","progress-bar","h-scroll-bar"];
+    var nodes = Array.from(body.childNodes).filter(function(n) {
+      if(n.nodeType===1 && exclude.includes(n.id)) return false;
+      if(n.nodeType===1 && n.tagName==="SCRIPT") return false;
+      if(n.nodeType===1 && n.tagName==="STYLE") return false;
+      return true;
+    });
+    var wrap = document.createElement("div");
+    wrap.className = "main-content expanded";
+    nodes.forEach(function(n){ wrap.appendChild(n); });
+    body.appendChild(wrap);
+  });
+
+  /* ── Vertical progress ── */
+  window.addEventListener("scroll", function() {
+    var bar = document.getElementById("progress-bar");
+    if(!bar) return;
+    var st = window.scrollY||document.documentElement.scrollTop;
+    var dh = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = "scaleX("+(dh>0?st/dh:0)+")";
+  });
+
+  /* ── Horizontal scroll bar ── */
+  function updH() {
+    var t = document.getElementById("h-scroll-thumb");
+    var b = document.getElementById("h-scroll-bar");
+    if(!t||!b) return;
+    var dw=document.documentElement.scrollWidth, ww=window.innerWidth;
+    if(dw<=ww){b.style.opacity="0";return;}
+    b.style.opacity="1";
+    var tw=Math.max((ww/dw)*ww,50);
+    var sl=window.scrollX||0;
+    var ms=dw-ww;
+    t.style.width=tw+"px";
+    t.style.left=((sl/ms)*(ww-tw))+"px";
+  }
+  window.addEventListener("scroll",updH);window.addEventListener("resize",updH);window.addEventListener("load",updH);document.addEventListener("DOMContentLoaded",updH);
+
+  /* h-scroll drag */
+  (function(){
+    var dragging=false,startX=0,startSL=0;
+    document.addEventListener("DOMContentLoaded",function(){
+      var bar=document.getElementById("h-scroll-bar");
+      var thumb=document.getElementById("h-scroll-thumb");
+      if(!bar||!thumb)return;
+      thumb.addEventListener("mousedown",function(e){dragging=true;startX=e.clientX;startSL=window.scrollX||0;e.preventDefault();});
+      bar.addEventListener("click",function(e){if(e.target===thumb)return;var br=bar.getBoundingClientRect();var rc=e.clientX-br.left;var dw=document.documentElement.scrollWidth,ww=window.innerWidth;window.scrollTo({left:(rc/ww)*(dw-ww),behavior:"smooth"});});
+      document.addEventListener("mousemove",function(e){if(!dragging)return;var dx=e.clientX-startX;var dw=document.documentElement.scrollWidth,ww=window.innerWidth;window.scrollTo({left:startSL+dx*((dw-ww)/ww)});});
+      document.addEventListener("mouseup",function(){dragging=false;});
+    });
+  })();
+
+  /* ── Scroll reveal ── */
+  document.addEventListener("DOMContentLoaded", function() {
+    var revealEls = document.querySelectorAll("h1,h2,h3,p,.html-widget,table,.card-section,.plot-container");
+    revealEls.forEach(function(el) { el.classList.add("reveal"); });
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if(e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
+    revealEls.forEach(function(el) { io.observe(el); });
+  });
+})();
+</script>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "left",
+  fig.height = 5,
+  fig.width  = 7,
+  rows.print = 70
+)
+
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(tidyverse)
+
+resultados <- read_excel("BD_FINAL.xlsx")
+
+# ── Paleta VIGÍA ─────────────────────────────────────────────────────────────
+vigia_azul_marino    <- "#00216E"
+vigia_azul_rey       <- "#0F5B9D"
+vigia_azul_claro     <- "#4A90D9"
+vigia_azul_palido    <- "#A8CAEE"
+vigia_amarillo       <- "#F5A623"
+vigia_amarillo_claro <- "#FFCC00"
+vigia_gris           <- "#E8E8E8"
+vigia_gris_oscuro    <- "#5A5A5A"
+
+paleta_hechos <- c(
+  "EXTORSION"  = vigia_azul_marino,
+  "SECUESTRO"  = vigia_amarillo,
+  "TERRORISMO" = vigia_azul_claro
+)
+
+# ── Tema ggplot2 VIGÍA ───────────────────────────────────────────────────────
+theme_vigia <- function(base_size = 11) {
+  theme_minimal(base_size = base_size) %+replace%
+    theme(
+      plot.title    = element_text(color = vigia_azul_marino, face = "bold",
+                                   size  = base_size + 3, hjust = 0,
+                                   margin = margin(b = 6)),
+      plot.subtitle = element_text(color = vigia_azul_rey, size = base_size,
+                                   hjust = 0, margin = margin(b = 10)),
+      plot.caption  = element_text(color = vigia_gris_oscuro,
+                                   size  = base_size - 2, hjust = 1),
+      axis.title    = element_text(color = vigia_azul_marino, face = "bold",
+                                   size  = base_size - 1),
+      axis.text     = element_text(color = vigia_gris_oscuro, size = base_size - 1),
+      axis.line     = element_line(color = vigia_azul_palido, linewidth = 0.4),
+      axis.ticks    = element_line(color = vigia_azul_palido),
+      legend.title  = element_text(color = vigia_azul_marino, face = "bold",
+                                   size  = base_size - 1),
+      legend.text   = element_text(color = vigia_gris_oscuro, size = base_size - 1),
+      legend.position  = "bottom",
+      legend.key.size  = unit(0.5, "cm"),
+      panel.grid.major = element_line(color = vigia_gris, linewidth = 0.3),
+      panel.grid.minor = element_blank(),
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background  = element_rect(fill = "white", color = NA),
+      strip.background = element_rect(fill = vigia_azul_marino, color = NA),
+      strip.text       = element_text(color = "white", face = "bold",
+                                      size  = base_size - 1),
+      plot.margin = margin(12, 16, 12, 12)
+    )
+}
+
+theme_set(theme_vigia())
+```
+
+```{=html}
+<!-- HERO -->
+<div class="vigia-hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Informe Técnico · 2020–2025
+  </div>
+
+  <h1>Análisis de inseguridad en Colombia<br>Patrones de extorsión, secuestro<br>y terrorismo</h1>
+
+  <p class="hero-sub">
+    <span>Policía Nacional de Colombia</span>
+    <span class="hero-sub-sep">·</span>
+    <span>Ciencia de Datos</span>
+    <span class="hero-sub-sep">·</span>
+    <span>R &amp; Python</span>
+  </p>
+
+  <div class="hero-logos">
+    <div class="hero-logo-wrap">
+      <img src="img/logoSena.png" alt="Logo SENA"/>
+    </div>
+    <div class="hero-logo-wrap">
+      <img src="img/Vigia Logotipo editable_Logo app monocromatico sin fondo.png" alt="Logo Vigía"/>
+    </div>
+  </div>
+</div>
+```
+
+<a name="Introduccion"></a>
+
+# Introducción
+
+<p>El presente informe técnico analiza la extorsión en Colombia como delito principal, así como su relación con el secuestro y el terrorismo, durante el periodo 2020–2025. En el contexto actual, estos fenómenos no operan de manera aislada, sino que se articulan dentro de dinámicas del crimen organizado, donde la extorsión actúa como eje central de financiación y control.</p>
+
+<p>El secuestro y el terrorismo, aunque menos frecuentes, funcionan como mecanismos complementarios de presión e intimidación que fortalecen las prácticas extorsivas en distintos territorios.</p>
+
+<p>A través de un enfoque descriptivo y el uso de herramientas de ciencia de datos en R y Python, se busca identificar patrones, tendencias y relaciones entre estos delitos. Esto permitirá aportar evidencia cuantitativa para mejorar la toma de decisiones y fortalecer las estrategias de prevención en el país.</p>
+
+<a name="Descripcion"></a>
+
+# Descripción general del problema
+
+<p>La seguridad ciudadana en Colombia se enfrenta a una transformación progresiva de las dinámicas criminales, donde delitos como la extorsión, el secuestro y el terrorismo han dejado de operar de manera independiente para integrarse en esquemas más complejos del crimen organizado. En este contexto, la **extorsión** se posiciona como el delito predominante, no solo por su alta incidencia, sino por su capacidad de adaptación y expansión hacia entornos digitales y territoriales diversos.</p>
+
+<p>A diferencia del secuestro y el terrorismo, que suelen presentar picos asociados a contextos específicos o regiones focalizadas, la extorsión ha evolucionado hacia una práctica sistemática y continua, afectando tanto a ciudadanos como a sectores productivos. Esta mutación, que incluye modalidades como la extorsión carcelaria y digital, evidencia una sofisticación creciente en los mecanismos de presión económica ilegal.</p>
+
+<p>Por su parte, el **secuestro** ha experimentado una transformación en su rol dentro de las economías criminales, pasando de ser un delito de alto impacto mediático a convertirse, en muchos casos, en un instrumento complementario de la extorsión. Las víctimas de secuestro no solo son retenidas con fines de rescate, sino que también son utilizadas como medio para intensificar esquemas extorsivos, generando un vínculo directo entre ambos fenómenos.</p>
+
+<p>De manera similar, el **terrorismo** se articula con la extorsión como una herramienta de coerción colectiva. En determinadas regiones, los actos terroristas no solo buscan generar miedo o control territorial, sino que funcionan como mecanismos de presión para garantizar el pago de extorsiones, consolidando así economías ilícitas sostenidas en la intimidación sistemática.</p>
+
+<p>En consecuencia, el análisis aislado de estos delitos limita la comprensión de sus verdaderas dinámicas. Existe un problema en la forma en que se interpretan los datos de seguridad, ya que suelen abordarse como eventos independientes, sin considerar las interrelaciones estratégicas que configuran el accionar del crimen organizado. Esto dificulta la formulación de políticas públicas efectivas y reduce la capacidad del Estado para anticipar riesgos.</p>
+
+<p>Por tanto, se hace necesario un enfoque analítico integral que permita identificar la **extorsión como eje articulador** de estas dinámicas criminales y comprender cómo el secuestro y el terrorismo se integran funcionalmente a ella. Solo a través de este entendimiento será posible avanzar hacia estrategias de seguridad basadas en evidencia, que permitan no solo reaccionar, sino anticiparse a la evolución del delito en Colombia.</p>
+
+<a name="Objetivos"></a>
+
+# Objetivos del proyecto
+
+**OBJETIVO GENERAL**
+
+Analizar los factores asociados a la extorsión en Colombia y su relación con el secuestro y el terrorismo durante el periodo 2020–2025, mediante técnicas de analítica de datos, con el fin de generar información estratégica que apoye la formulación de estrategias de intervención en materia de seguridad ciudadana.
+
+**OBJETIVOS ESPECÍFICOS**
+
+1.  <p>Preparar los conjuntos de datos relacionados con la extorsión, el secuestro y el terrorismo en Colombia (2020–2025), generando una data limpia y una data estructurada para el entrenamiento de modelos predictivos.</p>
+
+2.  <p>Analizar los datos disponibles para identificar factores sociales y territoriales, patrones y tendencias delictivas, zonas de mayor riesgo e impactos en la seguridad ciudadana, y a partir de su interpretación y hallazgos proponer estrategias de prevención e intervención basadas en evidencia.</p>
+
+3.  <p>Diseñar el dashboard interactivo e interfaz web que permitan visualizar los indicadores, patrones y proyecciones relacionados con estos delitos, facilitando la toma de decisiones informadas por parte de las autoridades y otros actores.</p>
+
+4.  <p>Diseñar prototipos de soluciones tecnológicas, orientados a explorar mecanismos de alerta temprana y denuncia asistida que contribuyan a reducir la subnotificación y fortalecer la seguridad.</p>
+
+<a name="Exploracion"></a>
+
+# Exploración de los datos
+
+1.  **Estrategia de Integración:** Para el desarrollo de este análisis, se implementó una estrategia de consolidación de datos provenientes de fuentes de información oficial sobre seguridad en el sitio web de la Policía Nacional de Colombia. El proceso consistió en la unificación de estructuras tabulares mediante la identificación de variables comunes (llaves primarias y secundarias), permitiendo una visión holística de los fenómenos delictivos. Se priorizó la estandarización de formatos de fecha, códigos geográficos (DANE), medio de arma utilizado y tipologías de hechos para garantizar la integridad referencial del conjunto de datos final.
+
+2.  **Delimitación de Registros:** Con el objetivo de focalizar el estudio en las problemáticas de mayor impacto social, se aplicó un protocolo de filtrado riguroso. La base de datos original fue depurada para incluir exclusivamente registros vinculados a delitos de alto impacto como: Extorsión, Secuestro y Terrorismo.
+
+3.  **Procesamiento y transformación de datos:** Para garantizar la calidad, consistencia y viabilidad de los análisis estadísticos, se implementó un flujo de trabajo especializado. Inicialmente, se realizó una fase de estandarización y limpieza profunda utilizando el lenguaje Python, aprovechando sus librerías de manipulación de datos para procesar el conjunto integrado.
+
+4.  **Caracterización de la Base de datos**
+
+```{r caracteristicasDatos, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+total_registros  <- nrow(resultados)
+casos_extorsion  <- sum(resultados$HECHO == "EXTORSION",  na.rm = TRUE)
+casos_secuestro  <- sum(resultados$HECHO == "SECUESTRO",  na.rm = TRUE)
+casos_terrorismo <- sum(resultados$HECHO == "TERRORISMO", na.rm = TRUE)
+
+data.frame(
+  Indicador = c("Total de registros", "Casos de extorsión",
+                "Casos de secuestro", "Casos de terrorismo", "Columnas analizadas"),
+  Valor     = c(format(total_registros,  big.mark = ","),
+                format(casos_extorsion,  big.mark = ","),
+                format(casos_secuestro,  big.mark = ","),
+                format(casos_terrorismo, big.mark = ","),
+                ncol(resultados))
+) %>%
+  kbl(col.names = c("Indicador", "Cantidad"), align = "lc") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = FALSE, position = "center") %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino) %>%
+  row_spec(seq(1, 5, 2), background = "#EAF1F9") %>%
+  column_spec(1, color = vigia_azul_marino) %>%
+  column_spec(2, color = vigia_azul_rey)
+```
+
+La base de datos integrada contiene **`r format(nrow(resultados), big.mark=",")`** registros que documentan casos de violencia ocurridos en Colombia. Esta consolidación permite un análisis transversal que identifica patrones comunes y particularidades de cada tipo de delito.
+
+<a name="VPR"></a>
+
+## Vista preliminar de los registros
+
+El siguiente cuadro muestra una vista preliminar de las primeras filas del conjunto de datos, lo que permite confirmar su estructura y formato.
+
+```{r tabla_primeras_filas, echo=FALSE, results='asis'}
+cat('<h4 style="color:#00216E; font-weight:bold;">Tabla 1: Primeros 5 Registros de Hechos Delictivos</h4>')
+resultados %>%
+  head(5) %>%
+  kbl(align = "c") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = TRUE, font_size = 12) %>%
+  row_spec(0, bold = TRUE, color = "white", background = vigia_azul_marino)
+```
+
+<a name="CyA"></a>
+
+## Consultas
+
+<a name="C1"></a>
+
+### Mapa de casos por Departamento
+
+Se evidencia que la distribución de los casos presenta una alta concentración en departamentos estratégicos, liderados principalmente por **Cundinamarca (más de 13.059 casos)** y **Antioquia (más de 10.912)**, seguidos por **Valle del Cauca** y **Atlántico**, lo que confirma un patrón de centralización en zonas con mayor densidad poblacional, actividad económica y conectividad; adicionalmente, se observa una dispersión significativa a nivel nacional, ya que aunque el promedio de casos por departamento es de aproximadamente **2.099**, la desviación estándar es alta **(más de 3.000)**, lo que indica una marcada desigualdad territorial en la incidencia del fenómeno, con departamentos que apenas registran cifras mínimas frente a otros altamente críticos, sugiriendo no solo diferencias reales en la ocurrencia del delito (especialmente extorsión), sino también posibles problemas de subregistro en regiones periféricas como la Amazonía y Orinoquía; en este sentido, el comportamiento general refleja un fenómeno no homogéneo, altamente focalizado pero con alcance nacional, que requiere estrategias diferenciadas: intervención prioritaria en los principales focos (centro y noroccidente del país) y fortalecimiento institucional y de recolección de datos en zonas de baja incidencia para evitar vacíos de información y expansión silenciosa del delito.
+
+```{r casosxdepartamento, echo=FALSE, fig.width=10, fig.height=8, out.width="100%"}
+library(sf); library(geodata); library(stringi); library(plotly); library(scales)
+
+casos_departamento <- resultados %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  mutate(DEPARTAMENTO = trimws(toupper(stri_trans_general(DEPARTAMENTO, "Latin-ASCII")))) %>%
+  filter(!DEPARTAMENTO %in% c("BOGOTA D.C.", "BOGOTA", "SANTAFE DE BOGOTA")) %>%
+  mutate(DEPARTAMENTO = case_when(
+    grepl("SAN ANDRES", DEPARTAMENTO) ~ "SAN ANDRES Y PROVIDENCIA",
+    DEPARTAMENTO == "VALLE"           ~ "VALLE DEL CAUCA",
+    DEPARTAMENTO == "GUAJIRA"         ~ "LA GUAJIRA",
+    DEPARTAMENTO == "NORTE SANTANDER" ~ "NORTE DE SANTANDER",
+    TRUE                              ~ DEPARTAMENTO
+  ))
+
+colombia_sf <- st_as_sf(geodata::gadm(country = "COL", level = 1, path = tempdir())) %>%
+  mutate(
+    NAME_1_CLEAN = toupper(stri_trans_general(NAME_1, "Latin-ASCII")),
+    NAME_1_CLEAN = ifelse(
+      NAME_1_CLEAN == "ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA",
+      "SAN ANDRES Y PROVIDENCIA", NAME_1_CLEAN)
+  ) %>%
+  st_cast("MULTIPOLYGON")
+
+mapa_casos <- colombia_sf %>%
+  left_join(casos_departamento, by = c("NAME_1_CLEAN" = "DEPARTAMENTO"))
+
+islas     <- mapa_casos %>% filter(NAME_1_CLEAN == "SAN ANDRES Y PROVIDENCIA")
+geo_islas <- st_geometry(islas)
+centroide <- st_centroid(st_union(geo_islas))
+geo_zoom  <- (geo_islas - centroide) * 5 + st_sfc(st_point(c(-78, 14.5)))
+st_geometry(islas) <- geo_zoom
+st_crs(islas)      <- st_crs(mapa_casos)
+
+mapa_final <- mapa_casos %>%
+  filter(NAME_1_CLEAN != "SAN ANDRES Y PROVIDENCIA") %>%
+  rbind(islas)
+
+p <- ggplot(mapa_final) +
+  geom_sf(aes(fill = total_casos,
+              text = paste0("<b>Departamento:</b> ", NAME_1,
+                            "<br><b>Casos:</b> ", format(total_casos, big.mark = ","))),
+          color = "white", linewidth = 0.2) +
+  coord_sf(xlim = c(-79.8, -66.5), ylim = c(-4.3, 16.5), expand = FALSE) +
+  scale_fill_gradientn(
+    colors = c("#D1E8FF", "#FFCC00", "#FF6600", "#CC0000"),
+    values = scales::rescale(c(0, 100, 500, max(mapa_final$total_casos, na.rm = TRUE))),
+    na.value = "#eeeeee", name = "Nivel de Alerta", labels = scales::comma
+  ) +
+  theme_void() +
+  theme(
+    plot.title   = element_text(hjust = 0.5, size = 16, face = "bold", color = vigia_azul_marino),
+    legend.title = element_text(hjust = 0.5, face = "bold", color = vigia_azul_marino),
+    plot.margin  = margin(10, 10, 10, 10)
+  )
+
+ggplotly(p, tooltip = "text") %>%
+  layout(
+    title  = list(text = "Casos por Departamento en Colombia", x = 0.5),
+    margin = list(t = 60, b = 10, l = 10, r = 10),
+    legend = list(title = list(text = "<b>Nivel de Alerta</b>", side = "top"))
+  ) %>%
+  config(displayModeBar = TRUE, language = "es")
+```
+
+<a name="C2"></a>
+
+### Municipios con más Extorsión
+
+El análisis del top 10 de municipios con mayor número de casos de extorsión evidencia una fuerte concentración del fenómeno en grandes centros urbanos, liderado de manera ampliamente dominante por **Bogotá** con **10.854 casos**, más del doble que **Medellín (4.696)**, lo que indica un claro efecto de centralización asociado a capitales y ciudades principales; a esto se suman **Barranquilla** y **Cali** con cifras superiores a **2.900 casos**, consolidando un bloque de ciudades con alta incidencia donde convergen factores como densidad poblacional, dinamismo económico y presencia de estructuras criminales organizadas. Por otro lado, municipios como **Villavicencio**, **Quibdó**, **Cúcuta**, **Soledad**, **Cartagena** y **Buenaventura**, aunque con cifras menores **(entre 1.000 y 1.500 casos)**, reflejan que el fenómeno no se limita a las principales capitales, sino que también se extiende a ciudades intermedias y zonas estratégicas como corredores fronterizos, portuarios y logísticos, lo que sugiere una expansión territorial del delito con patrones asociados a rutas económicas y geográficas clave; en conjunto, estos datos confirman que la extorsión en Colombia es un problema altamente concentrado pero estructural y extendido, que requiere intervenciones diferenciadas: control intensivo en grandes ciudades y estrategias de contención en municipios emergentes para evitar su escalamiento.
+
+```{r TOP10MUN, echo=FALSE}
+resultados %>%
+  filter(HECHO == "EXTORSION") %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total_registros = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_registros)) %>%
+  slice(1:10) %>%
+  ggplot(aes(x = reorder(MUNICIPIO, total_registros), y = total_registros)) +
+  geom_col(fill = vigia_azul_marino, width = 0.7) +
+  geom_text(aes(label = scales::comma(total_registros)), hjust = -0.1, size = 3,
+            color = vigia_azul_marino) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0, 0.15))) +
+  labs(title   = "Top 10 Municipios con más casos de Extorsión",
+       x = "Municipio", y = "Total de casos",
+       caption = NULL)
+```
+
+```{r datos_frontera, echo=FALSE, include=FALSE}
+departamentos_frontera <- c(
+  "LA GUAJIRA", "CESAR", "NORTE DE SANTANDER", "ARAUCA",
+  "VICHADA", "GUAINIA", "VAUPES", "AMAZONAS",
+  "PUTUMAYO", "NARIÑO", "CHOCO"
+)
+
+casos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_casos))
+
+top_hechos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(HECHO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total)) %>%
+  slice(1:3)
+
+casos_frontera_hechos <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera,
+         HECHO %in% top_hechos_frontera$HECHO) %>%
+  group_by(DEPARTAMENTO, HECHO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE), .groups = "drop")
+```
+
+<a name="C3"></a>
+
+### Casos en Departamentos fronterizos por tipo de Hecho
+
+El análisis de los departamentos fronterizos evidencia que la extorsión es el delito predominante con amplia diferencia frente al **secuestro** y el **terrorismo**, destacándose especialmente **Norte de Santander (2.585 casos)** y **Chocó (1.754)**, seguidos por **Cesar** y **Nariño**, lo que sugiere una fuerte relación entre la incidencia del delito y la ubicación estratégica de estas zonas como corredores fronterizos, rutas de tráfico y economías ilegales; en contraste, aunque el **secuestro** y el **terrorismo** presentan cifras considerablemente menores, su presencia no es despreciable y tiende a concentrarse en los mismos territorios, lo que indica una coexistencia de múltiples dinámicas criminales. Departamentos como **Arauca** y **Putumayo** muestran niveles intermedios, reflejando escenarios de riesgo activo, mientras que regiones como **Vichada**, **Guainía**, **Vaupés** y **Amazonas** presentan cifras bajas que podrían estar asociadas tanto a menor densidad poblacional como a posibles subregistros o limitada capacidad institucional de denuncia; en conjunto, el comportamiento evidencia que las zonas fronterizas no solo son altamente vulnerables, sino que funcionan como espacios críticos donde convergen y se articulan diferentes delitos, siendo la extorsión el principal mecanismo de presión y control territorial, lo que demanda estrategias integrales de seguridad con enfoque diferencial y fortalecimiento de la presencia estatal.
+
+```{r GRAFICOFRON, echo=FALSE}
+ggplot(casos_frontera_hechos,
+       aes(x = reorder(DEPARTAMENTO, total_casos), y = total_casos, fill = HECHO)) +
+  geom_col(position = position_dodge(width = 0.85), width = 0.75) +
+  geom_text(aes(label = scales::comma(total_casos)),
+            position = position_dodge(width = 0.85),
+            hjust = -0.15, size = 2.8, color = vigia_azul_marino) +
+  scale_fill_manual(values = paleta_hechos) +
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0, 0.15))) +
+  coord_flip() +
+  labs(title    = "Departamentos fronterizos",
+       subtitle = "Top 3 hechos más frecuentes",
+       x = "Departamento", y = "Total de casos", fill = "Tipo de hecho",
+       caption  = NULL)
+```
+
+<a name="C4"></a>
+
+### Líneas de tiempo
+
+El análisis de la línea de tiempo de casos de extorsión en Colombia entre 2020 y 2025 evidencia una **tendencia claramente creciente** y **sostenida hasta 2024**, pasando de 8.188 casos en 2020 a un pico de 13.869 en 2024, lo que representa un incremento significativo que sugiere un **fortalecimiento** y **expansión progresiva de este delito a nivel nacional**, posiblemente asociado a factores como la reactivación económica postpandemia, mayor digitalización de las modalidades de extorsión y consolidación de estructuras criminales; sin embargo, en 2025 se observa una **disminución a 12.180 casos**, que, aunque rompe la tendencia al alza, se mantiene en niveles altos, lo que indica más una posible estabilización que una reducción estructural del fenómeno. En conjunto, el comportamiento refleja que la extorsión ha evolucionado hacia un problema **persistente, dinámico** y **de alta incidencia**, donde los incrementos sostenidos en años consecutivos evidencian una baja efectividad en los mecanismos de contención durante ese periodo, mientras que la leve caída reciente podría estar relacionada con medidas institucionales, cambios en la denuncia o variaciones en el registro, por lo que resulta clave continuar el monitoreo para determinar si se trata de un punto de inflexión o de una fluctuación temporal dentro de una tendencia aún crítica.
+
+```{r linea_extorsion, echo=FALSE}
+resultados %>%
+  filter(AÑO >= 2020, AÑO <= 2025, HECHO == "EXTORSION") %>%
+  group_by(AÑO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  ggplot(aes(x = AÑO, y = total_casos, group = 1)) +
+  geom_line(color = vigia_amarillo, linewidth = 1.1) +
+  geom_point(color = vigia_azul_marino, size = 3) +
+  geom_text(aes(label = scales::comma(total_casos)), vjust = -1, size = 3,
+            color = vigia_azul_marino) +
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0.05, 0.15))) +
+  labs(title   = "Línea de tiempo de casos de extorsión en Colombia (2020–2025)",
+       x = "Año", y = "Número de casos",
+       caption = NULL)
+```
+
+```{r linea_top3, echo=FALSE}
+top3_municipios <- resultados %>%
+  filter(AÑO >= 2020, AÑO <= 2025, HECHO == "EXTORSION") %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 3)
+
+resultados %>%
+  filter(AÑO >= 2020, AÑO <= 2025, HECHO == "EXTORSION",
+         MUNICIPIO %in% top3_municipios$MUNICIPIO) %>%
+  group_by(AÑO, MUNICIPIO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = AÑO, y = total_casos, color = MUNICIPIO, group = MUNICIPIO)) +
+  geom_line(linewidth = 1.3) +
+  geom_point(size = 2.5) +
+  geom_text(aes(label = scales::comma(total_casos)), vjust = -0.4, size = 3,
+            color = vigia_gris_oscuro) +
+  scale_color_manual(values = c(vigia_azul_marino, vigia_amarillo, vigia_azul_claro)) +
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0.05, 0.15))) +
+  labs(title   = "Extorsión en los 3 municipios con más casos (2020–2025)",
+       x = "Año", y = "Número de casos", color = "Municipio",
+       caption = NULL)
+```
+
+<a name="C5"></a>
+
+### Heatmap estacional
+
+El análisis de la estacionalidad de los delitos entre 2020 y 2025 evidencia que la **extorsión mantiene un comportamiento dominante y creciente a lo largo de todos los años**, con una clara intensificación hacia los últimos meses (especialmente entre septiembre y diciembre), lo que sugiere un **patrón estacional asociado a dinámicas económicas y comerciales de fin de año**, donde aumenta la presión sobre ciudadanos y negocios; en contraste, delitos como el secuestro y el terrorismo presentan niveles considerablemente más bajos y relativamente estables, sin variaciones estacionales tan marcadas, lo que refuerza la idea de que la extorsión es el principal motor del fenómeno delictivo analizado. Además, se observa que a partir de 2023 y especialmente en 2024, los niveles se intensifican de manera más uniforme durante casi todos los meses, indicando una **transición de un comportamiento estacional a uno más constante y estructural**, mientras que en 2025, aunque se mantienen altos niveles, se percibe una ligera moderación hacia el final del año; en conjunto, estos patrones reflejan que la extorsión no solo ha crecido en volumen, sino que también ha evolucionado hacia un delito **persistente, predecible en ciertos periodos y estratégicamente adaptado a los ciclos económicos**, lo que representa un insumo clave para la anticipación y diseño de estrategias preventivas basadas en temporalidad.
+
+```{r heatmap_hechos, echo=FALSE}
+library(plotly)
+
+orden_meses <- c("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO",
+                 "JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE")
+
+heatmap_anual <- resultados %>%
+  mutate(MES = toupper(trimws(MES))) %>%
+  group_by(AÑO, HECHO, MES) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE), .groups = "drop") %>%
+  mutate(MES = factor(MES, levels = orden_meses))
+
+p <- ggplot(heatmap_anual,
+            aes(x = MES, y = HECHO, fill = total,
+                text = paste0("<b>Año:</b> ", AÑO,
+                              "<br><b>Mes:</b> ", MES,
+                              "<br><b>Delito:</b> ", HECHO,
+                              "<br><b>Casos:</b> ", scales::comma(total)))) +
+  geom_tile(color = "white", linewidth = 0.3) +
+  scale_fill_gradientn(
+    colors = c(vigia_azul_palido, vigia_azul_claro, vigia_azul_rey, vigia_azul_marino),
+    na.value = vigia_gris,
+    name = "Casos"
+  ) +
+  facet_wrap(~AÑO) +
+  labs(title = "Estacionalidad de delitos por mes y año",
+       x = "Mes", y = "Tipo de delito", fill = "Casos") +
+  theme_vigia() +
+  theme(
+    axis.text.x = element_text(size = 7, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 9, face = "bold"),
+    panel.grid  = element_blank(),
+    strip.text  = element_text(face = "bold"),
+    plot.margin = margin(10, 10, 10, 10)
+  )
+
+ggplotly(p, tooltip = "text") %>%
+  layout(hoverlabel = list(bgcolor = "white", font = list(color = "black")))
+```
+
+<a name="C6"></a>
+
+### Departamentos y municipios con mayor intensidad de casos
+
+El análisis del top 10 de departamentos por intensidad delictiva (medida como el promedio de casos por registro) muestra que **Cundinamarca lidera con una intensidad de 1.28**, posicionándose como el territorio con mayor concentración relativa del fenómeno, seguido por Atlántico y Antioquia, lo que refuerza la tendencia observada previamente donde las zonas con mayor dinámica urbana y económica presentan no solo más casos absolutos, sino también **mayor recurrencia del delito**; resulta particularmente relevante la aparición de departamentos como Vaupés, Arauca y Chocó dentro del ranking, ya que, aunque no siempre lideran en volumen total de casos, sí evidencian una **alta intensidad relativa**, lo que sugiere focos críticos donde el delito puede ser más persistente o sistemático en proporción a los registros existentes. En general, las diferencias entre departamentos no son extremadamente amplias (oscilando entre 1.03 y 1.28), lo que indica una **homogeneidad relativa en la intensidad**, pero con picos claros que permiten identificar prioridades de intervención; en conjunto, este comportamiento evidencia que el fenómeno no solo debe analizarse por cantidad total de casos, sino también por su **frecuencia e impacto relativo**, permitiendo una comprensión más precisa de los territorios donde la actividad delictiva es más constante y potencialmente más estructurada.
+
+```{r top_intensidad, echo=FALSE}
+resultados %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE), registros = n()) %>%
+  mutate(intensidad = total_casos / registros) %>%
+  arrange(desc(intensidad)) %>%
+  slice(1:10) %>%
+  ggplot(aes(x = reorder(DEPARTAMENTO, intensidad), y = intensidad)) +
+  geom_col(
+    aes(fill = intensidad), width = 0.7
+  ) +
+  scale_fill_gradient(
+    low  = vigia_azul_palido,
+    high = vigia_azul_marino
+  ) +
+  geom_text(aes(label = round(intensidad, 2)), hjust = -0.1, size = 3,
+            color = vigia_azul_marino) +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title    = "Top 10 departamentos por intensidad delictiva",
+       subtitle = "Promedio de casos por registro",
+       x = "Departamento", y = "Intensidad",
+       fill = "Intensidad",
+       caption  = NULL) +
+  guides(fill = guide_colorbar(barwidth = 8, barheight = 0.5,
+                               title.position = "top", title.hjust = 0.5))
+```
+
+<a name="C6"></a>
+
+### Top 10 departamentos y municipios con mayor intensidad delictiva
+
+El análisis conjunto de la intensidad delictiva a nivel departamental y municipal evidencia un patrón clave: mientras que a nivel de departamentos **Cundinamarca sobresale con la mayor intensidad (1.28)** seguido por Atlántico y Antioquia, mostrando una **concentración relativamente homogénea pero con liderazgo claro en zonas de alta actividad urbana**, a nivel municipal se observa una **mayor variabilidad y focos más marcados**, donde Hispania alcanza una intensidad de 1.5, superando incluso a Bogotá (1.35); esto indica que, aunque los grandes territorios concentran el fenómeno en términos generales, son los municipios específicos muchos de ellos intermedios o pequeños como Guayabetal, Dabeiba y Cañasgordas los que presentan una **mayor recurrencia proporcional del delito**, reflejando dinámicas locales más intensas y posiblemente menos visibles a gran escala. En conjunto, los datos sugieren que la intensidad delictiva en Colombia no solo responde a grandes centros poblacionales, sino también a **microfocos territoriales donde el delito es más constante y estructurado**, lo que implica que las estrategias de intervención no deben centrarse únicamente en departamentos o capitales, sino también en municipios específicos donde la frecuencia delictiva es más alta, permitiendo una **focalización más precisa y efectiva de los recursos de seguridad y prevención.**
+
+```{r top_intensidad_municipios, echo=FALSE}
+resultados %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE), registros = n()) %>%
+  mutate(intensidad = total_casos / registros) %>%
+  arrange(desc(intensidad)) %>%
+  slice(1:10) %>%
+  ggplot(aes(x = reorder(MUNICIPIO, intensidad), y = intensidad)) +
+  geom_col(
+    aes(fill = intensidad), width = 0.7
+  ) +
+  scale_fill_gradient(
+    low  = vigia_azul_palido,
+    high = vigia_azul_marino
+  ) +
+  geom_text(aes(label = round(intensidad, 2)), hjust = -0.1, size = 3,
+            color = vigia_azul_marino) +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title    = "Top 10 municipios por intensidad delictiva",
+       subtitle = "Promedio de casos por registro",
+       x = "Municipio", y = "Intensidad",
+       fill = "Intensidad",
+       caption  = NULL) +
+  guides(fill = guide_colorbar(barwidth = 8, barheight = 0.5,
+                               title.position = "top", title.hjust = 0.5))
+```
+
+<a name="correlacion"></a>
+
+## Análisis de correlación
+
+El análisis de la correlación entre delitos por año revela patrones dinámicos en la relación entre extorsión, secuestro y terrorismo, evidenciando que **no existe un comportamiento uniforme en el tiempo**, sino variaciones significativas según el año; en general, la extorsión muestra **correlaciones positivas moderadas con el secuestro en varios periodos (especialmente en 2022 y 2024)**, lo que sugiere que ambos delitos pueden coexistir o responder a factores comunes en ciertos contextos, como la presencia de estructuras criminales organizadas o economías ilegales, mientras que su relación con el terrorismo **tiende a ser negativa o débil**, indicando que no necesariamente aumentan de manera conjunta. Por otro lado, el secuestro presenta fluctuaciones más marcadas, pasando de correlaciones positivas a negativas con el terrorismo, **destacando una relación inversa fuerte en 2024 (-0.68)**, lo que podría reflejar cambios en las dinámicas criminales o en las estrategias de los grupos delictivos. En 2025, aunque se mantienen algunas relaciones positivas (como entre extorsión y secuestro), estas son más moderadas, lo que **sugiere una posible desaceleración o reconfiguración de las dinámicas delictivas**; en conjunto, estos resultados evidencian que los delitos analizados no operan de manera aislada, pero tampoco presentan una dependencia constante, sino que su interacción está sujeta a **factores contextuales, territoriales y temporales**, lo que resalta la importancia de un análisis continuo para comprender la evolución del fenómeno criminal y anticipar posibles cambios en su comportamiento.
+
+```{r correlacion_anual_pro, echo=FALSE}
+library(tidyr)
+
+datos_correlacion <- resultados %>%
+  group_by(AÑO, MES, HECHO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = HECHO, values_from = total)
+
+correlacion_long <- datos_correlacion %>%
+  group_by(AÑO) %>%
+  group_split() %>%
+  lapply(function(df) {
+    cor_mat  <- cor(df[, -c(1, 2)], use = "complete.obs")
+    cor_long <- as.data.frame(as.table(cor_mat))
+    cor_long$AÑO <- df$AÑO[1]
+    return(cor_long)
+  }) %>%
+  bind_rows()
+
+colnames(correlacion_long) <- c("Var1", "Var2", "Correlacion", "AÑO")
+
+ggplot(correlacion_long, aes(x = Var1, y = Var2, fill = Correlacion)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(Correlacion, 2)), size = 3,
+            color = ifelse(correlacion_long$Correlacion > 0.3, "white", vigia_azul_marino)) +
+  scale_fill_gradient2(
+    low      = vigia_amarillo,
+    mid      = "white",
+    high     = vigia_azul_marino,
+    midpoint = 0,
+    na.value = vigia_gris
+  ) +
+  facet_wrap(~AÑO) +
+  labs(title   = "Correlación entre delitos por año (basado en meses)",
+       x = "", y = "", fill = "Correlación",
+       caption = NULL) +
+  theme_vigia() +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, face = "bold"),
+    axis.text.y = element_text(size = 9, face = "bold"),
+    panel.grid  = element_blank()
+  )
+```
+
+<a name="conclusion"></a>
+
+## Conclusiones generales
+
+A partir del análisis integral de los datos sobre extorsión en Colombia entre 2020 y 2025, se concluye que este delito presenta un comportamiento **estructural, creciente y altamente focalizado**, con una clara concentración en grandes centros urbanos como Bogotá, Medellín, Cali y Barranquilla, así como en departamentos estratégicos como Cundinamarca, Antioquia y Atlántico; sin embargo, el estudio también evidencia la existencia de **microfocos de alta intensidad en municipios más pequeños**, lo que demuestra que el fenómeno no depende únicamente del volumen poblacional, sino de la **persistencia y recurrencia del delito en contextos locales específicos**. A nivel temporal, la extorsión muestra una **tendencia sostenida al alza hasta 2024**, acompañada de un patrón estacional con picos hacia finales de año, lo que sugiere una adaptación a ciclos económicos, mientras que la leve disminución en 2025 no implica una reducción significativa del problema, sino una posible estabilización en niveles aún elevados. Asimismo, la relación con otros delitos como el secuestro y el terrorismo evidencia que, aunque existen interacciones en ciertos contextos especialmente en zonas fronterizas, la extorsión opera como el **delito predominante y eje central de las dinámicas criminales analizadas**. En conjunto, estos hallazgos confirman que la extorsión en Colombia es un fenómeno **complejo, dinámico y territorialmente desigual**, que requiere estrategias de intervención diferenciadas, basadas en análisis de datos, priorización geográfica y enfoque preventivo, con el fin de anticipar su comportamiento y mitigar su impacto en la seguridad ciudadana.
+
+<a name="librerias"></a>
+
+## Librerías usadas
+
+-   **rmarkdown**: sirve para crear informes (HTML, PDF, Word)
+-   **knitr**: ejecuta el código dentro de los RMarkdown
+-   **dplyr**: sirve para manipular y transformar datos
+-   **tidyr**: sirve para ordenar y limpiar datos
+-   **tidyverse**: conjunto de librerías para análisis de datos (incluye dplyr, ggplot2, etc.)
+-   **ggplot2**: sirve para crear gráficos
+-   **scales**: sirve para formatear números en gráficos (comas, porcentajes, etc.)
+-   **plotly**: sirve para hacer gráficos interactivos
+-   **gganimate**: sirve para crear gráficos animados
+-   **kableExtra**: sirve para dar estilo a tablas
+-   **readxl**: sirve para leer archivos Excel
+-   **sf**: sirve para trabajar con datos geográficos (mapas)
+-   **geodata**: sirve para descargar datos geográficos (como mapas de países)
+-   **stringr**: sirve para manipular texto (limpiar, reemplazar, etc.)

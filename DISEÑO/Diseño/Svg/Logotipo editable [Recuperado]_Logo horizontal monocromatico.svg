@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Logo_horizontal_monocromatico" data-name="Logo horizontal monocromatico" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2011.68 530.53">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fefefe;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        letter-spacing: .05em;
+      }
+
+      .cls-8 {
+        letter-spacing: .03em;
+      }
+
+      .cls-9 {
+        font-family: Montserrat-Regular, Montserrat;
+        font-size: 79.87px;
+        font-variation-settings: 'wght' 400;
+      }
+
+      .cls-9, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_84);
+      }
+
+      .cls-4 {
+        fill: #0057f6;
+      }
+
+      .cls-10 {
+        letter-spacing: .02em;
+      }
+
+      .cls-11 {
+        letter-spacing: .19em;
+      }
+
+      .cls-12 {
+        fill: #f6f6f6;
+        font-family: Montserrat-ExtraBold, Montserrat;
+        font-size: 180px;
+        font-variation-settings: 'wght' 800;
+        font-weight: 700;
+      }
+
+      .cls-13 {
+        letter-spacing: .04em;
+      }
+
+      .cls-14 {
+        letter-spacing: .2em;
+      }
+
+      .cls-5 {
+        fill: url(#Degradado_sin_nombre_89);
+      }
+
+      .cls-6 {
+        fill: #00143f;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_84" data-name="Degradado sin nombre 84" x1="437.7" y1="296.26" x2="686.51" y2="545.07" gradientUnits="userSpaceOnUse">
+      <stop offset=".24" stop-color="#216af1"/>
+      <stop offset=".29" stop-color="#246cf1"/>
+      <stop offset=".34" stop-color="#3074f1"/>
+      <stop offset=".39" stop-color="#4481f3"/>
+      <stop offset=".43" stop-color="#6094f4"/>
+      <stop offset=".48" stop-color="#84acf7"/>
+      <stop offset=".53" stop-color="#b0c9fa"/>
+      <stop offset=".57" stop-color="#e2ecfd"/>
+      <stop offset=".59" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_89" data-name="Degradado sin nombre 89" x1="537.48" y1="213.63" x2="795.4" y2="213.63" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0b" stop-opacity=".96"/>
+      <stop offset=".31" stop-color="#fec21f" stop-opacity=".87"/>
+      <stop offset=".4" stop-color="#fecc40" stop-opacity=".71"/>
+      <stop offset=".46" stop-color="#fed357" stop-opacity=".6"/>
+      <stop offset=".54" stop-color="#fedc7c" stop-opacity=".49"/>
+      <stop offset=".68" stop-color="#feebb4" stop-opacity=".32"/>
+      <stop offset=".81" stop-color="#fef6dd" stop-opacity=".2"/>
+      <stop offset=".92" stop-color="#fefcf6" stop-opacity=".13"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-6" width="2011.68" height="530.53"/>
+  <g id="Base_torre" data-name="Base torre">
+    <polygon class="cls-1" points="538.26 331.25 464.89 383.22 463.36 319.29 525.57 288.53 538.26 331.25"/>
+    <path class="cls-2" d="m538.39,330.47l20.84,70.11s174.06,31.83,211.71,58.36c0,0-149.45-24.97-174.95-27.09-25.62-2.14-129.42-7.96-129.96-6.25l-67.66,1.89,140.02-97.01Z"/>
+    <path class="cls-1" d="m465.46,380.99l-2.1-61.7-83.62,47.12-11.12,35.4s-101.1,20.56-125.18,27.69c-27.09,8.02-75.64,28.4-74.72,28.86,0,0,104.21-20.27,123.35-21.98,19.14-1.71,108.25-9.28,108.25-9.28l65.13-46.11Z"/>
+  </g>
+  <g id="Base_sup" data-name="Base sup">
+    <g>
+      <polygon class="cls-1" points="463.36 309.76 386.69 342.6 401.59 278.7 463.36 261.63 463.36 309.76"/>
+      <polygon class="cls-1" points="463.36 261.63 401.59 278.7 377.53 252.6 463.36 229.86 463.36 261.63"/>
+      <polygon class="cls-1" points="463.36 261.63 524.75 277.42 546.48 253.73 463.36 229.86 463.36 261.63"/>
+    </g>
+  </g>
+  <g id="Fuente_de_foco" data-name="Fuente de foco">
+    <polygon class="cls-1" points="463.49 213.63 382.14 235.74 381.26 197.34 463.36 172.2 463.49 213.63"/>
+    <polygon class="cls-4" points="463.49 213.63 512.25 199.17 533.09 193.29 463.61 172.2 463.49 213.63"/>
+    <polyline class="cls-4" points="511.49 198.98 511.17 222.25 523.23 229.36 463.49 213.63"/>
+  </g>
+  <g id="Tecgo">
+    <g>
+      <polygon class="cls-1" points="463.36 156.16 359.91 188.56 348.54 158.81 462.22 110.12 463.36 156.16"/>
+      <polygon class="cls-1" points="463.36 156.16 565.21 188.05 578.18 158.81 462.22 110.12 463.36 156.16"/>
+    </g>
+  </g>
+  <g id="Titulo">
+    <text class="cls-12" transform="translate(854.09 315.38)"><tspan class="cls-11" x="0" y="0">V</tspan><tspan class="cls-14" x="171.18" y="0">IGIA</tspan></text>
+  </g>
+  <polygon class="cls-3" points="1348.34 180.44 1308.25 180.44 1339.9 148.26 1381.58 148.26 1348.34 180.44"/>
+  <g id="Titulo-2" data-name="Titulo">
+    <text class="cls-9" transform="translate(868.62 421.95)"><tspan class="cls-13" x="0" y="0">D</tspan><tspan class="cls-10" x="69.16" y="0">AT</tspan><tspan class="cls-7" x="174.67" y="0">A INSIGH</tspan><tspan class="cls-8" x="573.75" y="0">T</tspan><tspan class="cls-7" x="622.38" y="0">S</tspan></text>
+  </g>
+  <polygon id="Luz" class="cls-5" points="537.48 216.46 783.51 282.68 795.4 144.58 537.48 216.46"/>
+</svg>

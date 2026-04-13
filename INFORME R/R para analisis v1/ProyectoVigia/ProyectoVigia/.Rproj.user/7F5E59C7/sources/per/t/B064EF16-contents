@@ -1,0 +1,115 @@
+/* Fuente y estilo general */
+html, body {
+  text-align: justify;
+  font-family: Tahoma, sans-serif;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+/* Centra título, autor y fecha */
+
+  #header {
+  text-align: center !important;
+}
+
+
+/* Contenedor principal */
+.container-fluid {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* Barra lateral fija (TOC) */
+#TOC, .tocify {
+  position: fixed !important;
+  top: 100px;
+  left: 20px;
+  width: 250px;
+  height: calc(100vh - 120px);
+  background-color: #00216E;
+  border: 3px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Ajuste del contenido principal */
+.main-container {
+  margin-left: 280px !important; /* deja espacio para el TOC */
+  padding-right: 20px;
+  text-align: justify;
+}
+
+/* Estilo de sección activa en TOC */
+.list-group-item.active {
+  color: #ffffff !important;
+  background-color: #1a3a66 !important;
+  border-color: transparent !important;
+}
+
+/* Ajuste de columnas */
+.col-md-9 {
+  width: calc(100% - 10px) !important;
+}
+
+.col-md-3 {
+  background-color: green !important;
+  height: 100%;
+  width: 25%;
+}
+
+/* Logo fijo */
+.contenedor {
+  text-align: center;
+}
+
+.img {
+  width: 100px;
+}
+
+/* Oculta el título, autor y fecha generados automáticamente */
+h1.title, h4.author, h4.date {
+  display: list-group-item;
+  text-align: center;
+}
+
+/* Corrección de Scroll Spy para Tablas de Contenido Flotantes */
+h1, h2, h3, h4, h5, h6 {
+  /* Reserva un espacio de 80px por encima de la etiqueta de encabezado (el ancla) */
+  padding-top: 80px !important; 
+  /* Mueve la etiqueta hacia arriba 80px para que visualmente siga en el mismo lugar */
+  margin-top: -80px !important; 
+}
+
+ /* Estilos generales para las tablas dentro de este DIV */
+    .styled-table {
+        border-collapse: collapse; /* Asegura que los bordes se toquen */
+        width: 100%;
+        margin: 15px 0;
+        table-layout: fixed; /* Mantiene los anchos fijos */
+        font-size: 0.9em;
+    }
+    .styled-table th, .styled-table td {
+        border: 1px solid #dee2e6; /* Borde de celda */
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    .styled-table thead th {
+        background-color: #e9ecef; /* Fondo gris claro para cabeceras */
+        color: #343a40; /* Texto oscuro para cabeceras */
+    }
+.table {
+    border-radius: 15px !important;
+    overflow: hidden !important;
+    border-collapse: collapse !important;
+    font-family: sans-serif;
+    border: 1px solid #f2f2f2;
+  }
+  
+  thead {
+    border-bottom: 2px solid #FF6B35;
+  }
+

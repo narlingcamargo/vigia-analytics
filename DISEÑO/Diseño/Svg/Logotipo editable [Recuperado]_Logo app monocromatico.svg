@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fefefe;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_84);
+      }
+
+      .cls-3 {
+        fill: #0057f6;
+      }
+
+      .cls-4 {
+        fill: url(#Degradado_sin_nombre_74);
+      }
+
+      .cls-5 {
+        fill: url(#Degradado_sin_nombre_89);
+      }
+
+      .cls-6 {
+        fill: #00143f;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_89" data-name="Degradado sin nombre 89" x1="688.47" y1="410.48" x2="946.39" y2="410.48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0b" stop-opacity=".96"/>
+      <stop offset=".31" stop-color="#fec21f" stop-opacity=".87"/>
+      <stop offset=".4" stop-color="#fecc40" stop-opacity=".71"/>
+      <stop offset=".46" stop-color="#fed357" stop-opacity=".6"/>
+      <stop offset=".54" stop-color="#fedc7c" stop-opacity=".49"/>
+      <stop offset=".68" stop-color="#feebb4" stop-opacity=".32"/>
+      <stop offset=".81" stop-color="#fef6dd" stop-opacity=".2"/>
+      <stop offset=".92" stop-color="#fefcf6" stop-opacity=".13"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_84" data-name="Degradado sin nombre 84" x1="467.07" y1="578.95" x2="805.58" y2="917.45" gradientUnits="userSpaceOnUse">
+      <stop offset=".24" stop-color="#216af1"/>
+      <stop offset=".29" stop-color="#246cf1"/>
+      <stop offset=".34" stop-color="#3074f1"/>
+      <stop offset=".39" stop-color="#4481f3"/>
+      <stop offset=".43" stop-color="#6094f4"/>
+      <stop offset=".48" stop-color="#84acf7"/>
+      <stop offset=".53" stop-color="#b0c9fa"/>
+      <stop offset=".57" stop-color="#e2ecfd"/>
+      <stop offset=".59" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_74" data-name="Degradado sin nombre 74" x1="593.1" y1="454.75" x2="944" y2="454.75" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#feefc8"/>
+      <stop offset=".08" stop-color="#fedc83"/>
+      <stop offset=".12" stop-color="#fecd4c"/>
+      <stop offset=".15" stop-color="#fec325"/>
+      <stop offset=".18" stop-color="#febc0c"/>
+      <stop offset=".19" stop-color="#feba04"/>
+      <stop offset=".24" stop-color="#febc0d"/>
+      <stop offset=".33" stop-color="#fec425"/>
+      <stop offset=".44" stop-color="#fed04d"/>
+      <stop offset=".46" stop-color="#fed357"/>
+      <stop offset=".51" stop-color="#fed45e" stop-opacity=".96"/>
+      <stop offset=".59" stop-color="#feda71" stop-opacity=".86"/>
+      <stop offset=".7" stop-color="#fee291" stop-opacity=".69"/>
+      <stop offset=".83" stop-color="#feedbd" stop-opacity=".45"/>
+      <stop offset=".98" stop-color="#fefcf5" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <g id="Logo_monocromatico" data-name="Logo monocromatico">
+    <polygon id="Luz" class="cls-5" points="688.47 413.31 934.5 479.53 946.39 341.43 688.47 413.31"/>
+  </g>
+  <g id="Version_app_monocromatica" data-name="Version app monocromatica">
+    <rect class="cls-6" y="-1.4" width="1025.4" height="1025.4"/>
+    <g>
+      <g id="Base_torre" data-name="Base torre">
+        <polygon class="cls-1" points="603.88 626.56 504.06 697.26 501.98 610.29 586.61 568.44 603.88 626.56"/>
+        <path class="cls-2" d="m604.06,625.5l28.36,95.38s236.81,43.31,288.02,79.4c0,0-203.33-33.97-238.02-36.86-34.86-2.91-176.07-10.84-176.81-8.51l-92.05,2.58,190.5-131.98Z"/>
+        <path class="cls-1" d="m504.83,694.23l-2.85-83.94-113.77,64.1-15.12,48.16s-137.55,27.98-170.31,37.68c-36.85,10.91-102.9,38.63-101.65,39.27,0,0,141.78-27.58,167.81-29.9,26.04-2.32,147.28-12.63,147.28-12.63l88.61-62.73Z"/>
+      </g>
+      <g id="Base_sup" data-name="Base sup">
+        <g>
+          <polygon class="cls-1" points="501.98 597.31 397.66 642 417.94 555.07 501.98 531.84 501.98 597.31"/>
+          <polygon class="cls-1" points="501.98 531.84 417.94 555.07 385.2 519.55 501.98 488.62 501.98 531.84"/>
+          <polygon class="cls-1" points="501.98 531.84 585.5 553.32 615.06 521.09 501.98 488.62 501.98 531.84"/>
+        </g>
+      </g>
+      <g id="Fuente_de_foco" data-name="Fuente de foco">
+        <polygon class="cls-1" points="502.15 466.53 391.48 496.61 390.27 444.37 501.98 410.17 502.15 466.53"/>
+        <polygon class="cls-3" points="502.15 466.53 568.48 446.86 596.84 438.87 502.32 410.17 502.15 466.53"/>
+        <polyline class="cls-3" points="567.45 446.6 567.02 478.26 583.43 487.93 502.15 466.53"/>
+      </g>
+      <g id="Tecgo">
+        <g>
+          <polygon class="cls-1" points="501.98 388.34 361.23 432.42 345.76 391.95 500.43 325.7 501.98 388.34"/>
+          <polygon class="cls-1" points="501.98 388.34 640.54 431.74 658.19 391.95 500.43 325.7 501.98 388.34"/>
+        </g>
+      </g>
+      <polygon id="Luz-2" data-name="Luz" class="cls-4" points="593.1 458.6 927.83 548.7 944 360.81 593.1 458.6"/>
+    </g>
+  </g>
+</svg>

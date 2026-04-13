@@ -1,0 +1,296 @@
+---
+title: "Análisis de inseguridad en Colombia con los patrones de extorsión, secuestro y terrorismo en Colombia 2020 - 2025"
+author: "TAD 11 - Vigia"
+date: ""
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: 
+        collapsed: true
+        smooth_scroll: false 
+    theme: lumen
+    highlight: default
+    df_print: default
+    code_folding: hide
+    css: "styles.css"
+    lang: es-ES
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+  fig.align = 'left',
+	fig.height = 5,
+	fig.width = 7,
+	rows.print = 70
+	)
+
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(tidyverse)
+ 
+resultados <- read_excel("BD_FINAL.xlsx")
+names(resultados)
+```
+
+::: contenedor
+<img src="img/sena-logo.png" alt="Descripción de la imagen" class="img"/>
+:::
+
+# Introducción
+
+::: {style="background-color:#f2f2f2; border-left: 5px solid #0F5B9D; padding: 15px; border-radius: 8px; margin-bottom: 20px;"}
+<p>El presente informe técnico tiene como objetivo analizar la problemática social de extorsión, secuestro y terrorismo en Colombia durante el periodo comprendido entre 2020 y 2025. A través de un enfoque descriptivo y el uso de herramientas de ciencia de datos en **R** y **Python**, se busca identificar patrones significativos y tendencias que faciliten la toma de decisiones informadas.</p>
+
+<p>Este estudio cobra relevancia en el contexto actual de nuestro país, donde la comprensión multidimensional del delito permite a las autoridades y organismos competentes diseñar estrategias de prevención basadas en evidencia cuantitativa, optimizando la respuesta institucional ante estos flagelos.</p>
+:::
+
+# Descripción general del problema
+
+::: {style="background-color:#f2f2f2; border-left: 5px solid #0F5B9D; padding: 15px; border-radius: 8px; margin-bottom: 20px;"}
+<p>La seguridad ciudadana en Colombia enfrenta un escenario complejo y dinámico. Desde muchos años atras, el país ha experimentado transformaciones significativas en las dinámicas de violencia, donde delitos de alto impacto como la extorsión, el secuestro y el terrorismo han dejado de ser fenómenos aislados para convertirse en problemas estructurales que afectan tanto el desarrollo económico como el tejido social.</p>
+
+<p>Sin un análisis profundo, estos delitos aparecen como cifras frías en un boletín, cuando en realidad esconden patrones de comportamiento (como la mutación de la extorsión física a la digital o el desplazamiento de focos terroristas hacia zonas de frontera). Cobra mayor relevancia cuando los registros de los datos seleccionados pasan de ser cifras estáticas a <strong>insumos estratégicos que revelan la evolución táctica del crimen organizado.</strong></p>
+
+<p>A través del procesamiento avanzado en <strong>R</strong>, es posible identificar no solo la frecuencia de estos eventos, sino también su estacionalidad y los factores territoriales que los potencian. Esto permite migrar de una respuesta institucional reactiva hacia una visión basada en evidencia, donde la analítica de datos se convierte en la herramienta fundamental para anticipar riesgos y optimizar la política de seguridad nacional.</p>
+:::
+
+# Exploración de los datos
+
+::: {style="border-left: 5px solid #0F5B9D; padding: 15px; background-color: #f2f2f2; border-radius: 8px; margin-bottom: 20px;"}
+1.  Estrategia de Integración: Para el desarrollo de este análisis, se implementó una estrategia de consolidación de datos provenientes de fuentes de información oficial sobre seguridad en el sitio web de la Policia Nacional de Colombia. El proceso consistió en la unificación de estructuras tabulares mediante la identificación de variables comunes (llaves primarias y secundarias), permitiendo una visión holística de los fenómenos delictivos. Se priorizó la estandarización de formatos de fecha, códigos geográficos (DANE), medio de arma utilizado y tipologías de hechos para garantizar la integridad referencial del conjunto de datos final.
+
+2.  Delimitación de Registros: Con el objetivo de focalizar el estudio en las problemáticas de mayor impacto social, se aplicó un protocolo de filtrado riguroso. La base de datos original fue depurada para incluir exclusivamente registros vinculados a delitos de alto impacto como: Extorsión, Secuestro y Terrorismo.
+
+3.  Procesamiento y transformación de datos: Para garantizar la calidad, consistencia y viabilidad de los análisis estadísticos, se implementó un flujo de trabajo especializado. Inicialmente, se realizó una fase de estandarización y limpieza profunda utilizando el lenguaje Python, aprovechando sus librerías de manipulación de datos para procesar el conjunto integrado.
+
+4.  Caracterización de la Base de datos
+
+```{r caracteristicasDatos}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+total_registros <- nrow(resultados)
+casos_extorsion <- sum(resultados$HECHO == "EXTORSION", na.rm = TRUE)
+casos_secuestro <- sum(resultados$HECHO == "SECUESTRO", na.rm = TRUE)
+casos_terrorismo <- sum(resultados$HECHO == "TERRORISMO", na.rm = TRUE)
+
+resumen_df <- data.frame(
+  Indicador = c(
+    "Total de registros",
+    "Casos de extorsión",
+    "Casos de Secuestro",
+    "Casos de Terrorismo",
+    "Columnas analizadas"
+  ),
+  Valor = c(
+    format(total_registros, big.mark = ","),
+    format(casos_extorsion, big.mark = ","),
+    format(casos_secuestro, big.mark = ","),
+    format(casos_terrorismo, big.mark = ","),
+    ncol(resultados)
+  )
+)
+
+kbl(resumen_df, 
+    col.names = c("Indicador", "Cantidad"),
+    align = "lc") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  row_spec(0, bold = TRUE, color = "white", background = "#00216E")
+
+```
+
+La base de datos integrada contiene **`r format(nrow(resultados), big.mark=",")`** registros que documentan casos de violencia de género ocurridos en Colombia. Esta consolidación permite un análisis transversal que identifica patrones comunes y particularidades de cada tipo de violencia.
+:::
+
+## Vista preliminar de los registros
+
+::: {style="background-color:#f2f2f2; border-left: 5px solid #0F5B9D; padding: 15px; border-radius: 8px; margin-bottom: 20px;"}
+<p>El siguiente cuadro muestra una vista preliminar de las primeras filas del conjunto de datos, lo que permite confirmar su estructura y formato.</p>
+:::
+
+```{r tabla_primeras_filas, echo=FALSE, results='asis'}
+library(kableExtra)
+# Encabezado personalizado
+cat('<h4 style="color:#000000;">Tabla 1: Primeros 5 Registros de Hechos Delictivos</h4>')
+resultados %>%
+  head(5) %>%
+  kbl( align = "c") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE,
+    font_size = 12
+  )
+```
+
+## Resumen estadístico de las variables numéricas
+
+::: {style="background-color:#f2f2f2; border-left: 5px solid #0F5B9D; padding: 15px; border-radius: 8px; margin-bottom: 20px;"}
+<p><strong>Año:</strong> Los registros se distribuyen entre 2020 y 2025, lo que permite realizar comparaciones temporales y detectar posibles sesgos en la ocurrencia de hechos.</p>
+
+<p><strong>Cantidad:</strong> La mayoría de los registros presentan valor 1, reflejando casos individuales. Sin embargo, el valor máximo indica la existencia de eventos agregados con una concentración significativa, que ameritan un análisis más detallado.</p>
+:::
+
+```{r ResumenEstadisticoVariables, echo=FALSE, results='asis'}
+resultados %>%
+  select(AÑO, CANTIDAD) %>%
+  summarise(
+    Min_Año = min(AÑO, na.rm = TRUE),
+    Max_Año = max(AÑO, na.rm = TRUE),
+    Min_Cantidad = min(CANTIDAD, na.rm = TRUE),
+    Max_Cantidad = max(CANTIDAD, na.rm = TRUE),
+    Media_Cantidad = mean(CANTIDAD, na.rm = TRUE),
+    Mediana_Cantidad = median(CANTIDAD, na.rm = TRUE)
+  ) %>%
+  kbl(caption = "", align = "l") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed","responsive"),
+    full_width = FALSE,
+    font_size = 12,
+    position = "left"
+  )
+```
+
+```{r casosxdepartamento}
+
+library(readxl) 
+library(dplyr) 
+library(ggplot2) 
+library(sf) 
+library(geodata)
+
+library(stringi) # Para quitar tildes fácilmente
+
+
+# 1. Estandarizar tus datos
+casos_departamento <- resultados %>% 
+  group_by(DEPARTAMENTO) %>% 
+  summarise(total_casos = n()) %>%
+  mutate(DEPARTAMENTO = toupper(stri_trans_general(DEPARTAMENTO, "Latin-ASCII")))
+
+# 2. Ajustar nombres específicos de tu base si es necesario
+casos_departamento$DEPARTAMENTO <- recode(
+  casos_departamento$DEPARTAMENTO,
+  "BOGOTA D.C." = "SANTAFE DE BOGOTA", # GADM suele usar este o "Bogota"
+  "VALLE" = "VALLE DEL CAUCA",
+  "SAN ANDRES Y PROVIDENCIA" = "ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA"
+)
+
+# 3. Estandarizar el mapa de GADM
+colombia_sf <- st_as_sf(geodata::gadm(country = "COL", level = 1, path = tempdir())) %>%
+  mutate(NAME_1_CLEAN = toupper(stri_trans_general(NAME_1, "Latin-ASCII")))
+
+# 4. Unir
+mapa_casos <- colombia_sf %>% 
+  left_join(casos_departamento, by = c("NAME_1_CLEAN" = "DEPARTAMENTO"))
+
+# 5. Graficar
+ggplot(mapa_casos) +
+  geom_sf(aes(fill = total_casos), color = "white", size = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma",
+    na.value = "#eeeeee",
+    name = "Total Casos",
+    labels = scales::comma # Para que los números grandes se vean bien
+  ) +
+  theme_void() + # Quita las coordenadas (lat/long) para un look más limpio
+  labs(
+    title = "Distribución de casos por departamento en Colombia",
+    subtitle = "Fuente: Base BD_FINAL"
+  )
+
+```
+
+```{r TOP10DEP, echo=TRUE}
+library(dplyr)
+
+top_municipios <- resultados %>%
+  group_by(MUNICIPIO) %>%
+  summarise(total_registros = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_registros)) %>%
+  slice(1:10)
+
+top_municipios
+
+```
+
+```{r FRONTERA, echo=TRUE}
+library(dplyr)
+
+departamentos_frontera <- c(
+  "LA GUAJIRA",
+  "CESAR",
+  "NORTE DE SANTANDER",
+  "ARAUCA",
+  "VICHADA",
+  "GUAINIA",
+  "VAUPES",
+  "AMAZONAS",
+  "PUTUMAYO",
+  "NARIÑO",
+  "CHOCO"
+)
+
+casos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(DEPARTAMENTO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total_casos))
+
+casos_frontera
+
+```
+
+```{r xd, echo=TRUE}
+top_hechos_frontera <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera) %>%
+  group_by(HECHO) %>%
+  summarise(total = sum(CANTIDAD, na.rm = TRUE)) %>%
+  arrange(desc(total)) %>%
+  slice(1:3)
+
+top_hechos_frontera
+
+```
+
+```{r xdd, echo=TRUE}
+casos_frontera_hechos <- resultados %>%
+  filter(DEPARTAMENTO %in% departamentos_frontera,
+         HECHO %in% top_hechos_frontera$HECHO) %>%
+  group_by(DEPARTAMENTO, HECHO) %>%
+  summarise(total_casos = sum(CANTIDAD, na.rm = TRUE),
+            .groups = "drop")
+
+```
+
+```{r GRAFICOFRON, echo=TRUE}
+library(ggplot2)
+
+ggplot(casos_frontera_hechos,
+       aes(x = reorder(DEPARTAMENTO, total_casos),
+           y = total_casos,
+           fill = HECHO)) +
+  geom_col(position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = total_casos),
+          position = position_dodge(width = 0.9),
+          hjust = 0.5,
+          size = 3,
+            color = "black") +
+  coord_flip() +
+  labs(
+    title = "Casos en departamentos fronterizos por tipo de hecho",
+    subtitle = "Top 3 hechos más frecuentes",
+    x = "Departamento",
+    y = "Total de casos",
+    fill = "Tipo de hecho"
+  )
+
+```

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGÍA — Análisis Estructural del Crimen | Atlántico 2020-2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..32,300;0,8..32,400;0,8..32,600;1,8..32,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#04060f;--ink-mid:#0d1320;--ink-soft:#1a2236;
+  --line:rgba(255,255,255,0.07);--line-glow:rgba(0,200,210,0.3);
+  --cyan:#00c8d2;--gold:#f0a500;--red:#e84040;--blue:#4d8cff;
+  --smoke:#6b7a99;--mist:#9dafc8;--white:#eef2fb;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Source Serif 4",Georgia,serif;background:#04060f;color:var(--white);overflow-x:hidden;line-height:1.7;}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 5% 15%,rgba(0,200,210,0.05) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 95% 80%,rgba(37,99,235,0.05) 0%,transparent 55%);}
+.wrap{max-width:1240px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+section{position:relative;z-index:1}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:9000;backdrop-filter:blur(18px) saturate(180%);background:rgba(4,6,15,0.88);border-bottom:1px solid var(--line);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--white)}
+.brand-icon{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#0ea5e9,#00c8d2);display:flex;align-items:center;justify-content:center;font-family:"Syne",sans-serif;font-weight:800;font-size:1rem;box-shadow:0 0 18px rgba(0,200,210,0.35);}
+.brand-name{font-family:"Syne",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.4px}
+.brand-sub{font-size:.72rem;color:var(--smoke)}
+.nav-badge{font-family:"IBM Plex Mono",monospace;font-size:.7rem;padding:5px 13px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid var(--line);color:var(--smoke);letter-spacing:.3px;}
+
+/* HERO */
+.hero{padding:9.5rem 0 5rem;border-bottom:1px solid var(--line)}
+.eyebrow-tag{display:inline-flex;align-items:center;gap:9px;padding:5px 15px;border-radius:100px;background:rgba(0,200,210,0.08);border:1px solid rgba(0,200,210,0.22);color:var(--cyan);font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:2rem;}
+.eyebrow-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:"Syne",sans-serif;font-size:clamp(2.6rem,4.8vw,4.6rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:1.6rem;}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero-lead{font-size:1.08rem;color:var(--mist);max-width:660px;margin-bottom:2.5rem;font-weight:300}
+.hero-stats{display:flex;gap:0;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--line);}
+.hstat{flex:1;min-width:160px;padding:1.5rem 2rem 1.5rem 0;}
+.hstat+.hstat{border-left:1px solid var(--line);padding-left:2rem;}
+.hstat-num{font-family:"Syne",sans-serif;font-size:2.8rem;font-weight:800;line-height:1;color:var(--white);display:block;margin-bottom:.45rem;}
+.hstat-num .accent{color:var(--cyan);font-size:1.4rem;vertical-align:super}
+.hstat-lbl{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--smoke);text-transform:uppercase;letter-spacing:.8px;display:block;}
+
+/* INTRO SECTION */
+.intro-sec{padding:5rem 0 4rem;border-bottom:1px solid var(--line);}
+.intro-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;}
+.intro-text h2{font-family:"Syne",sans-serif;font-size:clamp(1.7rem,2.6vw,2.4rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.4rem;}
+.intro-text h2 em{font-style:normal;color:var(--gold);}
+.intro-text p{font-size:.97rem;color:var(--mist);line-height:1.82;margin-bottom:1rem;}
+.intro-text p strong{color:var(--white);}
+.intro-sidebar{display:flex;flex-direction:column;gap:1.25rem;}
+.intro-stat-card{background:var(--ink-mid);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.6rem;position:relative;overflow:hidden;}
+.intro-stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+.isc-gold::before{background:var(--gold);}
+.isc-cyan::before{background:var(--cyan);}
+.isc-red::before{background:var(--red);}
+.isc-blue::before{background:var(--blue);}
+.isc-num{font-family:"Syne",sans-serif;font-size:2rem;font-weight:800;margin-bottom:.2rem;}
+.isc-gold .isc-num{color:var(--gold);}
+.isc-cyan .isc-num{color:var(--cyan);}
+.isc-red .isc-num{color:var(--red);}
+.isc-blue .isc-num{color:var(--blue);}
+.isc-lbl{font-family:"IBM Plex Mono",monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;color:var(--smoke);}
+.isc-desc{font-size:.82rem;color:var(--mist);margin-top:.4rem;}
+
+.divider{height:1px;background:var(--line);margin:0}
+.sec-kicker{font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);margin-bottom:.7rem;display:block}
+.sec-title{font-family:"Syne",sans-serif;font-size:clamp(1.75rem,2.8vw,2.6rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+
+/* PREGUNTAS PROBLEMA */
+.problem-sec{padding:5.5rem 0}
+.pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pq-card{background:var(--ink-mid);border:1px solid var(--line);border-radius:14px;padding:2.25rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.pq-card:hover{border-color:var(--line-glow);transform:translateY(-3px);box-shadow:0 18px 38px rgba(0,0,0,.45)}
+.pq-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.pq-card.q2::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.pq-lbl{font-family:"IBM Plex Mono",monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--cyan);margin-bottom:.9rem;display:block}
+.pq-card.q2 .pq-lbl{color:var(--gold)}
+.pq-q{font-family:"Syne",sans-serif;font-size:1.08rem;font-weight:600;line-height:1.42;margin-bottom:1.5rem}
+.pq-a{background:rgba(0,0,0,.35);border-radius:10px;padding:1.35rem;border-left:3px solid var(--cyan)}
+.pq-card.q2 .pq-a{border-left-color:var(--gold)}
+.pq-a p{font-size:.93rem;color:var(--mist)}
+.pq-a strong{color:var(--white)}
+
+/* EVIDENCIA / GRAFICAS */
+.evidence-sec{padding:5.5rem 0}
+.ev-intro{text-align:center;max-width:660px;margin:0 auto 4.5rem}
+
+/* Bloque de grafica con pregunta y analisis */
+.chart-qa-block{background:var(--ink-mid);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:3.5rem;transition:box-shadow .3s,border-color .3s;}
+.chart-qa-block:hover{box-shadow:0 20px 50px rgba(0,0,0,.55);border-color:rgba(255,255,255,0.12)}
+
+.qa-header{padding:1.6rem 2rem;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:1.25rem;}
+.qa-num{flex-shrink:0;width:40px;height:40px;border-radius:9px;background:rgba(0,200,210,0.1);border:1px solid rgba(0,200,210,0.25);display:flex;align-items:center;justify-content:center;font-family:"Syne",sans-serif;font-weight:800;font-size:1rem;color:var(--cyan);}
+.qa-num.gold{background:rgba(240,165,0,0.1);border-color:rgba(240,165,0,0.25);color:var(--gold);}
+.qa-num.red{background:rgba(232,64,64,0.08);border-color:rgba(232,64,64,0.2);color:var(--red);}
+.qa-num.blue{background:rgba(77,140,255,0.08);border-color:rgba(77,140,255,0.2);color:var(--blue);}
+.qa-title-wrap{flex:1}
+.qa-kicker{font-family:"IBM Plex Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--smoke);margin-bottom:.4rem;}
+.qa-title{font-family:"Syne",sans-serif;font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.35;}
+.qa-badge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;margin-top:.5rem;}
+.badge-cyan{color:var(--cyan);background:rgba(0,200,210,.1);border:1px solid rgba(0,200,210,.2)}
+.badge-gold{color:var(--gold);background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.2)}
+.badge-red{color:var(--red);background:rgba(232,64,64,.08);border:1px solid rgba(232,64,64,.18)}
+.badge-blue{color:var(--blue);background:rgba(77,140,255,.08);border:1px solid rgba(77,140,255,.18)}
+
+.qa-body{display:grid;grid-template-columns:1fr 1.1fr;gap:0;}
+.qa-img-wrap{background:#06101f;padding:2rem;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);}
+.qa-img-wrap img{width:100%;max-width:480px;height:auto;border-radius:10px;display:block;}
+.qa-analysis{padding:2rem;}
+.qa-pregunta{background:rgba(0,200,210,0.05);border:1px solid rgba(0,200,210,0.15);border-radius:10px;padding:1.25rem;margin-bottom:1.5rem;}
+.qa-pregunta-label{font-family:"IBM Plex Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--cyan);margin-bottom:.5rem;display:flex;align-items:center;gap:6px;}
+.qa-pregunta-label.gold-label{color:var(--gold);}
+.qa-pregunta-label.red-label{color:var(--red);}
+.qa-pregunta-label.blue-label{color:var(--blue);}
+.qa-pregunta p{font-family:"Syne",sans-serif;font-size:.95rem;font-weight:600;color:var(--white);line-height:1.45;}
+.qa-gold-pregunta{background:rgba(240,165,0,0.05);border-color:rgba(240,165,0,0.15);}
+.qa-red-pregunta{background:rgba(232,64,64,0.04);border-color:rgba(232,64,64,0.14);}
+.qa-blue-pregunta{background:rgba(77,140,255,0.04);border-color:rgba(77,140,255,0.14);}
+
+.qa-metric{display:inline-flex;align-items:baseline;gap:.35rem;background:rgba(0,0,0,.4);border-radius:7px;padding:.5rem 1rem;margin-bottom:1rem;border:1px solid var(--line);}
+.qa-metric-n{font-family:"Syne",sans-serif;font-size:1.8rem;font-weight:800;line-height:1;}
+.qa-metric-l{font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--smoke);}
+
+.qa-analysis-text{font-size:.9rem;color:var(--mist);line-height:1.75;margin-bottom:.9rem;}
+.qa-analysis-text strong{color:var(--white);}
+
+.qa-conclusion{border-radius:10px;padding:1.1rem 1.25rem;margin-top:.75rem;border:1px solid;}
+.qa-conclusion.c-cyan{background:rgba(0,200,210,.04);border-color:rgba(0,200,210,.16)}
+.qa-conclusion.c-gold{background:rgba(240,165,0,.04);border-color:rgba(240,165,0,.16)}
+.qa-conclusion.c-red{background:rgba(232,64,64,.04);border-color:rgba(232,64,64,.16)}
+.qa-conclusion.c-blue{background:rgba(77,140,255,.04);border-color:rgba(77,140,255,.18)}
+.qa-conclusion-head{font-family:"IBM Plex Mono",monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;display:flex;align-items:center;gap:5px;}
+.c-cyan .qa-conclusion-head{color:var(--cyan)}.c-gold .qa-conclusion-head{color:var(--gold)}
+.c-red .qa-conclusion-head{color:var(--red)}.c-blue .qa-conclusion-head{color:var(--blue)}
+.qa-conclusion p{font-size:.84rem;color:var(--white);line-height:1.65;margin:0}
+
+/* PBI SECTION */
+.pbi-sec{padding:5.5rem 0;background:rgba(13,19,32,0.6);border-top:1px solid var(--line)}
+.pbi-wrap{background:var(--ink);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 28px 58px rgba(0,0,0,.65);}
+.pbi-bar{background:rgba(0,0,0,.55);padding:11px 18px;display:flex;align-items:center;gap:0;border-bottom:1px solid var(--line);}
+.dots{display:flex;gap:6px;margin-right:14px}
+.dot-win{width:10px;height:10px;border-radius:50%}
+.pbi-url{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--smoke)}
+.pbi-iframe-wrap{position:relative;width:100%;padding-bottom:62%;height:0;overflow:hidden;background:#060b18;}
+.pbi-iframe-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.pbi-footer{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(0,0,0,.3);border-top:1px solid var(--line);flex-wrap:wrap;gap:1rem;}
+.pbi-note{font-size:.77rem;color:var(--smoke)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:500;padding:11px 22px;border-radius:9px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;letter-spacing:.3px;}
+.btn-cyan{background:var(--cyan);color:#04060f}
+.btn-cyan:hover{background:#00dfea}
+.btn-outline{background:transparent;color:var(--cyan);border:1px solid rgba(0,200,210,.4)}
+.btn-outline:hover{background:rgba(0,200,210,.08);border-color:var(--cyan)}
+.btn-gold{background:var(--gold);color:#04060f;font-weight:700}
+.btn-gold:hover{background:#f7bc1a}
+.btn-lg{padding:14px 32px;font-size:.88rem}
+
+/* TECH OVERLAY */
+.tech-overlay{position:fixed;inset:0;z-index:8000;background:rgba(4,6,15,.97);backdrop-filter:blur(10px);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.tech-overlay.open{opacity:1;pointer-events:all}
+.tech-close{position:fixed;top:1.4rem;right:1.8rem;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:8px;color:var(--mist);cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:.78rem;padding:7px 15px;z-index:8100;transition:all .2s;}
+.tech-close:hover{background:rgba(255,255,255,.13);color:var(--white)}
+.tech-inner{max-width:1260px;margin:0 auto;padding:5.5rem 2rem 4rem}
+.tech-hdr{text-align:center;padding-bottom:3rem;border-bottom:1px solid var(--line);margin-bottom:3.5rem}
+.gold-eyebrow{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);padding:4px 13px;border-radius:20px;background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.2);margin-bottom:1rem;}
+.tech-hdr h2{font-family:"Syne",sans-serif;font-size:clamp(1.9rem,3.2vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:.85rem}
+.tech-hdr h2 em{font-style:normal;color:var(--gold)}
+.tech-hdr p{color:var(--mist);max-width:660px;margin:0 auto;font-size:.97rem}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;}
+.kpi-card{background:var(--ink-mid);border:1px solid var(--line);border-radius:12px;padding:1.4rem;text-align:center;position:relative;overflow:hidden;}
+.kpi-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi-gold::before{background:var(--gold)}.kpi-cyan::before{background:var(--cyan)}
+.kpi-red::before{background:var(--red)}.kpi-blue::before{background:var(--blue)}
+.kpi-v{font-family:"Syne",sans-serif;font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+.kpi-gold .kpi-v{color:var(--gold)}.kpi-cyan .kpi-v{color:var(--cyan)}
+.kpi-red .kpi-v{color:var(--red)}.kpi-blue .kpi-v{color:var(--blue)}
+.kpi-l{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--smoke);text-transform:uppercase;letter-spacing:.8px}
+
+.bar-chart-section{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:14px;padding:1.75rem;margin-bottom:1.75rem;}
+.bar-chart-title{font-family:"Syne",sans-serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.bar-chart-sub{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--smoke);text-transform:uppercase;letter-spacing:1px;margin-bottom:1.5rem;}
+.bar-item{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem;}
+.bar-label{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--mist);min-width:80px;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;background:rgba(255,255,255,.05);border-radius:5px;height:30px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:.7rem;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;min-width:2px;}
+.bar-value{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--white);min-width:90px;font-weight:600;flex-shrink:0;}
+
+.an-sec{margin-bottom:4rem}
+.an-sec h3{font-family:"Syne",sans-serif;font-size:1.3rem;font-weight:700;border-left:4px solid var(--gold);padding-left:1rem;margin-bottom:1.4rem;letter-spacing:-.01em;}
+.an-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:1.75rem}
+.an-block{background:var(--ink-mid);border:1px solid var(--line);border-radius:12px;padding:1.65rem}
+.an-block h4{font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:.9rem}
+.an-block p{font-size:.88rem;color:var(--mist);line-height:1.72;margin-bottom:.7rem}
+.an-block strong{color:var(--white)}
+
+.callout{border-radius:14px;padding:2rem;margin-bottom:1.75rem;background:linear-gradient(135deg,rgba(240,165,0,.07),rgba(240,165,0,.02));border:1px solid rgba(240,165,0,.22);}
+.callout-lbl{font-family:"IBM Plex Mono",monospace;font-size:.67rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:.85rem;display:block}
+.callout p{font-size:.95rem;color:var(--mist);line-height:1.8}
+.callout strong{color:var(--white)}
+
+.ttable{width:100%;border-collapse:collapse;margin-top:.75rem}
+.ttable th,.ttable td{padding:.6rem .9rem;text-align:left;border-bottom:1px solid var(--line);font-size:.84rem}
+.ttable th{font-family:"IBM Plex Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--smoke);background:rgba(0,0,0,.3)}
+.ttable td{color:var(--mist)}
+.td-hi{color:var(--white)!important;font-weight:600}
+.td-gold{color:var(--gold)!important;font-family:"IBM Plex Mono",monospace;font-weight:700}
+.td-red{color:var(--red)!important;font-weight:700}
+.td-green{color:#10b981!important;font-weight:600}
+
+.tech-pbi-wrap{background:var(--ink);border:1px solid rgba(240,165,0,.22);border-radius:14px;overflow:hidden;box-shadow:0 28px 58px rgba(0,0,0,.7);margin-bottom:3.5rem;}
+.tech-pbi-bar{background:rgba(0,0,0,.6);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,165,0,.1);}
+.gold-badge{font-family:"IBM Plex Mono",monospace;font-size:.67rem;padding:3px 11px;border-radius:20px;background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.2);color:var(--gold);}
+.tech-pbi-iframe-wrap{position:relative;width:100%;padding-bottom:64%;height:0;overflow:hidden;background:#060b18;}
+.tech-pbi-iframe-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+
+.donut-wrap{display:flex;align-items:center;gap:3rem;padding:1rem;}
+.donut-svg{flex-shrink:0;}
+.donut-legend{flex:1;}
+.donut-legend-item{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;}
+.donut-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.donut-legend-label{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--mist);flex:1;}
+.donut-legend-val{font-family:"Syne",sans-serif;font-size:1rem;font-weight:800;}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+
+footer{border-top:1px solid var(--line);padding:3rem 0;text-align:center}
+footer h4{font-family:"Syne",sans-serif;font-size:1rem;font-weight:700;margin-bottom:.35rem}
+footer p{color:var(--smoke);font-size:.88rem}
+.f-mono{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:2px;color:rgba(107,122,153,.6);margin-top:1.2rem}
+
+@media(max-width:900px){
+  .pq-grid,.an-grid,.intro-grid{grid-template-columns:1fr}
+  .qa-body{grid-template-columns:1fr}
+  .qa-img-wrap{border-right:none;border-bottom:1px solid var(--line);}
+  .donut-wrap{flex-direction:column;gap:1.5rem}
+}
+@media(max-width:600px){
+  .wrap{padding:0 1rem}
+  .tech-inner{padding:4.5rem 1rem 3rem}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-direction:column}
+  .hstat+.hstat{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:1.5rem}
+  .hstat-num{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-icon">V</div>
+      <div>
+        <div class="brand-name">VIGÍA <span style="font-weight:400;color:var(--smoke)">Analytics</span></div>
+        <div class="brand-sub">Inteligencia Criminal · Atlántico</div>
+      </div>
+    </a>
+    <div class="nav-badge">Técnico Análisis de Datos · SENA</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow-tag"><span class="dot"></span>Reporte de Inteligencia · 2020–2025</div>
+    <h1>Desmontando la economía del<br><em>crimen en el Atlántico.</em></h1>
+    <p class="hero-lead">La seguridad pública no puede gestionarse desde la intuición. Procesamos <strong style="color:var(--white)">5.266 registros oficiales</strong> para traducir datos crudos en inteligencia estratégica sobre cómo la extorsión asfixia el tejido comercial del departamento.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num">5.266</span><span class="hstat-lbl">Registros procesados</span></div>
+      <div class="hstat"><span class="hstat-num">99.47<span class="accent">%</span></span><span class="hstat-lbl">Concentración extorsión</span></div>
+      <div class="hstat"><span class="hstat-num">1.504</span><span class="hstat-lbl">Casos pico · 2024</span></div>
+      <div class="hstat"><span class="hstat-num">45.4<span class="accent">%</span></span><span class="hstat-lbl">Vía llamada telefónica</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-sec">
+  <div class="wrap">
+    <div class="intro-grid rv">
+      <div class="intro-text">
+        <span class="sec-kicker">Sobre este análisis</span>
+        <h2>El delito más silencioso es también el más <em>escalable.</em></h2>
+        <p>Entre 2020 y 2025, el Departamento del Atlántico registró <strong>5.266 casos</strong> de delitos de alto impacto. Lo que estos datos revelan no es solo violencia: es un modelo de negocio criminal perfectamente ajustado a la economía informal y al comercio local.</p>
+        <p>A diferencia del secuestro —que exige logística, cautiverio y exposición— la extorsión opera desde el anonimato de un teléfono prepago. No requiere presencia física. No deja huellas fáciles. Y su rendimiento por unidad de riesgo es exponencialmente mayor.</p>
+        <p>Lo que encontrarás aquí es un análisis construido sobre datos reales: <strong>dónde ocurre el delito, cuándo es más frecuente, a quién afecta y mediante qué mecanismo opera.</strong> Cada gráfica responde una pregunta concreta. Cada conclusión tiene implicación directa en política pública y asignación de recursos de seguridad.</p>
+      </div>
+      <div class="intro-sidebar">
+        <div class="intro-stat-card isc-gold">
+          <div class="isc-num">+667%</div>
+          <div class="isc-lbl">Crecimiento 2020 → 2024</div>
+          <div class="isc-desc">De 196 a 1.504 casos. No es una tendencia: es una crisis estructural consolidada.</div>
+        </div>
+        <div class="intro-stat-card isc-red">
+          <div class="isc-num">Miérc.</div>
+          <div class="isc-lbl">Día de mayor incidencia</div>
+          <div class="isc-desc">856 casos. El patrón semanal coincide con el ciclo de cobranzas del comercio local.</div>
+        </div>
+        <div class="intro-stat-card isc-cyan">
+          <div class="isc-num">85.2%</div>
+          <div class="isc-lbl">Concentrado en 2 municipios</div>
+          <div class="isc-desc">Barranquilla + Soledad. La estrategia geográfica debe ser quirúrgica, no difusa.</div>
+        </div>
+        <div class="intro-stat-card isc-blue">
+          <div class="isc-num">Tel.</div>
+          <div class="isc-lbl">Arma principal del extorsionista</div>
+          <div class="isc-desc">Una llamada desde la cárcel cuesta menos de $50. Ninguna bala necesita ser disparada.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREGUNTAS PROBLEMA -->
+<section class="problem-sec">
+  <div class="wrap">
+    <div style="margin-bottom:3rem" class="rv">
+      <span class="sec-kicker">Planteamiento del Problema</span>
+      <h2 class="sec-title">Dos preguntas que estructuran la investigación</h2>
+      <p style="color:var(--mist);margin-top:.7rem;max-width:580px">Toda investigación rigurosa nace de interrogantes claros. Estas dos preguntas guiaron todo el proceso de recolección, limpieza y visualización de los datos.</p>
+    </div>
+    <div class="pq-grid">
+      <div class="pq-card rv">
+        <span class="pq-lbl">Pregunta Problema 01</span>
+        <p class="pq-q">¿Cuál es el hecho delictivo predominante en el Atlántico y cuál es su proporción real frente a delitos de alto impacto mediático como el secuestro y el terrorismo?</p>
+        <div class="pq-a">
+          <p><strong>Hallazgo:</strong> La <strong>extorsión representa el 99.47%</strong> (5.238 casos). Secuestro (24) y terrorismo (4) son estadísticamente marginales. Por cada secuestro, se cometieron 218 extorsiones.</p>
+        </div>
+      </div>
+      <div class="pq-card q2 rv" style="transition-delay:.1s">
+        <span class="pq-lbl">Pregunta Problema 02</span>
+        <p class="pq-q">¿Cuál ha sido la evolución temporal del fenómeno y cuál es el modus operandi que permite su escalabilidad a nivel metropolitano?</p>
+        <div class="pq-a">
+          <p><strong>Hallazgo:</strong> Pico máximo en <strong>2024 (1.504 casos)</strong>. El <strong>45.4% se ejecuta vía llamada telefónica</strong>, evidenciando fallas en control de telecomunicaciones carcelarias. El criminal no necesita salir a la calle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EVIDENCIA VISUAL CON PREGUNTAS -->
+<section class="evidence-sec" id="evidencia">
+  <div class="wrap">
+    <div class="ev-intro rv">
+      <span class="sec-kicker">Evidencia Visual · Las 4 Gráficas Clave</span>
+      <h2 class="sec-title">Cada gráfica, una pregunta. Cada respuesta, una acción.</h2>
+      <p style="color:var(--mist);margin-top:.7rem">Las visualizaciones no son decoración: son el lenguaje que convierte 5.266 registros en decisiones de política pública. Analizamos cuatro dimensiones: <strong style="color:var(--white)">dónde, cuándo, a quién y cómo.</strong></p>
+    </div>
+
+    <!-- GRAFICA 1 — MUNICIPIO -->
+    <div class="chart-qa-block rv">
+      <div class="qa-header">
+        <div class="qa-num gold">01</div>
+        <div class="qa-title-wrap">
+          <div class="qa-kicker">Dimensión Geográfica · Municipios</div>
+          <div class="qa-title">Casos por Municipio — ¿Dónde golpea el crimen?</div>
+          <span class="qa-badge badge-gold">Concentración territorial</span>
+        </div>
+      </div>
+      <div class="qa-body">
+        <div class="qa-img-wrap">
+          <img src="WhatsApp_Image_2026-04-05_at_17_55_09.jpeg" alt="Casos por municipio — barra horizontal, Barranquilla 3248, Soledad 1237, Malambo 283" loading="eager">
+        </div>
+        <div class="qa-analysis">
+          <div class="qa-pregunta qa-gold-pregunta">
+            <div class="qa-pregunta-label gold-label">❓ Pregunta que responde</div>
+            <p>¿Existe concentración geográfica del delito extorsivo en el Atlántico, o se distribuye de manera uniforme entre sus 23 municipios?</p>
+          </div>
+          <div class="qa-metric">
+            <div class="qa-metric-n" style="color:var(--gold)">3.248</div>
+            <div class="qa-metric-l">casos · solo Barranquilla · 61.7%</div>
+          </div>
+          <p class="qa-analysis-text">La gráfica de barras horizontales es contundente: <strong>Barranquilla concentra 3.248 casos (61.7%)</strong> del total departamental. Soledad suma otros 1.237 (23.5%). Juntos, estos dos municipios representan el <strong>85.2% de toda la extorsión registrada en el Atlántico</strong>.</p>
+          <p class="qa-analysis-text">El tercer lugar, Malambo, se ubica en 283 casos (5.4%), y el resto de los municipios —Sabanalarga, Puerto Colombia, Galapa, Baranoa, entre otros— acumulan entre 15 y 93 casos cada uno. El contraste visual es impactante: la barra de Barranquilla es más de <strong>2.6 veces</strong> mayor que la segunda.</p>
+          <p class="qa-analysis-text">Este patrón no es aleatorio. El eje Barranquilla-Soledad concentra el mayor tejido comercial del departamento: tiendas de barrio, restaurantes, mototaxistas, negocios de venta de minutos, licorerías. Son exactamente los sectores más vulnerables a la extorsión por su flujo constante de efectivo y su incapacidad para denunciar sin poner en riesgo su actividad económica.</p>
+          <div class="qa-conclusion c-gold">
+            <div class="qa-conclusion-head">↗ Conclusión e implicación estratégica</div>
+            <p>Dispersar recursos de inteligencia en Juan de Acosta (15 casos) o Polonuevo (16 casos) es matemáticamente ineficiente. <strong>El 85% del presupuesto de seguridad e inteligencia debe focalizar el corredor Barranquilla-Soledad.</strong> La estrategia debe ser quirúrgica, no difusa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAFICA 2 — DÍA SEMANA -->
+    <div class="chart-qa-block rv" style="transition-delay:.05s">
+      <div class="qa-header">
+        <div class="qa-num red">02</div>
+        <div class="qa-title-wrap">
+          <div class="qa-kicker">Dimensión Temporal · Día de la semana</div>
+          <div class="qa-title">Distribución Semanal — ¿Cuándo es más peligroso?</div>
+          <span class="qa-badge badge-red">Patrón de cobranza</span>
+        </div>
+      </div>
+      <div class="qa-body">
+        <div class="qa-img-wrap">
+          <img src="WhatsApp_Image_2026-04-05_at_17_55_16.jpeg" alt="Día de la semana más propenso — torta con miércoles 856 16.26%, jueves 832, viernes 823" loading="eager">
+        </div>
+        <div class="qa-analysis">
+          <div class="qa-pregunta qa-red-pregunta">
+            <div class="qa-pregunta-label red-label">❓ Pregunta que responde</div>
+            <p>¿Existe un patrón temporal en la distribución semanal de los hechos extorsivos, o el delito ocurre de manera aleatoria a lo largo de los días?</p>
+          </div>
+          <div class="qa-metric">
+            <div class="qa-metric-n" style="color:var(--red)">856</div>
+            <div class="qa-metric-l">casos · miércoles · 16.26% del total</div>
+          </div>
+          <p class="qa-analysis-text">El gráfico circular revela un patrón no aleatorio con un pico claro a mitad de semana. <strong>Miércoles (16.26%), jueves (15.8%) y viernes (15.63%)</strong> concentran casi la mitad de todos los hechos registrados. El domingo, en cambio, registra apenas el <strong>8.98%</strong>, casi la mitad que el día de mayor incidencia.</p>
+          <p class="qa-analysis-text">Este patrón tiene una explicación económica directa: los extorsionistas no actúan por impulso, sino siguiendo el <strong>ciclo de liquidez del comercio local.</strong> Los negocios informales —tiendas, restaurantes, transporte— hacen sus mayores movimientos de efectivo entre el miércoles y el viernes. Son los días en que tienen caja disponible para pagar. Los domingos, con negocios cerrados o con menor actividad, el potencial de cobro cae abruptamente.</p>
+          <p class="qa-analysis-text">Esto confirma que las organizaciones criminales que operan en el Atlántico tienen una lógica de <strong>"empresa delictiva"</strong>: planifican, segmentan a sus víctimas por capacidad de pago y optimizan el momento del cobro. No son bandas desorganizadas; son estructuras con racionalidad económica.</p>
+          <div class="qa-conclusion c-red">
+            <div class="qa-conclusion-head">↗ Conclusión e implicación estratégica</div>
+            <p><strong>El refuerzo policial diferencial debe concentrarse entre el miércoles y el viernes.</strong> Los operativos de prevención y visibilidad institucional en zonas comerciales deben ejecutarse precisamente cuando el riesgo es mayor, no de forma homogénea en todos los días de la semana.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAFICA 3 — GÉNERO -->
+    <div class="chart-qa-block rv" style="transition-delay:.1s">
+      <div class="qa-header">
+        <div class="qa-num">03</div>
+        <div class="qa-title-wrap">
+          <div class="qa-kicker">Dimensión Demográfica · Género</div>
+          <div class="qa-title">Casos por Género — ¿A quién afecta el fenómeno?</div>
+          <span class="qa-badge badge-cyan">Perfil de víctima</span>
+        </div>
+      </div>
+      <div class="qa-body">
+        <div class="qa-img-wrap">
+          <img src="WhatsApp_Image_2026-04-05_at_17_55_04.jpeg" alt="Cantidad de casos por género — masculino 3307, femenino 1645, no reporta 310" loading="eager">
+        </div>
+        <div class="qa-analysis">
+          <div class="qa-pregunta">
+            <div class="qa-pregunta-label">❓ Pregunta que responde</div>
+            <p>¿Existe un sesgo de género en la victimización por extorsión en el Atlántico, o el delito afecta de forma proporcional a hombres y mujeres?</p>
+          </div>
+          <div class="qa-metric">
+            <div class="qa-metric-n" style="color:var(--cyan)">3.307</div>
+            <div class="qa-metric-l">víctimas masculinas · 62.8% del total</div>
+          </div>
+          <p class="qa-analysis-text">Las barras verticales son claras: <strong>3.307 víctimas son hombres (62.8%)</strong>, frente a 1.645 mujeres (31.2%). Un 5.9% adicional (310 casos) no tiene género reportado. El ratio de victimización es de aproximadamente <strong>2 a 1</strong> a favor de la población masculina.</p>
+          <p class="qa-analysis-text">Este desequilibrio no es casual. Tiene correlación directa con las características socioeconómicas del Atlántico: la titularidad formal e informal de los negocios más expuestos —tiendas de barrio, ventas ambulantes, transporte público— recae mayoritariamente en hombres. También existe una variable cultural: los hombres tienen menor propensión a reportar a las autoridades cuando reciben amenazas, lo cual podría estar inflando su proporción real de victimización frente a la de mujeres.</p>
+          <p class="qa-analysis-text">El 31.2% de mujeres víctimas tampoco debe minimizarse. En muchos casos se trata de dueñas de pequeños establecimientos de alimentos, peluquerías o distribuidoras de productos al por mayor, igualmente vulnerables. La extorsión no discrimina el sexo de quien tiene caja disponible.</p>
+          <div class="qa-conclusion c-cyan">
+            <div class="qa-conclusion-head">↗ Conclusión e implicación estratégica</div>
+            <p>Las campañas de denuncia y los mecanismos de atención a víctimas deben <strong>priorizarse en redes masculinas de comerciantes</strong>, sin desatender al 31% femenino. Un diseño de política pública con perspectiva de género mejora tanto la tasa de denuncia como la efectividad de la intervención institucional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAFICA 4 — MEDIO -->
+    <div class="chart-qa-block rv" style="transition-delay:.15s">
+      <div class="qa-header">
+        <div class="qa-num blue">04</div>
+        <div class="qa-title-wrap">
+          <div class="qa-kicker">Dimensión Operativa · Modus operandi</div>
+          <div class="qa-title">Medio Más Utilizado — ¿Cómo opera el extorsionista?</div>
+          <span class="qa-badge badge-blue">Escalabilidad del delito</span>
+        </div>
+      </div>
+      <div class="qa-body">
+        <div class="qa-img-wrap">
+          <img src="WhatsApp_Image_2026-04-05_at_17_55_22.jpeg" alt="Medio más utilizado — llamada telefónica con 2393 casos es el método dominante, seguido de directa 1285" loading="eager">
+        </div>
+        <div class="qa-analysis">
+          <div class="qa-pregunta qa-blue-pregunta">
+            <div class="qa-pregunta-label blue-label">❓ Pregunta que responde</div>
+            <p>¿Cuál es el vector de ataque predominante en las extorsiones del Atlántico, y qué revela esto sobre la estructura operativa de las organizaciones criminales?</p>
+          </div>
+          <div class="qa-metric">
+            <div class="qa-metric-n" style="color:var(--blue)">~2.393</div>
+            <div class="qa-metric-l">casos vía llamada telefónica · ~45.4%</div>
+          </div>
+          <p class="qa-analysis-text">La gráfica de barras verticales revela el hallazgo más contundente de todo el análisis: <strong>la llamada telefónica es el arma principal con ~2.393 casos (45.4%).</strong> Le sigue la modalidad directa (presencial) con ~1.285 casos (24%), las redes sociales con ~632 (12%), las cartas extorsivas con ~579 (11%), y los métodos que implican armas físicas —armas de fuego, armas blancas, combustible, granadas— son estadísticamente marginales.</p>
+          <p class="qa-analysis-text">Esto tiene una implicación profunda: <strong>el extorsionista moderno del Atlántico no necesita salir a la calle.</strong> Opera desde el anonimato de un número prepago, muchas veces desde el interior de una institución carcelaria. Una sola persona con acceso a un teléfono puede gestionar decenas de víctimas simultáneamente a lo largo del área metropolitana, sin exponerse a ser identificado, perseguido o detenido en flagrancia.</p>
+          <p class="qa-analysis-text">El modelo es brutalmente eficiente: costo operativo cercano a cero, riesgo físico mínimo, cobertura territorial ilimitada. Esta es la razón por la que el delito creció 667% entre 2020 y 2024 sin que el incremento de pie de fuerza en las calles generara una reducción equivalente. <strong>Más policías patrullando no detienen una llamada de voz.</strong></p>
+          <div class="qa-conclusion c-blue">
+            <div class="qa-conclusion-head">↗ Conclusión e implicación estratégica</div>
+            <p>La respuesta institucional debe migrar de la prevención física a la <strong>inhibición de señales en centros penitenciarios, inteligencia de telecomunicaciones e intervención de redes digitales.</strong> Mientras el Estado siga respondiendo con más patrullaje a un delito que se ejecuta por teléfono, el modelo criminal seguirá siendo más eficiente que la respuesta institucional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- POWER BI -->
+<section class="pbi-sec" id="dashboard">
+  <div class="wrap">
+    <div style="text-align:center;max-width:680px;margin:0 auto 3rem" class="rv">
+      <span class="sec-kicker">Dashboard Interactivo</span>
+      <h2 class="sec-title">Explora el <span style="color:var(--cyan)">Modelo de Datos</span></h2>
+      <p style="color:var(--mist);margin-top:.7rem">Dashboard público en Power BI. Sin inicio de sesión requerido. Navega entre los 3 paneles usando las pestañas inferiores del visor para explorar todas las visualizaciones del proyecto.</p>
+    </div>
+    <div class="pbi-wrap rv">
+      <div class="pbi-bar">
+        <div class="dots">
+          <div class="dot-win" style="background:#ef4444"></div>
+          <div class="dot-win" style="background:#f59e0b"></div>
+          <div class="dot-win" style="background:#10b981"></div>
+        </div>
+        <div class="pbi-url">app.powerbi.com · VIGÍA Dashboard · 3 Paneles · Vista Pública</div>
+      </div>
+      <div class="pbi-iframe-wrap">
+        <iframe title="POWER BI PROYECTO FINAL"
+          src="https://app.powerbi.com/view?r=eyJrIjoiZWYzZWJkZGEtNmQ1ZC00OTk2LWE1YzktNmI5YjlhODBjMGNlIiwidCI6IjZjYTM0YWUxLTQ2NmYtNDRiYy1hN2FhLTBhYzVhNzhjNjFiMSIsImMiOjR9"
+          frameborder="0" allowFullScreen="true" scrolling="no">
+        </iframe>
+      </div>
+      <div class="pbi-footer">
+        <span class="pbi-note">Vista pública — sin login. Usa las pestañas panel 1 / panel 2 / panel 3 para navegar entre vistas.</span>
+        <button class="btn btn-gold" onclick="openTech()">📊 Ver Análisis Técnico Profundo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h4>Proyecto Final — Análisis de Datos</h4>
+    <p>SENA Regional Atlántico · Barranquilla, Colombia</p>
+    <p class="f-mono">© 2025 · VIGÍA ANALYTICS · TODOS LOS DERECHOS RESERVADOS</p>
+  </div>
+</footer>
+
+<!-- TECH OVERLAY -->
+<div class="tech-overlay" id="techOverlay">
+  <button class="tech-close" onclick="closeTech()">✕ Cerrar</button>
+  <div class="tech-inner">
+    <div class="tech-hdr">
+      <span class="gold-eyebrow">Análisis Técnico Profundo · Atlántico 2020–2025</span>
+      <h2>Centro de Inteligencia:<br><em>Números, Tendencias y Patrones</em></h2>
+      <p>Métricas de evolución anual, ranking geográfico, distribución temporal, perfil de víctima, modus operandi y tabla resumen completa. Todo fundamentado con análisis de impacto y contexto socioeconómico.</p>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card kpi-gold"><div class="kpi-v">5.266</div><div class="kpi-l">Casos Totales</div></div>
+      <div class="kpi-card kpi-red"><div class="kpi-v">1.504</div><div class="kpi-l">Pico 2024</div></div>
+      <div class="kpi-card kpi-cyan"><div class="kpi-v">99.47%</div><div class="kpi-l">Extorsión</div></div>
+      <div class="kpi-card kpi-blue"><div class="kpi-v">+667%</div><div class="kpi-l">Crecim. 2020→2024</div></div>
+    </div>
+
+    <!-- PANEL 3 PBI -->
+    <div class="tech-pbi-wrap">
+      <div class="tech-pbi-bar">
+        <div style="display:flex;gap:6px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#ef4444"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#10b981"></div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--smoke)">Panel 3 · Dispersión · Cascada · Cintas · Vista ampliada</div>
+        <span class="gold-badge">Vista Pública · Sin login</span>
+      </div>
+      <div class="tech-pbi-iframe-wrap">
+        <iframe title="POWER BI PROYECTO FINAL - Panel 3"
+          src="https://app.powerbi.com/view?r=eyJrIjoiZWYzZWJkZGEtNmQ1ZC00OTk2LWE1YzktNmI5YjlhODBjMGNlIiwidCI6IjZjYTM0YWUxLTQ2NmYtNDRiYy1hN2FhLTBhYzVhNzhjNjFiMSIsImMiOjR9&pageName=ReportSection3"
+          frameborder="0" allowFullScreen="true" scrolling="no">
+        </iframe>
+      </div>
+      <div class="pbi-footer" style="background:rgba(0,0,0,.4)">
+        <span class="pbi-note">Navega al tab "panel 3" en la parte inferior para ver los gráficos de dispersión, cascada y cintas.</span>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiZWYzZWJkZGEtNmQ1ZC00OTk2LWE1YzktNmI5YjlhODBjMGNlIiwidCI6IjZjYTM0YWUxLTQ2NmYtNDRiYy1hN2FhLTBhYzVhNzhjNjFiMSIsImMiOjR9" target="_blank" class="btn btn-outline">Abrir en nueva pestaña ↗</a>
+      </div>
+    </div>
+
+    <!-- ANÁLISIS 1: EVOLUCIÓN ANUAL -->
+    <div class="an-sec">
+      <h3>1 · Evolución Anual — La curva que lo explica todo (2020–2025)</h3>
+      <div class="bar-chart-section">
+        <div class="bar-chart-title">Casos Registrados por Año · Atlántico · Todos los delitos</div>
+        <div class="bar-chart-sub">Extorsión + Secuestro + Terrorismo · Fuente: Datos Oficiales</div>
+        <div class="bar-item">
+          <div class="bar-label">2020</div>
+          <div class="bar-track"><div class="bar-fill" style="width:13%;background:rgba(77,140,255,0.45);color:#9dafc8">196</div></div>
+          <div class="bar-value" style="color:var(--smoke)">196 · Base</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2021</div>
+          <div class="bar-track"><div class="bar-fill" style="width:17.2%;background:rgba(77,140,255,0.55);color:#9dafc8">259</div></div>
+          <div class="bar-value" style="color:var(--smoke)">259 · +32.1%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2022</div>
+          <div class="bar-track"><div class="bar-fill" style="width:43%;background:rgba(240,165,0,0.65);color:#f0a500">647</div></div>
+          <div class="bar-value" style="color:var(--gold)">647 · ▲+149.8%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2023</div>
+          <div class="bar-track"><div class="bar-fill" style="width:90.7%;background:rgba(240,165,0,0.78);color:#f0a500">1.364</div></div>
+          <div class="bar-value" style="color:var(--gold)">1.364 · ▲+110.8%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2024</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#e84040,#e86060);color:#fff;font-weight:800;font-size:.73rem">🔴 PICO MÁXIMO HISTÓRICO — 1.504 casos</div></div>
+          <div class="bar-value" style="color:var(--red);font-weight:800">1.504</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2025</div>
+          <div class="bar-track"><div class="bar-fill" style="width:86.2%;background:rgba(0,200,210,0.55);color:#00c8d2">1.296</div></div>
+          <div class="bar-value" style="color:var(--cyan)">1.296 · ▼−13.8%</div>
+        </div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block">
+          <h4>2020–2021: El "valle" de la pandemia</h4>
+          <p>Los 196 y 259 casos de estos dos años son deceptivamente bajos. Las restricciones de movilidad por COVID-19 redujeron la extorsión directa, ya que los negocios estaban cerrados y el flujo de efectivo era mínimo. <strong>No era que el crimen hubiera desaparecido: estaba esperando que la economía reabriera.</strong></p>
+          <p>Es relevante que incluso en cuarentena se registraron 196 casos, lo cual demuestra que la extorsión telefónica nunca se detuvo. Las llamadas no necesitan movilidad.</p>
+        </div>
+        <div class="an-block">
+          <h4>2022: El punto de quiebre (+149.8%)</h4>
+          <p>El salto más abrupto de toda la serie. Con la reactivación económica, los negocios reabrieron, el efectivo regresó a las calles y las estructuras criminales —que ya habían mapeado sus objetivos durante la pandemia— comenzaron el cobro sistemático de "vacunas".</p>
+          <p>Simultáneamente, la atomización de bandas en el área metropolitana generó <strong>competencia entre grupos por los mismos territorios extorsivos</strong>, lo que multiplicó la presión sobre las víctimas.</p>
+        </div>
+        <div class="an-block">
+          <h4>2023–2024: Consolidación y pico histórico</h4>
+          <p>El modelo ya estaba perfeccionado. Los extorsionistas operaban desde las cárceles con total impunidad, usando números prepago rotativos. Un solo individuo podía gestionar decenas de víctimas simultáneamente. <strong>1.504 casos en 2024 implican más de 4 extorsiones diarias en promedio.</strong></p>
+          <p>En muchos casos, las víctimas recibían presiones simultáneas de dos o tres grupos distintos, lo que multiplicaba el registro pero también reflejaba la guerra territorial entre bandas.</p>
+        </div>
+        <div class="an-block">
+          <h4>2025: ¿Victoria institucional o subregistro?</h4>
+          <p>La caída del 13.8% a 1.296 casos merece lectura crítica. <strong>No es automáticamente una victoria.</strong> Los escenarios posibles son: ① Mayor efectividad de los planes GAULA en la región. ② Saturación del mercado extorsivo (todas las víctimas posibles ya están siendo cobradas). ③ Incremento del subregistro —la gente normaliza el pago y deja de denunciar.</p>
+          <p>Sin evidencia de desarticulación estructural de redes, <strong>el descenso es estadístico, no sistémico.</strong></p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-lbl">Diagnóstico del Eje Temporal</span>
+        <p>La curva 2020-2024 no describe un repunte delictivo puntual: describe la <strong>consolidación de un modelo de negocio criminal maduro y escalado</strong>. Pasó de ser oportunista (2020) a ser sistemático y territorial (2024). Ese tipo de transformación no se revierte con operativos esporádicos; requiere intervención estructural sostenida.</p>
+      </div>
+    </div>
+
+    <!-- ANÁLISIS 2: GEOGRAFÍA -->
+    <div class="an-sec">
+      <h3>2 · Concentración Geográfica — El corredor del crimen</h3>
+      <div class="bar-chart-section">
+        <div class="bar-chart-title">Casos por Municipio · Total 2020–2025 · 11 municipios con registros</div>
+        <div class="bar-chart-sub">Barras ordenadas de mayor a menor incidencia</div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Barranquilla</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#f0a500,#f7bc1a);color:#04060f;font-weight:800;font-size:.73rem">🏆 3.248 · 61.7% · DOMINANTE</div></div>
+          <div class="bar-value" style="color:var(--gold);font-weight:800">3.248</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Soledad</div>
+          <div class="bar-track"><div class="bar-fill" style="width:38.1%;background:rgba(0,200,210,0.65);color:#00c8d2">1.237</div></div>
+          <div class="bar-value" style="color:var(--cyan)">1.237 · 23.5%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Malambo</div>
+          <div class="bar-track"><div class="bar-fill" style="width:8.7%;background:rgba(77,140,255,0.6);color:#9dafc8">283</div></div>
+          <div class="bar-value" style="color:var(--blue)">283 · 5.4%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Sabanalarga</div>
+          <div class="bar-track"><div class="bar-fill" style="width:2.9%;background:rgba(77,140,255,0.35);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">93 · 1.8%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Pto Colombia</div>
+          <div class="bar-track"><div class="bar-fill" style="width:2.3%;background:rgba(77,140,255,0.28);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">76 · 1.4%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Galapa</div>
+          <div class="bar-track"><div class="bar-fill" style="width:2.2%;background:rgba(77,140,255,0.22);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">71 · 1.4%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:100px">Resto (5 mun.)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:4.6%;background:rgba(107,122,153,0.3);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">~257 · 4.9%</div>
+        </div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block">
+          <h4>¿Por qué Barranquilla concentra tanto?</h4>
+          <p>No es simplemente por ser la ciudad más grande. Es porque concentra el mayor ecosistema de economía informal y pequeño comercio del departamento: más de 40.000 establecimientos comerciales registrados, una densa red de transporte informal (mototaxistas, colectivos), y corredores de alto tráfico como el mercado público, la Vía 40 y los barrios periféricos de alta densidad.</p>
+          <p><strong>Mayor actividad comercial = mayor flujo de efectivo = mayor objetivo extorsivo.</strong> La geografía del crimen sigue la geografía del dinero.</p>
+        </div>
+        <div class="an-block">
+          <h4>El caso de Soledad: la periferia no es inmune</h4>
+          <p>Soledad, con 1.237 casos, es el segundo municipio más afectado. Su crecimiento poblacional acelerado lo ha convertido en un corredor comercial de alta actividad, especialmente en zonas como Ciudad Caribe, la Cordialidad y el perímetro del Aeropuerto. Las estructuras criminales del área metropolitana <strong>no reconocen límites municipales.</strong></p>
+          <p>Este dato invalida cualquier estrategia que trate a Barranquilla y Soledad como realidades separadas. Son un mismo ecosistema delictivo.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-lbl">Hallazgo — Concentración Extrema y su implicación</span>
+        <p>Barranquilla + Soledad = <strong>85.2% de todos los casos.</strong> Dispersar efectivos en Juan de Acosta (15 casos) o Polonuevo (16 casos) es una mala asignación presupuestal comprobable matemáticamente. No es opinión: los datos lo demuestran. <strong>La estrategia de seguridad del Atlántico debe tratarlos como un único frente metropolitano, con inteligencia unificada y mando conjunto.</strong></p>
+      </div>
+    </div>
+
+    <!-- ANÁLISIS 3: TEMPORAL -->
+    <div class="an-sec">
+      <h3>3 · Patrón Temporal — El crimen tiene horario laboral</h3>
+      <div class="bar-chart-section">
+        <div class="bar-chart-title">Distribución de Casos por Día de la Semana · 5.266 casos totales</div>
+        <div class="bar-chart-sub">Frecuencia relativa y absoluta · 2020–2025</div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Miércoles</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#e84040,#e86060);color:#fff;font-weight:800;font-size:.72rem">🔴 856 — 16.26% PICO SEMANAL</div></div>
+          <div class="bar-value" style="color:var(--red);font-weight:800">856</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Jueves</div>
+          <div class="bar-track"><div class="bar-fill" style="width:97.2%;background:rgba(240,165,0,0.75);color:#f0a500">832</div></div>
+          <div class="bar-value" style="color:var(--gold)">832 · 15.8%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Viernes</div>
+          <div class="bar-track"><div class="bar-fill" style="width:96.1%;background:rgba(240,165,0,0.65);color:#f0a500">823</div></div>
+          <div class="bar-value" style="color:var(--gold)">823 · 15.63%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Martes</div>
+          <div class="bar-track"><div class="bar-fill" style="width:94.5%;background:rgba(77,140,255,0.65);color:#9dafc8">809</div></div>
+          <div class="bar-value" style="color:var(--blue)">809 · 15.36%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Lunes</div>
+          <div class="bar-track"><div class="bar-fill" style="width:91.3%;background:rgba(77,140,255,0.5);color:#9dafc8">782</div></div>
+          <div class="bar-value" style="color:var(--blue)">782 · 14.85%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Sábado</div>
+          <div class="bar-track"><div class="bar-fill" style="width:80.7%;background:rgba(107,122,153,0.5);color:#9dafc8">691</div></div>
+          <div class="bar-value" style="color:var(--smoke)">691 · 13.12%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:75px">Domingo</div>
+          <div class="bar-track"><div class="bar-fill" style="width:55.3%;background:rgba(107,122,153,0.32);color:#9dafc8">473</div></div>
+          <div class="bar-value" style="color:var(--smoke)">473 · 8.98%</div>
+        </div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block">
+          <h4>La racionalidad económica del extorsionista</h4>
+          <p>Un miércoles tiene 80.7% más extorsiones que un domingo. Esa diferencia no es aleatoria: es el resultado de una <strong>selección racional del momento de cobro.</strong> Los extorsionistas saben cuándo sus víctimas tienen caja disponible. Conocen los ciclos de pago de proveedores, las fechas de nómina en los pequeños negocios, los días de mayor venta.</p>
+          <p>Esto demuestra que no estamos ante criminalidad impulsiva, sino ante <strong>estructuras organizadas con inteligencia de mercado</strong> sobre sus propias víctimas.</p>
+        </div>
+        <div class="an-block">
+          <h4>Implicación para la política de prevención</h4>
+          <p>Actualmente, la presencia policial en zonas comerciales suele distribuirse de forma homogénea a lo largo de la semana. Los datos sugieren que esa estrategia es subóptima. <strong>Concentrar operativos de prevención y visibilidad institucional los miércoles, jueves y viernes</strong> en corredores comerciales críticos sería más eficiente con los mismos recursos.</p>
+          <p>El patrón también puede usarse para diseñar alertas tempranas y campañas de denuncia que lleguen a los comerciantes justo antes de los días de mayor riesgo.</p>
+        </div>
+      </div>
+
+      <div class="callout" style="background:linear-gradient(135deg,rgba(232,64,64,.07),rgba(232,64,64,.02));border-color:rgba(232,64,64,.22)">
+        <span class="callout-lbl" style="color:var(--red)">Diagnóstico — El Crimen Tiene Agenda</span>
+        <p>El patrón miércoles-jueves-viernes no es anecdótico. Es reproducible, consistente en los 5 años analizados, y tiene explicación causal directa en el ciclo económico del comercio informal. <strong>Cuando el criminal actúa con más racionalidad que la respuesta institucional, siempre gana.</strong> El análisis de datos permite cerrar esa brecha.</p>
+      </div>
+    </div>
+
+    <!-- ANÁLISIS 4: GÉNERO -->
+    <div class="an-sec">
+      <h3>4 · Distribución por Género — ¿A quién victimiza el modelo extorsivo?</h3>
+      <div class="bar-chart-section">
+        <div class="bar-chart-title">Casos por Género · 5.266 Registros Totales · 2020–2025</div>
+        <div class="bar-chart-sub">Distribución absoluta y porcentual del universo de víctimas</div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" width="200" height="200" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="30"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#f0a500" stroke-width="30"
+              stroke-dasharray="276.2 163.6" stroke-dashoffset="109.95"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#00c8d2" stroke-width="30"
+              stroke-dasharray="137.2 302.6" stroke-dashoffset="-166.25"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#4d8cff" stroke-width="30"
+              stroke-dasharray="25.95 413.87" stroke-dashoffset="-303.45"/>
+            <text x="100" y="95" text-anchor="middle" fill="#eef2fb" font-family="Syne,sans-serif" font-weight="800" font-size="22">5.266</text>
+            <text x="100" y="114" text-anchor="middle" fill="#6b7a99" font-family="IBM Plex Mono,monospace" font-size="10">CASOS</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-legend-item">
+              <div class="donut-dot" style="background:var(--gold)"></div>
+              <div class="donut-legend-label">Masculino</div>
+              <div class="donut-legend-val" style="color:var(--gold)">3.307 <small style="font-size:.72rem;color:var(--smoke)">62.8%</small></div>
+            </div>
+            <div class="donut-legend-item">
+              <div class="donut-dot" style="background:var(--cyan)"></div>
+              <div class="donut-legend-label">Femenino</div>
+              <div class="donut-legend-val" style="color:var(--cyan)">1.645 <small style="font-size:.72rem;color:var(--smoke)">31.2%</small></div>
+            </div>
+            <div class="donut-legend-item">
+              <div class="donut-dot" style="background:var(--blue)"></div>
+              <div class="donut-legend-label">No reporta / N/A</div>
+              <div class="donut-legend-val" style="color:var(--blue)">314 <small style="font-size:.72rem;color:var(--smoke)">5.9%</small></div>
+            </div>
+            <div style="margin-top:1rem;padding:1rem;background:rgba(240,165,0,.06);border:1px solid rgba(240,165,0,.15);border-radius:10px;">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem">Ratio de victimización</div>
+              <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white)">2:1</div>
+              <div style="font-size:.8rem;color:var(--mist)">Un hombre es estadísticamente el doble de probable víctima que una mujer en este universo de datos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block">
+          <h4>Estructura económica y titularidad comercial</h4>
+          <p>El 62.8% de víctimas masculinas refleja la estructura de titularidad del pequeño comercio en el Atlántico. Los hombres son más frecuentemente los titulares formales e informales de tiendas, puestos de mercado, puestos de mototaxi y negocios de distribución. <strong>La extorsión no discrimina por sexo: discrimina por quién tiene caja.</strong></p>
+          <p>Y culturalmente, en el contexto del comercio popular barranquillero, la persona que "atiende la caja" o que "tiene el negocio" suele ser el hombre. Eso explica el sesgo estadístico.</p>
+        </div>
+        <div class="an-block">
+          <h4>El 31.2% femenino: no invisibilizar</h4>
+          <p>1.645 mujeres víctimas de extorsión en 5 años es una cifra significativa que merece atención diferencial. Se trata, en gran medida, de propietarias de negocios de alimentos (restaurantes de barrio, cocinas caseras), peluquerías, droguerías y tiendas de ropa. <strong>Sectores invisibilizados en los diagnósticos de seguridad.</strong></p>
+          <p>Además, existe la hipótesis de subregistro mayor en mujeres: por vergüenza, por miedo a represalias o por no creer en la institucionalidad, muchas víctimas mujeres pueden no haber denunciado, lo que haría el 31.2% una subestimación de la realidad.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANÁLISIS 5: MODUS OPERANDI -->
+    <div class="an-sec">
+      <h3>5 · Modus Operandi — El arma que nadie ve</h3>
+      <div class="bar-chart-section">
+        <div class="bar-chart-title">Distribución por Medio Utilizado para Cometer el Hecho · 5.266 casos</div>
+        <div class="bar-chart-sub">Vector de ataque extorsivo · Sin armas físicas como método dominante</div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Llamada Tel.</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#4d8cff,#6da5ff);color:#fff;font-weight:800;font-size:.7rem">📞 ~2.393 — 45.4% MÉTODO DOMINANTE</div></div>
+          <div class="bar-value" style="color:var(--blue);font-weight:800">~2.393</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Directa / Presencial</div>
+          <div class="bar-track"><div class="bar-fill" style="width:53%;background:rgba(0,200,210,0.65);color:#00c8d2">~1.285</div></div>
+          <div class="bar-value" style="color:var(--cyan)">~1.285 · 24%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Redes Sociales</div>
+          <div class="bar-track"><div class="bar-fill" style="width:26%;background:rgba(240,165,0,0.55);color:#f0a500">~632</div></div>
+          <div class="bar-value" style="color:var(--gold)">~632 · 12%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Carta Extorsiva</div>
+          <div class="bar-track"><div class="bar-fill" style="width:23%;background:rgba(240,165,0,0.42);color:#f0a500">~579</div></div>
+          <div class="bar-value" style="color:var(--gold)">~579 · 11%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Sin empleo armas</div>
+          <div class="bar-track"><div class="bar-fill" style="width:8%;background:rgba(107,122,153,0.38);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">~211 · 4%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Arma de fuego</div>
+          <div class="bar-track"><div class="bar-fill" style="width:2%;background:rgba(107,122,153,0.22);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">~53 · 1%</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label" style="min-width:110px;font-size:.65rem">Mixta / Otros</div>
+          <div class="bar-track"><div class="bar-fill" style="width:1.2%;background:rgba(107,122,153,0.15);"></div></div>
+          <div class="bar-value" style="color:var(--smoke)">~30 · &lt;1%</div>
+        </div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block">
+          <h4>La llamada telefónica como modelo de escalado</h4>
+          <p>El 45.4% de casos por llamada telefónica revela el principal problema estructural: <strong>la extorsión se ha industrializado.</strong> Un extorsionista con acceso a una línea prepago puede gestionar 30, 50 o 100 víctimas simultáneamente, distribuidas en toda el área metropolitana, sin moverse de su ubicación actual —muchas veces, una celda carcelaria.</p>
+          <p>Ninguna estrategia de seguridad tradicional interrumpe este modelo. Los controles en la vía, los operativos de captura en flagrancia, el patrullaje diferencial: todos son inútiles contra una amenaza que viaja por ondas de radio.</p>
+        </div>
+        <div class="an-block">
+          <h4>La modalidad directa: el 24% que sí se puede capturar</h4>
+          <p>El 24% de casos directos/presenciales representa el segmento donde la respuesta policial tradicional sí puede ser efectiva. Aquí el extorsionista o su cobrador visitan físicamente el negocio. Son los casos más documentables, con mayor probabilidad de testigos y cámaras de seguridad.</p>
+          <p><strong>La estrategia óptima separa los dos frentes:</strong> inteligencia de telecomunicaciones para las llamadas, y trabajo de campo e inteligencia territorial para las modalidades presenciales. Tratarlos con la misma respuesta es ineficiente.</p>
+        </div>
+        <div class="an-block">
+          <h4>Redes sociales: el vector emergente (12%)</h4>
+          <p>WhatsApp, Facebook e Instagram están siendo usados para amenazar y extorsionar. El 12% (aproximadamente 632 casos) es significativo y va en aumento. Permite al criminal adjuntar fotos de la víctima o su familia para reforzar la amenaza, crear sensación de omnisciencia y vigilancia constante.</p>
+          <p>Este vector es especialmente difícil de rastrear cuando se usan cuentas falsas con VPN, y su impacto psicológico en la víctima suele ser mayor que una llamada anónima.</p>
+        </div>
+        <div class="an-block">
+          <h4>Las armas físicas: el mito del extorsionista armado</h4>
+          <p>El arma de fuego aparece en menos del 1% de los casos como método de extorsión. La carta extorsiva, con su aparente primitivismo, supera ampliamente al arma como herramienta de presión. <strong>La violencia física es cara, riesgosa y subóptima.</strong> El miedo psicológico generado por una llamada o un mensaje es igual de efectivo y tiene cero costo operativo para el criminal.</p>
+        </div>
+      </div>
+
+      <div class="callout" style="background:linear-gradient(135deg,rgba(77,140,255,.07),rgba(77,140,255,.02));border-color:rgba(77,140,255,.22)">
+        <span class="callout-lbl" style="color:var(--blue)">Diagnóstico Final — La Paradoja de la Seguridad Tradicional</span>
+        <p>El Estado colombiano responde al aumento de extorsiones con más policías en las calles. Pero el 45.4% de las extorsiones ocurren por teléfono, el 12% por redes sociales, y el 11% por carta. <strong>El 68.4% del fenómeno no tiene cuerpo físico que detener en la calle.</strong> Hasta que la respuesta institucional se adapte a la realidad de un crimen digital y telefónico, el modelo criminal seguirá siendo más eficiente que la respuesta del Estado.</p>
+      </div>
+    </div>
+
+    <!-- TABLA RESUMEN COMPLETA -->
+    <div class="an-sec">
+      <h3>6 · Tabla Resumen — Evolución Completa 2020–2025 con Contexto</h3>
+      <div class="bar-chart-section">
+        <table class="ttable">
+          <thead>
+            <tr>
+              <th>Año</th><th>Total</th><th>Variación</th><th>Extorsión</th><th>Secuestro</th><th>Terrorismo</th><th>Contexto socioeconómico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="td-hi">2020</td><td class="td-gold">196</td><td style="color:var(--smoke)">— base</td><td style="color:var(--mist)">192</td><td style="color:var(--mist)">3</td><td style="color:var(--mist)">1</td><td style="color:var(--mist);font-size:.8rem">COVID-19 · Cuarentenas · Comercio cerrado</td></tr>
+            <tr><td class="td-hi">2021</td><td class="td-gold">259</td><td class="td-green">+32.1%</td><td style="color:var(--mist)">254</td><td style="color:var(--mist)">4</td><td style="color:var(--mist)">1</td><td style="color:var(--mist);font-size:.8rem">Reapertura gradual · Reactivación económica parcial</td></tr>
+            <tr><td class="td-hi" style="color:var(--gold)">2022</td><td class="td-gold">647</td><td class="td-red">▲+149.8%</td><td style="color:var(--gold)">643</td><td style="color:var(--mist)">3</td><td style="color:var(--mist)">1</td><td style="color:var(--gold);font-size:.8rem">⚡ PUNTO DE QUIEBRE · Reactivación total · Masificación prepago</td></tr>
+            <tr><td class="td-hi">2023</td><td class="td-gold">1.364</td><td class="td-red">▲+110.8%</td><td style="color:var(--mist)">1.358</td><td style="color:var(--mist)">5</td><td style="color:var(--mist)">1</td><td style="color:var(--mist);font-size:.8rem">Consolidación territorial · Operación desde cárceles</td></tr>
+            <tr style="background:rgba(232,64,64,.05)"><td class="td-hi" style="color:var(--red)">2024</td><td class="td-red" style="font-size:1rem">1.504</td><td class="td-red">🔴 PICO HISTÓRICO</td><td style="color:var(--red)">1.498</td><td style="color:var(--mist)">5</td><td style="color:var(--mist)">1</td><td style="color:var(--red);font-size:.8rem">Máximo registrado · Múltiples grupos por zona · Guerra territorial</td></tr>
+            <tr><td class="td-hi">2025</td><td class="td-gold">1.296</td><td class="td-green">▼−13.8%</td><td style="color:var(--mist)">1.293</td><td style="color:var(--mist)">2</td><td style="color:var(--mist)">0</td><td style="color:var(--cyan);font-size:.8rem">Descenso estadístico* · Posible subregistro o saturación</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:var(--smoke);margin-top:.75rem">* El descenso de 2025 NO implica automáticamente desarticulación criminal. Puede reflejar subregistro (normalización del pago sin denuncia), saturación del mercado extorsivo, o desplazamiento geográfico hacia municipios con menor registro. Se requiere análisis adicional para determinar causalidad.</p>
+      </div>
+    </div>
+
+    <!-- DIAGNÓSTICO FINAL -->
+    <div class="callout" style="background:linear-gradient(135deg,rgba(240,165,0,.08),rgba(37,99,235,.05));border-color:rgba(240,165,0,.3)">
+      <span class="callout-lbl">Diagnóstico Técnico Integrado · Conclusión del Análisis</span>
+      <p>Los cinco ejes analizados —evolución temporal, geografía, patrón semanal, perfil de víctima y modus operandi— convergen en un diagnóstico unificado: <strong>el Atlántico enfrenta una crisis de extorsión sistémica, escalada y tecnológicamente adaptada.</strong></p>
+      <p style="margin-top:.75rem">La estructura criminal no opera con rudeza: opera con racionalidad económica. Selecciona sus víctimas por capacidad de pago, actúa cuando el objetivo tiene más caja, usa el medio de menor costo y mayor cobertura (el teléfono), y se concentra donde la densidad comercial es mayor. <strong>+667% en cuatro años no es un accidente. Es el resultado de un modelo de negocio que funciona porque nadie lo ha interrumpido de raíz.</strong></p>
+      <p style="margin-top:.75rem">La respuesta institucional efectiva debe actuar en tres frentes simultáneos: <strong>① Inhibición de telecomunicaciones en centros penitenciarios. ② Inteligencia digital especializada en redes sociales. ③ Focalización geográfica quirúrgica en el corredor Barranquilla-Soledad.</strong> Todo lo demás es cosmético.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://app.powerbi.com/view?r=eyJrIjoiZWYzZWJkZGEtNmQ1ZC00OTk2LWE1YzktNmI5YjlhODBjMGNlIiwidCI6IjZjYTM0YWUxLTQ2NmYtNDRiYy1hN2FhLTBhYzVhNzhjNjFiMSIsImMiOjR9" target="_blank" class="btn btn-cyan btn-lg">Ver Dashboard Completo en Power BI ↗</a>
+      <button class="btn btn-gold btn-lg" onclick="closeTech()">↑ Cerrar Análisis Técnico</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const els = document.querySelectorAll('.rv');
+const ob = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*55);ob.unobserve(e.target);}
+  });
+},{threshold:.07});
+els.forEach(e=>ob.observe(e));
+function openTech(){document.getElementById('techOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeTech(){document.getElementById('techOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTech();});
+</script>
+</body>
+</html>

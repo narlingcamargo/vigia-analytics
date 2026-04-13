@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIGÍA DATA INSIGHT</title>
+
+    <!-- Tipografía Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles.css">
+
+<header class="header">
+
+    <div class="logo">
+        <a href="../index.html">
+            <img src="../img/Vigia Logotipo editable_Version Vertical copia.png" alt="Vigía Logo">
+        </a>
+    </div>
+
+   <nav class="nav">
+        <a href="../index.html">Inicio</a>
+        <a href="../web_power_bi/index.html">Power BI</a>
+        <a href="https://rpubs.com/Vigia_Data_Insights/InformeAnalitico">Informe R</a>
+        <a href="index.html">Noticias</a>
+        <a href="../web_app_lot/index.html">App + IoT</a>
+        <a href="../web_nostros/index.html">Nosotros</a>
+    </nav>
+
+    <div class="logo-sena">
+        <img src="../img/logoSena.png" alt="SENA Logo">
+    </div>
+
+</header>
+
+<section class="hero-noticias">
+
+    <!-- IZQUIERDA (VIDEO) -->
+    <div class="hero-video">
+        <video autoplay muted loop playsinline>
+            <source src="img-noticias/WhatsApp Video 2026-03-12 at 17.24.57.mp4" type="video/mp4">
+            Tu navegador no soporta video
+        </video>
+    </div>
+
+    <!-- DERECHA (TEXTO) -->
+    <div class="hero-text">
+
+        <h1>VIGINOTICIAS</h1>
+
+        <p>
+            La sección VIGINOTICIAS recopila y presenta información relevante
+            sobre casos de extorsión, secuestro y terrorismo en Colombia, proveniente
+            de distintos medios de comunicación y canales de noticias a nivel nacional.
+            Su propósito es centralizar y contextualizar estos hechos dentro del marco analítico del proyecto.
+        </p>
+        <p>
+            A través de la curaduría y organización de noticias, se facilita
+            la identificación de patrones, tendencias y comportamientos asociados a estos delitos en diferentes regiones del país.
+            Esta integración entre información periodística y análisis de datos permite complementar la interpretación de 
+            los fenómenos estudiados y fortalecer la comprensión de su impacto en la seguridad nacional.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="sabias-section">
+
+    <div class="sabias-container">
+
+        <!-- IZQUIERDA -->
+        <div class="sabias-text">
+
+            <h2>¿SABÍAS QUÉ?</h2>
+
+            <!-- TEXTO DINÁMICO ABAJO -->
+            <div class="sabias-data">
+
+                <p class="dato active">
+                    ¿Sabías que en el 2025, Barranquilla fue la tercera ciudad con más casos de Extorsión con un total de 761 casos?
+                </p>
+
+                <p class="dato">
+                    ¿Sabías que el medio más usado en el Atlántico para cometer una extorsión es la llamada telefónica con 2,393?
+                </p>
+
+                <p class="dato">
+                    ¿Sabías que Antioquia y Cundinamarca son los departamentos de Colombia más críticos en cuanto a los 3 delitos?
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- DERECHA (IMÁGENES) -->
+        <div class="sabias-slider">
+
+            <img class="slide active" src="img-noticias/Captura de pantalla 2026-04-06 221235.png">
+            <img class="slide" src="img-noticias/Captura de pantalla 2026-04-06 221351.png">
+            <img class="slide" src="img-noticias/Captura de pantalla 2026-04-06 221425.png">
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="noticias-section">
+
+    <!-- FILTROS -->
+    <div class="filtros">
+        <button onclick="filtrar('todas')">Todas</button>
+        <button onclick="filtrar('extorsion')">Extorsión</button>
+        <button onclick="filtrar('terrorismo')">Terrorismo</button>
+        <button onclick="filtrar('secuestro')">Secuestro</button>
+    </div>
+
+    <!-- CONTENEDOR TARJETAS -->
+    <div class="grid-noticias">
+
+        <div class="grid-noticias">
+
+    <!-- EXTORSIÓN -->
+    <div class="card-noticia extorsion">
+        <img src="../img/extorsion.png">
+        <h3>Extorsión caso 1</h3>
+        <p>En este portal utilizamos datos de navegación / cookies propias y de terceros para gestionar el portal, elaborar información estadística, optimizar la funcionalidad del sitio
+            y mostrar publicidad relacionada con sus preferencias a través del análisis de la navegación. Si continúa navegando, usted estará aceptando esta utilización.
+            Puede conocer cómo deshabilitarlas u obtener más información</p>
+        <a href="https://www.eltiempo.com/colombia/barranquilla" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia extorsion">
+        <img src="../img/extorsion.png">
+        <h3>Extorsión caso 2</h3>
+        <p>Autoridades investigan nuevas redes...</p>
+        <a href="noticia2.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia extorsion">
+        <img src="../img/extorsion.png">
+        <h3>Extorsión caso 3</h3>
+        <p>Impacto en pequeños negocios...</p>
+        <a href="noticia3.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <!-- TERRORISMO -->
+    <div class="card-noticia terrorismo">
+        <img src="../img/terrorismo.png">
+        <h3>Terrorismo caso 1</h3>
+        <p>Refuerzan seguridad en regiones clave...</p>
+        <a href="noticia4.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia terrorismo">
+        <img src="../img/terrorismo.png">
+        <h3>Terrorismo caso 2</h3>
+        <p>Nuevas alertas emitidas por autoridades...</p>
+        <a href="noticia5.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia terrorismo">
+        <img src="../img/terrorismo.png">
+        <h3>Terrorismo caso 3</h3>
+        <p>Operativos en zonas rurales...</p>
+        <a href="noticia6.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <!-- SECUESTRO -->
+    <div class="card-noticia secuestro">
+        <img src="../img/secuestro.png">
+        <h3>Secuestro caso 1</h3>
+        <p>Incremento en áreas apartadas...</p>
+        <a href="noticia7.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia secuestro">
+        <img src="../img/secuestro.png">
+        <h3>Secuestro caso 2</h3>
+        <p>Investigaciones en curso...</p>
+        <a href="noticia8.html" class="leer-mas">Leer más</a>
+    </div>
+
+    <div class="card-noticia secuestro">
+        <img src="../img/secuestro.png">
+        <h3>Secuestro caso 3</h3>
+        <p>Casos reportados recientemente...</p>
+        <a href="noticia9.html" class="leer-mas">Leer más</a>
+    </div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- LOGO -->
+        <div class="footer-left">
+            <img src="../img/Vigia Logotipo editable_Logo app  (1).png" alt="logo">
+            <p>
+                Especialistas en análisis de datos y visualización 
+                para la toma de decisiones estratégicas.
+            </p>
+        </div>
+
+        <!-- CONTACTO -->
+        <div class="footer-center">
+            <h3>Contacto</h3>
+            <p>vigia.datainsights@gmail.com</p>
+            <p>+57 000 000 0000</p>
+        </div>
+
+        <!-- REDES -->
+        <div class="footer-right">
+            <h3>Social</h3>
+            <div class="social">
+                <img src="../img/Instagram_Glyph_Gradient_RGB_logo.svg.png" alt="">
+                <span>@vigiadatainsights</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        © PARTICIPANTES DE VIGÍA DATA INSIGHTS 2026
+    </div>
+
+</footer>
+
+<button id="btnTop">↑</button>
+
+<script src="../script.js"></script>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VIGÍA Data Insights — Análisis IoT</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#0A1628;--navy2:#0D1F3C;--navy3:#112347;--navy4:#1A3A6E;--blue2:#2d74d0;--blue3:#4a90d9;--gold:#C8A84B;--gold2:#E2C46A;--gray:#8BA0C0;}
+body{font-family:'Montserrat',sans-serif;background:var(--navy);color:#fff;min-height:100vh;}
+nav{background:#fff;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.18);}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-name{font-size:17px;font-weight:900;color:var(--navy);line-height:1.1;}
+.logo-sub{font-size:8.5px;font-weight:700;color:var(--blue2);letter-spacing:.2em;text-transform:uppercase;}
+.nav-links{display:flex;gap:4px;}
+.nav-link{padding:8px 15px;border-radius:22px;font-size:11px;font-weight:700;color:var(--navy2);cursor:pointer;transition:all .2s;border:none;background:transparent;}
+.nav-link:hover{background:#EBF0FA;color:var(--blue2);}
+.nav-link.active{background:var(--blue2);color:white;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 55%,var(--navy4) 100%);padding:52px 60px 44px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 72% 48%,rgba(45,116,208,.2) 0%,transparent 55%),radial-gradient(circle at 18% 78%,rgba(200,168,75,.09) 0%,transparent 40%);}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:52px 52px;}
+.hero-in{position:relative;z-index:1;max-width:1140px;margin:0 auto;}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:36px;gap:32px;}
+.hero-title{font-size:40px;font-weight:900;line-height:1.1;}
+.hero-title span{color:var(--gold2);}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.65;}
+.hero-stats{display:flex;gap:12px;flex-shrink:0;}
+.hero-stat{background:rgba(200,168,75,.13);border:1px solid rgba(200,168,75,.35);border-radius:10px;padding:14px 22px;text-align:center;}
+.hero-stat-v{font-size:28px;font-weight:800;color:var(--gold2);line-height:1;}
+.hero-stat-l{font-size:8.5px;font-weight:600;letter-spacing:.14em;color:rgba(200,168,75,.65);text-transform:uppercase;margin-top:4px;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:18px 20px;transition:transform .2s;}
+.kpi:hover{transform:translateY(-2px);}
+.kpi-v{font-size:32px;font-weight:800;line-height:1;margin-bottom:4px;}
+.kpi-v.red{color:#FF6B6B;}.kpi-v.gold{color:var(--gold2);}.kpi-v.bl{color:#74C0FC;}.kpi-v.gr{color:#5BE584;}
+.kpi-l{font-size:9px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.4);text-transform:uppercase;}
+.kpi-s{font-size:10px;color:rgba(255,255,255,.28);margin-top:4px;}
+.kpi-bar{height:3px;border-radius:2px;margin-top:11px;background:rgba(255,255,255,.09);}
+.kpi-bf{height:100%;border-radius:2px;}
+.wrap{max-width:1140px;margin:0 auto;padding:32px 60px 60px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.g21{display:grid;grid-template-columns:1.45fr 1fr;gap:18px;margin-bottom:18px;}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px 24px;}
+.sec{font-size:9px;font-weight:700;letter-spacing:.2em;color:#74C0FC;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.sec::before{content:'';width:3px;height:12px;border-radius:2px;background:var(--gold);flex-shrink:0;}
+.cw{position:relative;height:216px;}.cw-sm{position:relative;height:174px;}.cw-lg{position:relative;height:264px;}
+.alert{border-radius:10px;padding:13px 17px;margin-bottom:16px;}
+.alert.red{background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.22);border-left:3px solid #FF6B6B;}
+.alert.gold{background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.22);border-left:3px solid var(--gold2);}
+.alert.gr{background:rgba(91,229,132,.06);border:1px solid rgba(91,229,132,.18);border-left:3px solid #5BE584;}
+.alert.bl{background:rgba(74,144,217,.07);border:1px solid rgba(74,144,217,.18);border-left:3px solid #4a90d9;}
+.at{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;}
+.at.red{color:#FF6B6B;}.at.gold{color:var(--gold2);}.at.gr{color:#5BE584;}.at.bl{color:#74C0FC;}
+.ab{font-size:11.5px;color:rgba(255,255,255,.58);line-height:1.72;}
+.ab b{color:rgba(255,255,255,.88);}
+.tbl{width:100%;border-collapse:collapse;font-size:11px;}
+.tbl th{background:rgba(255,255,255,.05);color:#74C0FC;font-size:8.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:9px 11px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07);}
+.tbl td{padding:7px 11px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.78);}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.br{height:5px;border-radius:3px;background:var(--gold);display:inline-block;margin-left:5px;vertical-align:middle;}
+.tabs{display:flex;gap:4px;margin-bottom:26px;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:0;}
+.tab{padding:10px 20px;border-radius:8px 8px 0 0;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.35);transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.tab:hover{color:rgba(255,255,255,.65);}
+.tab.active{color:var(--gold2);border-bottom-color:var(--gold2);background:rgba(200,168,75,.05);}
+.panel{display:none;}.panel.active{display:block;}
+.pred-hdr{background:linear-gradient(135deg,var(--navy3),var(--navy4));border:1px solid rgba(200,168,75,.22);border-radius:14px;padding:26px 30px;margin-bottom:22px;}
+.pred-title{font-size:13px;font-weight:700;color:var(--gold2);margin-bottom:7px;}
+.pred-txt{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.78;}
+.pred-txt b{color:rgba(255,255,255,.88);}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+.pill{display:inline-block;border-radius:6px;padding:4px 11px;font-size:11px;font-weight:700;}
+.pill.gold{background:rgba(200,168,75,.14);border:1px solid rgba(200,168,75,.28);color:var(--gold2);}
+.pill.red{background:rgba(255,107,107,.11);border:1px solid rgba(255,107,107,.22);color:#FF6B6B;}
+.pill.gr{background:rgba(91,229,132,.09);border:1px solid rgba(91,229,132,.2);color:#5BE584;}
+.pill.bl{background:rgba(74,144,217,.11);border:1px solid rgba(74,144,217,.22);color:#74C0FC;}
+.esc3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:18px;}
+.esc{border-radius:12px;padding:18px 19px;}
+.esc.pes{background:rgba(211,84,0,.08);border:1px solid rgba(211,84,0,.2);}
+.esc.base{background:rgba(200,168,75,.09);border:1px solid rgba(200,168,75,.28);}
+.esc.opt{background:rgba(91,229,132,.06);border:1px solid rgba(91,229,132,.18);}
+.esc-n{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px;}
+.esc-n.pes{color:#D35400;}.esc-n.base{color:var(--gold2);}.esc-n.opt{color:#5BE584;}
+.esc-v{font-size:30px;font-weight:800;margin-bottom:4px;}
+.esc-v.pes{color:#D35400;}.esc-v.base{color:var(--gold2);}.esc-v.opt{color:#5BE584;}
+.esc-d{font-size:10.5px;color:rgba(255,255,255,.48);line-height:1.6;}
+.sup4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+.sup{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:11px 13px;}
+.sup-v{font-size:22px;font-weight:800;color:#74C0FC;}
+.sup-l{font-size:8.5px;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;margin-top:3px;}
+.plan3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:18px;}
+.plan-c{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 22px;}
+.plan-n{font-size:40px;font-weight:900;line-height:1;opacity:.13;margin-bottom:7px;}
+.plan-title{font-size:13.5px;font-weight:700;margin-bottom:7px;}
+.plan-desc{font-size:10.5px;color:rgba(255,255,255,.48);line-height:1.7;}
+.plan-tag{display:inline-block;border-radius:4px;padding:3px 9px;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:9px;}
+.plan-tag.gr{background:rgba(91,229,132,.11);color:#5BE584;}
+.plan-tag.gold{background:rgba(200,168,75,.11);color:var(--gold2);}
+.plan-tag.bl{background:rgba(74,144,217,.11);color:#74C0FC;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+      <circle cx="21" cy="21" r="21" fill="#0D1F3C"/>
+      <rect x="17" y="27" width="8" height="9" rx="1" fill="#2d74d0"/>
+      <polygon points="14,27 21,11 28,27" fill="#1e5aa8"/>
+      <polygon points="16,23 21,13 26,23" fill="#2d74d0"/>
+      <polygon points="21,17 37,9 35,19" fill="#C8A84B" opacity=".92"/>
+      <polygon points="21,17 35,19 31,27" fill="#C8A84B" opacity=".45"/>
+    </svg>
+    <div><div class="logo-name">VIGÍA</div><div class="logo-sub">Data Insights</div></div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Inicio</a>
+    <a class="nav-link" href="#">Análisis BI</a>
+    <a class="nav-link" href="#">Informe R</a>
+    <a class="nav-link" href="#">Noticias</a>
+    <a class="nav-link active" href="#">App + IoT</a>
+    <a class="nav-link" href="#">Nosotros</a>
+  </div>
+  <svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#1a7f37"/>
+    <text x="15" y="20" text-anchor="middle" font-size="9.5" font-weight="900" fill="white" font-family="Arial">SENA</text></svg>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-top">
+      <div>
+        <div class="hero-title">Extorsión en Colombia<br><span>2020 – 2025</span></div>
+        <div class="hero-sub">Análisis estadístico · 61.705 registros · Policía Nacional<br>
+          Foco: Departamento del Atlántico y Barranquilla</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-v">67.175</div><div class="hero-stat-l">Casos nacionales<br>2020–2025</div></div>
+        <div class="hero-stat"><div class="hero-stat-v">5.266</div><div class="hero-stat-l">Casos en el<br>Atlántico</div></div>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-v red">+667%</div><div class="kpi-l">Crecimiento Atlántico</div>
+        <div class="kpi-s">196 (2020) → 1.504 (2024)</div>
+        <div class="kpi-bar"><div class="kpi-bf" style="width:90%;background:#FF6B6B;"></div></div></div>
+      <div class="kpi"><div class="kpi-v gold">54,1%</div><div class="kpi-l">Concentración Barranquilla</div>
+        <div class="kpi-s">3.248 de los 5.266 casos del Atlántico</div>
+        <div class="kpi-bar"><div class="kpi-bf" style="width:54%;background:var(--gold2);"></div></div></div>
+      <div class="kpi"><div class="kpi-v bl">+67%</div><div class="kpi-l">Crecimiento nacional</div>
+        <div class="kpi-s">Atlántico creció 10× más que el promedio</div>
+        <div class="kpi-bar"><div class="kpi-bf" style="width:67%;background:#74C0FC;"></div></div></div>
+      <div class="kpi"><div class="kpi-v gr">35,6%</div><div class="kpi-l">Detectables por IoT</div>
+        <div class="kpi-s">Directa + Carta = 1.874 casos</div>
+        <div class="kpi-bar"><div class="kpi-bf" style="width:35.6%;background:#5BE584;"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('desc',this)">Estadísticas Atlántico</div>
+    <div class="tab" onclick="showTab('pred',this)">Proyección 2026–2030</div>
+    <div class="tab" onclick="showTab('plan',this)">Plan Estratégico</div>
+  </div>
+
+  <!-- TAB 1 -->
+  <div class="panel active" id="panel-desc">
+    <div class="alert red">
+      <div class="at red">Situación crítica en el Atlántico</div>
+      <div class="ab">El departamento registró <b>196 casos en 2020</b> y <b>1.504 en 2024</b>, un incremento del <b>667%</b> en cuatro años — diez veces superior al crecimiento nacional (+67%). Barranquilla concentra el <b>54,1%</b> del total departamental, con Soledad sumando otro 22,4%.</div>
+    </div>
+    <div class="g2">
+      <div class="card"><div class="sec">Tendencia nacional 2020–2025</div><div class="cw"><canvas id="cNac"></canvas></div></div>
+      <div class="card"><div class="sec">Atlántico y Barranquilla por año</div><div class="cw"><canvas id="cAtl"></canvas></div></div>
+    </div>
+    <div class="g21">
+      <div class="card"><div class="sec">Medios utilizados — Atlántico</div><div class="cw"><canvas id="cMedios"></canvas></div></div>
+      <div class="card">
+        <div class="sec">Municipios más afectados</div>
+        <table class="tbl">
+          <thead><tr><th>Municipio</th><th>Casos</th><th>Proporción</th></tr></thead>
+          <tbody>
+            <tr><td><b>Barranquilla</b></td><td><b>2.844</b></td><td><span class="br" style="width:88px"></span> 54,1%</td></tr>
+            <tr><td>Soledad</td><td>1.178</td><td><span class="br" style="width:36px"></span> 22,4%</td></tr>
+            <tr><td>Malambo</td><td>280</td><td><span class="br" style="width:9px"></span> 5,3%</td></tr>
+            <tr><td>Sabanalarga</td><td>93</td><td><span class="br" style="width:3px"></span> 1,8%</td></tr>
+            <tr><td>Puerto Colombia</td><td>76</td><td><span class="br" style="width:2px"></span> 1,4%</td></tr>
+            <tr><td>Galapa</td><td>71</td><td><span class="br" style="width:2px"></span> 1,4%</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:16px;">
+          <div class="sec">Víctimas por género — Atlántico</div>
+          <div style="display:flex;gap:22px;margin-top:5px;">
+            <div><div style="font-size:26px;font-weight:800;color:#74C0FC;">63,1%</div>
+              <div style="font-size:8.5px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;">Masculino · 2.951</div></div>
+            <div><div style="font-size:26px;font-weight:800;color:var(--gold2);">32,9%</div>
+              <div style="font-size:8.5px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;">Femenino · 1.536</div></div>
+          </div>
+          <div style="font-size:10.5px;color:rgba(255,255,255,.3);margin-top:6px;">1 de cada 3 víctimas es mujer.</div>
+        </div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card"><div class="sec">Días de mayor incidencia — Atlántico</div><div class="cw-sm"><canvas id="cDias"></canvas></div></div>
+      <div class="card"><div class="sec">Distribución mensual — Atlántico</div><div class="cw-sm"><canvas id="cMeses"></canvas></div></div>
+    </div>
+    <div class="alert gold">
+      <div class="at gold">Oportunidad de intervención — Vigía Sentinel-X</div>
+      <div class="ab">El <b>22,7% son extorsiones directas (presenciales)</b> y el <b>10,7% por carta extorsiva</b>, sumando <b>1.874 casos detectables</b> mediante visión artificial. Los <b>miércoles–viernes</b> y el trimestre <b>septiembre–noviembre</b> son los períodos de mayor concentración.</div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div class="panel" id="panel-pred">
+    <div class="pred-hdr">
+      <div class="pred-title">Modelo de Proyección 2026–2030</div>
+      <div class="pred-txt"><b>Metodología:</b> Regresión lineal sobre datos 2020–2025 completos (Base de Datos Final · Policía Nacional). Tendencia observada: <b>+284 casos/año en el Atlántico</b>. Variables de impacto: adopción gradual (5% año 1 → 70% año 5), reducción del 45% en casos detectables con sistema activo, efecto disuasivo del 10%.</div>
+      <div class="pills">
+        <span class="pill gold">+284 casos/año tendencia Atlántico</span>
+        <span class="pill red">3.010 proyectados 2030 sin IoT</span>
+        <span class="pill gr">−18,2% reducción para 2030</span>
+        <span class="pill bl">1.202 casos prevenidos 2026–2030</span>
+      </div>
+    </div>
+    <div class="kpis" style="margin-bottom:18px;">
+      <div class="kpi"><div class="kpi-v red">3.010</div><div class="kpi-l">Proyección 2030 sin IoT</div><div class="kpi-s">Atlántico, escenario tendencial</div></div>
+      <div class="kpi"><div class="kpi-v gr">2.462</div><div class="kpi-l">Proyección 2030 con IoT</div><div class="kpi-s">Escenario base (70% adopción)</div></div>
+      <div class="kpi"><div class="kpi-v gold">1.202</div><div class="kpi-l">Casos prevenidos 5 años</div><div class="kpi-s">Acumulado 2026–2030</div></div>
+      <div class="kpi"><div class="kpi-v bl">18,2%</div><div class="kpi-l">Reducción proyectada</div><div class="kpi-s">Para el año 2030</div></div>
+    </div>
+    <div class="card" style="margin-bottom:18px;">
+      <div class="sec">Proyección Atlántico 2020–2030 · histórico + escenarios</div>
+      <div class="cw-lg"><canvas id="cPred"></canvas></div>
+    </div>
+    <div class="esc3">
+      <div class="esc pes"><div class="esc-n pes">Pesimista</div><div class="esc-v pes">−8%</div>
+        <div class="esc-d">30% de adopción para 2030. Aprox. <b style="color:#D35400">~465 casos prevenidos</b> en 5 años.</div></div>
+      <div class="esc base"><div class="esc-n base">Base (más probable)</div><div class="esc-v base">−18,2%</div>
+        <div class="esc-d">70% de adopción para 2030. <b style="color:var(--gold2)">~1.202 casos prevenidos</b> en 5 años.</div></div>
+      <div class="esc opt"><div class="esc-n opt">Optimista</div><div class="esc-v opt">−31%</div>
+        <div class="esc-d">100% adopción + modelo fine-tuned. <b style="color:#5BE584">~930 casos prevenidos solo en 2030</b>.</div></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="sec">Proyección anual detallada — Atlántico</div>
+        <table class="tbl">
+          <thead><tr><th>Año</th><th>Sin IoT</th><th>Con IoT base</th><th>Prevenidos</th><th>Adopción</th></tr></thead>
+          <tbody>
+            <tr><td>2026</td><td>1.873</td><td>1.849</td><td style="color:#5BE584">24 (1,3%)</td><td>5%</td></tr>
+            <tr><td>2027</td><td>2.157</td><td>2.073</td><td style="color:#5BE584">84 (3,9%)</td><td>15%</td></tr>
+            <tr><td>2028</td><td>2.442</td><td>2.251</td><td style="color:#5BE584">191 (7,8%)</td><td>30%</td></tr>
+            <tr><td>2029</td><td>2.726</td><td>2.371</td><td style="color:#5BE584">355 (13,0%)</td><td>50%</td></tr>
+            <tr><td>2030</td><td>3.010</td><td>2.462</td><td style="color:#5BE584">548 (18,2%)</td><td>70%</td></tr>
+            <tr style="border-top:1px solid rgba(200,168,75,.28)">
+              <td><b>Total</b></td><td><b>12.208</b></td><td><b>11.006</b></td>
+              <td style="color:#5BE584"><b>1.202 (9,8%)</b></td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="sec">Supuestos del modelo</div>
+        <div class="sup4">
+          <div class="sup"><div class="sup-v">35,6%</div><div class="sup-l">Casos detectables por IoT</div></div>
+          <div class="sup"><div class="sup-v">45%</div><div class="sup-l">Reducción con sistema activo</div></div>
+          <div class="sup"><div class="sup-v">10%</div><div class="sup-l">Efecto disuasivo</div></div>
+          <div class="sup"><div class="sup-v">284</div><div class="sup-l">Casos/año tendencia</div></div>
+        </div>
+        <div class="alert bl" style="margin-top:13px;">
+          <div class="at bl">Nota metodológica</div>
+          <div class="ab" style="font-size:10.5px;">Regresión lineal sobre 2020–2025 completo. Los supuestos se fundamentan en literatura de sistemas de videovigilancia con IA. Complementa el modelo ML del equipo (<b>Analisis_Extorsion_2026_IC_MEJORADO</b>).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3 -->
+  <div class="panel" id="panel-plan">
+    <div class="alert gold">
+      <div class="at gold">Plan integral VIGÍA Data Insights — 3 frentes de intervención</div>
+      <div class="ab">El proyecto ataca la extorsión desde tres ángulos complementarios que cubren potencialmente más del <b>80% de los tipos de extorsión</b> registrados en el Atlántico.</div>
+    </div>
+    <div class="plan3">
+      <div class="plan-c">
+        <div class="plan-n">01</div>
+        <div class="plan-title">Sistema IoT · Vigía Sentinel-X</div>
+        <div class="plan-desc">Cámara inteligente con visión artificial que detecta en tiempo real: armas, rostros cubiertos, merodeo, panfletos y amenazas verbales. Genera evidencia digital y PDF oficial con cadena de custodia. Cubre el <b style="color:var(--gold2)">35,6%</b> de los casos del Atlántico.</div>
+        <span class="plan-tag gold">Prototipo funcional</span>
+      </div>
+      <div class="plan-c">
+        <div class="plan-n">02</div>
+        <div class="plan-title">App de Denuncia Ciudadana</div>
+        <div class="plan-desc">Aplicación móvil para denuncia anónima y segura. Cubre llamada telefónica (39,7%) y redes sociales (11,7%). Complementa el IoT cubriendo el <b style="color:#74C0FC">51,4%</b> adicional del espectro de modalidades.</div>
+        <span class="plan-tag bl">Prototipo Figma activo</span>
+      </div>
+      <div class="plan-c">
+        <div class="plan-n">03</div>
+        <div class="plan-title">Campaña de Socialización</div>
+        <div class="plan-desc">Estrategia preventiva dirigida a jóvenes en riesgo de reclutamiento. Actúa en la raíz del fenómeno. Efecto disuasivo estimado en el <b style="color:#5BE584">10–15%</b> del total de casos en el área de influencia.</div>
+        <span class="plan-tag gr">En implementación</span>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:18px;">
+      <div class="sec">Cobertura del plan por tipo de extorsión — Atlántico</div>
+      <div class="cw"><canvas id="cCobertura"></canvas></div>
+    </div>
+    <div class="alert gr">
+      <div class="at gr">Cobertura combinada potencial</div>
+      <div class="ab">La suma de los tres componentes cubre potencialmente <b>más del 80%</b> del total de casos registrados en el Atlántico. Barranquilla y Soledad, con el <b>76,5% de los casos</b> departamentales, son el foco inicial de despliegue.</div>
+    </div>
+  </div>
+
+  <p style="font-size:9px;color:rgba(255,255,255,.18);text-align:center;margin-top:24px;letter-spacing:.06em;">
+    Fuente: Base de Datos Final · Policía Nacional de Colombia · 61.705 registros · 2020–2025 · VIGÍA Data Insights · SENA 2026
+  </p>
+</div>
+
+<script>
+const G2='#E2C46A',B='#4a90d9',R='#FF6B6B',GR='#5BE584',N='#0A1628',
+  W='rgba(255,255,255,.8)',W4='rgba(255,255,255,.38)';
+const tip={backgroundColor:'rgba(10,22,40,.97)',borderColor:'rgba(200,168,75,.28)',borderWidth:1,
+  titleColor:B,bodyColor:G2,titleFont:{family:'Montserrat',size:10},bodyFont:{family:'Montserrat',size:12,weight:'700'},padding:10};
+const sc={
+  x:{grid:{color:'rgba(255,255,255,.045)'},ticks:{color:W4,font:{family:'Montserrat',size:9}},border:{color:'transparent'}},
+  y:{grid:{color:'rgba(255,255,255,.035)'},ticks:{color:W4,font:{family:'Montserrat',size:9}},border:{color:'transparent'},beginAtZero:true}};
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tip},scales:sc};
+
+new Chart(document.getElementById('cNac'),{type:'bar',
+  data:{labels:['2020','2021','2022','2023','2024','2025'],
+    datasets:[{data:[8722,8705,10592,11590,14526,13040],borderRadius:5,borderWidth:1.5,
+      backgroundColor:['rgba(74,144,217,.5)','rgba(74,144,217,.5)','rgba(200,168,75,.52)','rgba(200,168,75,.62)','rgba(255,107,107,.78)','rgba(255,107,107,.62)'],
+      borderColor:[B,B,'#C8A84B','#C8A84B',R,R]}]},options:{...base}});
+
+new Chart(document.getElementById('cAtl'),{type:'line',
+  data:{labels:['2020','2021','2022','2023','2024','2025'],
+    datasets:[
+      {label:'Atlántico',data:[196,259,647,1364,1504,1296],borderColor:G2,backgroundColor:'rgba(200,168,75,.07)',borderWidth:2.5,fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:G2},
+      {label:'Barranquilla',data:[129,165,419,878,894,763],borderColor:B,backgroundColor:'rgba(74,144,217,.06)',borderWidth:2,fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:B}]},
+  options:{...base,plugins:{...base.plugins,legend:{display:true,labels:{color:W,font:{family:'Montserrat',size:10}}}}}});
+
+new Chart(document.getElementById('cMedios'),{type:'doughnut',
+  data:{labels:['Llamada telefónica','Directa (presencial)','Redes sociales','Carta extorsiva','Sin armas','Otros'],
+    datasets:[{data:[2089,1198,618,561,246,86],
+      backgroundColor:['rgba(255,107,107,.85)','rgba(200,168,75,.92)','rgba(211,84,0,.75)','rgba(74,144,217,.82)','rgba(91,229,132,.72)','rgba(142,155,176,.5)'],
+      borderColor:N,borderWidth:2.5,hoverOffset:6}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'56%',
+    plugins:{legend:{display:true,position:'right',labels:{color:W,font:{family:'Montserrat',size:9.5},padding:10,boxWidth:11}},tooltip:tip}}});
+
+new Chart(document.getElementById('cDias'),{type:'bar',
+  data:{labels:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],
+    datasets:[{data:[690,749,770,757,749,645,438],borderRadius:4,borderWidth:1.5,
+      backgroundColor:['rgba(74,144,217,.5)','rgba(200,168,75,.75)','rgba(200,168,75,.92)','rgba(200,168,75,.85)','rgba(200,168,75,.75)','rgba(74,144,217,.5)','rgba(142,155,176,.38)'],
+      borderColor:[B,G2,G2,G2,G2,B,'rgba(142,155,176,.45)']}]},options:{...base}});
+
+new Chart(document.getElementById('cMeses'),{type:'bar',
+  data:{labels:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+    datasets:[{data:[258,228,310,313,409,358,468,496,514,553,476,415],borderRadius:3,borderWidth:1,
+      backgroundColor(c){const v=c.parsed.y;return v>=500?'rgba(255,107,107,.85)':v>=450?'rgba(200,168,75,.85)':'rgba(74,144,217,.5)';}}]},
+  options:{...base}});
+
+new Chart(document.getElementById('cPred'),{type:'line',
+  data:{labels:['2020','2021','2022','2023','2024','2025','2026','2027','2028','2029','2030'],
+    datasets:[
+      {label:'Histórico real',data:[196,259,647,1364,1504,1296,null,null,null,null,null],borderColor:B,backgroundColor:'rgba(74,144,217,.07)',borderWidth:2.5,fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:B},
+      {label:'Sin IoT (tendencia)',data:[null,null,null,null,null,1296,1873,2157,2442,2726,3010],borderColor:R,borderDash:[6,4],borderWidth:2,fill:false,tension:0.3,pointRadius:3,pointBackgroundColor:R},
+      {label:'Con IoT — base',data:[null,null,null,null,null,1296,1849,2073,2251,2371,2462],borderColor:G2,backgroundColor:'rgba(200,168,75,.06)',borderWidth:2.5,fill:true,tension:0.3,pointRadius:4,pointBackgroundColor:G2},
+      {label:'Con IoT — optimista',data:[null,null,null,null,null,1296,1296,1492,1689,1886,2082],borderColor:GR,borderDash:[3,3],borderWidth:2,fill:false,tension:0.3,pointRadius:3,pointBackgroundColor:GR}]},
+  options:{...base,plugins:{...base.plugins,legend:{display:true,labels:{color:W,font:{family:'Montserrat',size:10}}}}}});
+
+new Chart(document.getElementById('cCobertura'),{type:'bar',
+  data:{labels:['Llamada tel. (39,7%)','Directa (22,7%)','Redes soc. (11,7%)','Carta extors. (10,7%)','Sin armas (4,7%)'],
+    datasets:[
+      {label:'App móvil',data:[39.7,0,11.7,0,0],backgroundColor:'rgba(74,144,217,.78)',borderRadius:4},
+      {label:'Sistema IoT',data:[0,22.7,0,10.7,0],backgroundColor:'rgba(200,168,75,.88)',borderRadius:4},
+      {label:'Sin cobertura directa',data:[0,0,0,0,4.7],backgroundColor:'rgba(142,155,176,.35)',borderRadius:4}]},
+  options:{...base,indexAxis:'y',
+    scales:{x:{...sc.x,stacked:true,max:44},y:{...sc.y,stacked:true}},
+    plugins:{...base.plugins,legend:{display:true,labels:{color:W,font:{family:'Montserrat',size:10}}}}}});
+
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
